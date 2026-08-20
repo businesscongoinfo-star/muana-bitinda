@@ -1,790 +1,6167 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-
-  <meta name="viewport"
-        content="width=device-width, initial-scale=1.0">
-
-  <meta name="theme-color"
-        content="#0b1220">
-
-  <meta name="description"
-        content="Muana Bitinda - Gestion logistique, stock, partenaires et livraisons">
-
-  <title>Muana Bitinda | Espace Partenaire</title>
-
-  <style>
-
-    *{
-      margin:0;
-      padding:0;
-      box-sizing:border-box;
-    }
-
-    html{
-      scroll-behavior:smooth;
-    }
-
-    body{
-      font-family:
-        Inter,
-        Arial,
-        Helvetica,
-        sans-serif;
-
-      min-height:100vh;
-
-      background:
-        radial-gradient(
-          circle at top right,
-          #243b64 0%,
-          #0b1220 45%,
-          #050914 100%
-        );
-
-      color:#ffffff;
-    }
-
-    button,
-    input{
-      font-family:inherit;
-    }
-
-    .page{
-      min-height:100vh;
-      display:flex;
-      flex-direction:column;
-    }
-
-    /* =========================
-       HEADER
-    ========================= */
-
-    header{
-      width:100%;
-      padding:18px 6%;
-
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-
-      border-bottom:1px solid rgba(255,255,255,.08);
-
-      background:rgba(5,9,20,.72);
-
-      backdrop-filter:blur(15px);
-
-      position:sticky;
-      top:0;
-      z-index:100;
-    }
-
-    .logo{
-      display:flex;
-      align-items:center;
-      gap:12px;
-    }
-
-    .logo-icon{
-      width:45px;
-      height:45px;
-
-      border-radius:14px;
-
-      display:flex;
-      align-items:center;
-      justify-content:center;
-
-      background:
-        linear-gradient(
-          135deg,
-          #00c6ff,
-          #0072ff
-        );
-
-      font-size:23px;
-
-      box-shadow:
-        0 8px 30px rgba(0,114,255,.3);
-    }
-
-    .logo-text strong{
-      display:block;
-      font-size:17px;
-      letter-spacing:.5px;
-    }
-
-    .logo-text span{
-      display:block;
-      margin-top:3px;
-
-      color:#9ba8bf;
-
-      font-size:11px;
-    }
-
-    .status{
-      display:flex;
-      align-items:center;
-      gap:8px;
-
-      padding:8px 13px;
-
-      border-radius:30px;
-
-      background:rgba(255,255,255,.06);
-
-      color:#cbd5e1;
-
-      font-size:12px;
-    }
-
-    .status-dot{
-      width:8px;
-      height:8px;
-
-      border-radius:50%;
-
-      background:#22c55e;
-
-      box-shadow:
-        0 0 10px #22c55e;
-    }
-
-    /* =========================
-       MAIN
-    ========================= */
-
-    main{
-      width:100%;
-      max-width:1200px;
-
-      margin:auto;
-
-      padding:
-        70px 6%
-        40px;
-    }
-
-    .hero{
-      text-align:center;
-
-      max-width:850px;
-
-      margin:0 auto 55px;
-    }
-
-    .badge{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-
-      padding:8px 15px;
-
-      border-radius:30px;
-
-      background:rgba(0,198,255,.09);
-
-      border:1px solid rgba(0,198,255,.18);
-
-      color:#61d9ff;
-
-      font-size:12px;
-      font-weight:600;
-
-      margin-bottom:20px;
-    }
-
-    .hero h1{
-      font-size:
-        clamp(36px,6vw,70px);
-
-      line-height:1.05;
-
-      letter-spacing:-2px;
-
-      margin-bottom:20px;
-    }
-
-    .hero h1 span{
-      background:
-        linear-gradient(
-          90deg,
-          #00c6ff,
-          #7c3aed
-        );
-
-      -webkit-background-clip:text;
-      background-clip:text;
-
-      color:transparent;
-    }
-
-    .hero p{
-      max-width:700px;
-
-      margin:auto;
-
-      color:#aeb9cc;
-
-      font-size:
-        clamp(15px,2vw,18px);
-
-      line-height:1.7;
-    }
-
-    /* =========================
-       ACCESS CARDS
-    ========================= */
-
-    .cards{
-      display:grid;
-
-      grid-template-columns:
-        repeat(2,1fr);
-
-      gap:22px;
-
-      max-width:850px;
-
-      margin:0 auto;
-    }
-
-    .card{
-      position:relative;
-
-      padding:30px;
-
-      min-height:290px;
-
-      border-radius:24px;
-
-      background:
-        linear-gradient(
-          145deg,
-          rgba(255,255,255,.09),
-          rgba(255,255,255,.035)
-        );
-
-      border:1px solid rgba(255,255,255,.10);
-
-      box-shadow:
-        0 20px 60px rgba(0,0,0,.25);
-
-      transition:
-        transform .25s ease,
-        border-color .25s ease;
-    }
-
-    .card:hover{
-      transform:translateY(-5px);
-
-      border-color:
-        rgba(0,198,255,.35);
-    }
-
-    .card-icon{
-      width:55px;
-      height:55px;
-
-      display:flex;
-      align-items:center;
-      justify-content:center;
-
-      border-radius:17px;
-
-      background:rgba(0,198,255,.12);
-
-      font-size:27px;
-
-      margin-bottom:20px;
-    }
-
-    .card h2{
-      font-size:23px;
-
-      margin-bottom:12px;
-    }
-
-    .card p{
-      color:#9ca9bd;
-
-      font-size:14px;
-
-      line-height:1.6;
-
-      margin-bottom:24px;
-    }
-
-    .btn{
-      width:100%;
-
-      border:0;
-
-      border-radius:13px;
-
-      padding:14px 18px;
-
-      font-size:14px;
-
-      font-weight:700;
-
-      cursor:pointer;
-
-      transition:
-        transform .2s ease,
-        opacity .2s ease;
-    }
-
-    .btn:hover{
-      transform:translateY(-2px);
-      opacity:.92;
-    }
-
-    .btn-primary{
-      color:white;
-
-      background:
-        linear-gradient(
-          135deg,
-          #0072ff,
-          #00c6ff
-        );
-
-      box-shadow:
-        0 10px 25px
-        rgba(0,114,255,.25);
-    }
-
-    .btn-secondary{
-      color:#ffffff;
-
-      background:
-        rgba(255,255,255,.07);
-
-      border:1px solid
-        rgba(255,255,255,.12);
-    }
-
-    /* =========================
-       FEATURES
-    ========================= */
-
-    .features{
-      margin-top:65px;
-
-      display:grid;
-
-      grid-template-columns:
-        repeat(4,1fr);
-
-      gap:15px;
-    }
-
-    .feature{
-      padding:22px 18px;
-
-      border-radius:18px;
-
-      background:
-        rgba(255,255,255,.045);
-
-      border:
-        1px solid
-        rgba(255,255,255,.07);
-
-      text-align:center;
-    }
-
-    .feature-icon{
-      font-size:25px;
-
-      margin-bottom:10px;
-    }
-
-    .feature strong{
-      display:block;
-
-      font-size:13px;
-
-      margin-bottom:5px;
-    }
-
-    .feature span{
-      color:#7f8ca3;
-
-      font-size:11px;
-    }
-
-    /* =========================
-       INFO
-    ========================= */
-
-    .info{
-      margin-top:50px;
-
-      padding:25px;
-
-      border-radius:20px;
-
-      background:
-        rgba(0,198,255,.055);
-
-      border:
-        1px solid
-        rgba(0,198,255,.12);
-
-      text-align:center;
-    }
-
-    .info strong{
-      display:block;
-
-      margin-bottom:8px;
-    }
-
-    .info p{
-      color:#9ba8bd;
-
-      font-size:13px;
-
-      line-height:1.6;
-    }
-
-    /* =========================
-       FOOTER
-    ========================= */
-
-    footer{
-      margin-top:auto;
-
-      padding:25px 6%;
-
-      text-align:center;
-
-      border-top:
-        1px solid
-        rgba(255,255,255,.07);
-
-      color:#6f7b90;
-
-      font-size:11px;
-    }
-
-    /* =========================
-       MOBILE
-    ========================= */
-
-    @media(max-width:750px){
-
-      header{
-        padding:15px 5%;
-      }
-
-      .status{
-        display:none;
-      }
-
-      main{
-        padding:
-          50px 5%
-          30px;
-      }
-
-      .hero{
-        margin-bottom:35px;
-      }
-
-      .hero h1{
-        letter-spacing:-1px;
-      }
-
-      .cards{
-        grid-template-columns:1fr;
-
-        gap:15px;
-      }
-
-      .card{
-        min-height:auto;
-
-        padding:25px;
-      }
-
-      .features{
-        grid-template-columns:
-          repeat(2,1fr);
-
-        gap:10px;
-
-        margin-top:35px;
-      }
-
-      .feature{
-        padding:18px 10px;
-      }
-
-      .info{
-        margin-top:30px;
-      }
-    }
-
-  </style>
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>MUANA BITINDA</title>
+
+<style>
+
+/* =====================================================
+   RESET
+===================================================== */
+
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+:root{
+  --primary:#0f172a;
+  --primary2:#1e293b;
+  --accent:#16a34a;
+  --accent2:#22c55e;
+  --blue:#2563eb;
+  --orange:#f59e0b;
+  --red:#dc2626;
+  --white:#ffffff;
+  --light:#f8fafc;
+  --border:#e2e8f0;
+  --text:#0f172a;
+  --muted:#64748b;
+  --shadow:0 15px 40px rgba(15,23,42,.10);
+}
+
+body{
+  font-family:
+    Inter,
+    Arial,
+    Helvetica,
+    sans-serif;
+  background:#f1f5f9;
+  color:var(--text);
+  min-height:100vh;
+}
+
+
+/* =====================================================
+   LOADING
+===================================================== */
+
+#loading{
+  position:fixed;
+  inset:0;
+  background:rgba(255,255,255,.96);
+  z-index:9999;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+  gap:15px;
+}
+
+.loader{
+  width:48px;
+  height:48px;
+  border:5px solid #e2e8f0;
+  border-top-color:var(--accent);
+  border-radius:50%;
+  animation:spin .8s linear infinite;
+}
+
+@keyframes spin{
+  to{
+    transform:rotate(360deg);
+  }
+}
+
+#loadingText{
+  color:var(--muted);
+  font-weight:600;
+}
+
+
+/* =====================================================
+   TOAST
+===================================================== */
+
+#toastContainer{
+  position:fixed;
+  top:20px;
+  right:20px;
+  z-index:10000;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+.toast{
+  min-width:280px;
+  max-width:400px;
+  padding:15px 18px;
+  border-radius:14px;
+  background:white;
+  box-shadow:var(--shadow);
+  border-left:5px solid var(--accent);
+  animation:slideIn .3s ease;
+  font-size:14px;
+}
+
+.toast.error{
+  border-left-color:var(--red);
+}
+
+.toast.warning{
+  border-left-color:var(--orange);
+}
+
+@keyframes slideIn{
+  from{
+    opacity:0;
+    transform:translateX(30px);
+  }
+  to{
+    opacity:1;
+    transform:translateX(0);
+  }
+}
+
+
+/* =====================================================
+   AUTH
+===================================================== */
+
+#authScreen{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:25px;
+  background:
+    radial-gradient(
+      circle at top left,
+      #166534,
+      transparent 35%
+    ),
+    linear-gradient(
+      135deg,
+      #020617,
+      #0f172a 55%,
+      #14532d
+    );
+}
+
+.authBox{
+  width:100%;
+  max-width:470px;
+  background:white;
+  border-radius:28px;
+  box-shadow:
+    0 30px 80px rgba(0,0,0,.30);
+  overflow:hidden;
+}
+
+.authHeader{
+  padding:35px 30px;
+  text-align:center;
+  background:
+    linear-gradient(
+      135deg,
+      #0f172a,
+      #14532d
+    );
+  color:white;
+}
+
+.logoCircle{
+  width:72px;
+  height:72px;
+  margin:auto;
+  border-radius:22px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:white;
+  color:#14532d;
+  font-size:28px;
+  font-weight:900;
+  box-shadow:0 10px 30px rgba(0,0,0,.2);
+}
+
+.authHeader h1{
+  margin-top:18px;
+  font-size:25px;
+  letter-spacing:.5px;
+}
+
+.authHeader p{
+  margin-top:7px;
+  color:#bbf7d0;
+  font-size:13px;
+}
+
+.authBody{
+  padding:30px;
+}
+
+.authTitle{
+  font-size:22px;
+  font-weight:800;
+  margin-bottom:8px;
+}
+
+.authSubtitle{
+  color:var(--muted);
+  font-size:14px;
+  margin-bottom:25px;
+}
+
+.formGroup{
+  margin-bottom:17px;
+}
+
+.formGroup label{
+  display:block;
+  font-size:13px;
+  font-weight:700;
+  margin-bottom:7px;
+}
+
+.formControl{
+  width:100%;
+  padding:13px 15px;
+  border:1px solid var(--border);
+  border-radius:12px;
+  outline:none;
+  font-size:14px;
+  transition:.2s;
+  background:#fff;
+}
+
+.formControl:focus{
+  border-color:var(--accent);
+  box-shadow:
+    0 0 0 4px rgba(34,197,94,.10);
+}
+
+.passwordWrap{
+  position:relative;
+}
+
+.passwordWrap .formControl{
+  padding-right:48px;
+}
+
+.passwordToggle{
+  position:absolute;
+  right:12px;
+  top:50%;
+  transform:translateY(-50%);
+  border:0;
+  background:none;
+  cursor:pointer;
+  color:var(--muted);
+}
+
+.btn{
+  border:0;
+  cursor:pointer;
+  border-radius:12px;
+  padding:13px 18px;
+  font-size:14px;
+  font-weight:800;
+  transition:.2s;
+}
+
+.btn:hover{
+  transform:translateY(-1px);
+}
+
+.btnPrimary{
+  background:var(--accent);
+  color:white;
+  width:100%;
+}
+
+.btnPrimary:hover{
+  background:#15803d;
+}
+
+.btnSecondary{
+  background:#e2e8f0;
+  color:var(--text);
+}
+
+.authSwitch{
+  text-align:center;
+  margin-top:20px;
+  color:var(--muted);
+  font-size:14px;
+}
+
+.authSwitch button{
+  border:0;
+  background:none;
+  color:var(--accent);
+  font-weight:800;
+  cursor:pointer;
+}
+
+.hidden{
+  display:none !important;
+}
+
+
+/* =====================================================
+   APP
+===================================================== */
+
+#appScreen{
+  display:none;
+  min-height:100vh;
+}
+
+.sidebar{
+  position:fixed;
+  left:0;
+  top:0;
+  bottom:0;
+  width:260px;
+  background:
+    linear-gradient(
+      180deg,
+      #020617,
+      #0f172a
+    );
+  color:white;
+  z-index:1000;
+  overflow-y:auto;
+}
+
+.sidebarLogo{
+  padding:25px 20px;
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+.sidebarLogo strong{
+  font-size:20px;
+  display:block;
+}
+
+.sidebarLogo small{
+  color:#86efac;
+  font-size:11px;
+}
+
+.userMini{
+  margin:18px;
+  padding:15px;
+  border-radius:16px;
+  background:rgba(255,255,255,.06);
+}
+
+.userMiniName{
+  font-weight:800;
+  font-size:14px;
+}
+
+.userMiniRole{
+  margin-top:4px;
+  color:#86efac;
+  font-size:11px;
+}
+
+.nav{
+  padding:5px 12px 20px;
+}
+
+.navTitle{
+  padding:15px 10px 8px;
+  font-size:10px;
+  text-transform:uppercase;
+  color:#64748b;
+  font-weight:800;
+  letter-spacing:1px;
+}
+
+.navItem{
+  width:100%;
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:13px 12px;
+  margin:3px 0;
+  border-radius:12px;
+  border:0;
+  background:transparent;
+  color:#cbd5e1;
+  cursor:pointer;
+  text-align:left;
+  font-size:13px;
+  font-weight:600;
+}
+
+.navItem:hover,
+.navItem.active{
+  background:rgba(34,197,94,.15);
+  color:#86efac;
+}
+
+.navIcon{
+  width:22px;
+  text-align:center;
+}
+
+
+/* =====================================================
+   MAIN
+===================================================== */
+
+.main{
+  margin-left:260px;
+  min-height:100vh;
+}
+
+.topbar{
+  height:72px;
+  background:white;
+  border-bottom:1px solid var(--border);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 28px;
+  position:sticky;
+  top:0;
+  z-index:500;
+}
+
+.topbarTitle{
+  font-size:19px;
+  font-weight:800;
+}
+
+.topbarRight{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.iconButton{
+  width:40px;
+  height:40px;
+  border-radius:12px;
+  border:1px solid var(--border);
+  background:white;
+  cursor:pointer;
+}
+
+.content{
+  padding:28px;
+}
+
+
+/* =====================================================
+   PAGE
+===================================================== */
+
+.page{
+  display:none;
+}
+
+.page.active{
+  display:block;
+}
+
+.pageHeader{
+  margin-bottom:25px;
+}
+
+.pageHeader h2{
+  font-size:25px;
+  font-weight:900;
+}
+
+.pageHeader p{
+  margin-top:5px;
+  color:var(--muted);
+  font-size:13px;
+}
+
+
+/* =====================================================
+   CARDS
+===================================================== */
+
+.statsGrid{
+  display:grid;
+  grid-template-columns:
+    repeat(4, minmax(0,1fr));
+  gap:18px;
+  margin-bottom:25px;
+}
+
+.statCard{
+  background:white;
+  border:1px solid var(--border);
+  border-radius:18px;
+  padding:20px;
+  box-shadow:0 5px 20px rgba(15,23,42,.04);
+}
+
+.statTop{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.statIcon{
+  width:45px;
+  height:45px;
+  border-radius:13px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#dcfce7;
+  font-size:21px;
+}
+
+.statValue{
+  margin-top:17px;
+  font-size:27px;
+  font-weight:900;
+}
+
+.statLabel{
+  margin-top:4px;
+  color:var(--muted);
+  font-size:12px;
+}
+
+
+/* =====================================================
+   PANELS
+===================================================== */
+
+.panel{
+  background:white;
+  border:1px solid var(--border);
+  border-radius:18px;
+  box-shadow:0 5px 20px rgba(15,23,42,.04);
+  overflow:hidden;
+}
+
+.panelHeader{
+  padding:18px 20px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  border-bottom:1px solid var(--border);
+}
+
+.panelHeader h3{
+  font-size:15px;
+  font-weight:800;
+}
+
+.panelBody{
+  padding:20px;
+}
+
+
+/* =====================================================
+   TABLE
+===================================================== */
+
+.tableWrap{
+  overflow-x:auto;
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+  min-width:700px;
+}
+
+th{
+  background:#f8fafc;
+  color:#475569;
+  font-size:11px;
+  text-transform:uppercase;
+  letter-spacing:.4px;
+  padding:13px;
+  text-align:left;
+  white-space:nowrap;
+}
+
+td{
+  padding:14px 13px;
+  border-top:1px solid #f1f5f9;
+  font-size:13px;
+  white-space:nowrap;
+}
+
+tr:hover td{
+  background:#f8fafc;
+}
+
+
+/* =====================================================
+   BADGES
+===================================================== */
+
+.badge{
+  display:inline-flex;
+  align-items:center;
+  padding:5px 9px;
+  border-radius:20px;
+  font-size:10px;
+  font-weight:800;
+}
+
+.badgeGreen{
+  background:#dcfce7;
+  color:#166534;
+}
+
+.badgeOrange{
+  background:#fef3c7;
+  color:#92400e;
+}
+
+.badgeRed{
+  background:#fee2e2;
+  color:#991b1b;
+}
+
+.badgeBlue{
+  background:#dbeafe;
+  color:#1e40af;
+}
+
+.badgeGray{
+  background:#e2e8f0;
+  color:#475569;
+}
+
+
+/* =====================================================
+   GRID
+===================================================== */
+
+.twoColumns{
+  display:grid;
+  grid-template-columns:
+    repeat(2,minmax(0,1fr));
+  gap:20px;
+}
+
+.threeColumns{
+  display:grid;
+  grid-template-columns:
+    repeat(3,minmax(0,1fr));
+  gap:18px;
+}
+
+
+/* =====================================================
+   TOOLBAR
+===================================================== */
+
+.toolbar{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  margin-bottom:18px;
+  flex-wrap:wrap;
+}
+
+.searchBox{
+  position:relative;
+  flex:1;
+  min-width:220px;
+}
+
+.searchBox input{
+  width:100%;
+  padding:12px 15px 12px 40px;
+  border:1px solid var(--border);
+  border-radius:12px;
+  outline:none;
+}
+
+.searchIcon{
+  position:absolute;
+  left:14px;
+  top:50%;
+  transform:translateY(-50%);
+  color:var(--muted);
+}
+
+
+/* =====================================================
+   MODAL
+===================================================== */
+
+.modal{
+  position:fixed;
+  inset:0;
+  background:rgba(2,6,23,.65);
+  z-index:5000;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+}
+
+.modal.show{
+  display:flex;
+}
+
+.modalBox{
+  background:white;
+  width:100%;
+  max-width:600px;
+  max-height:90vh;
+  overflow:auto;
+  border-radius:22px;
+  box-shadow:0 30px 80px rgba(0,0,0,.3);
+}
+
+.modalHeader{
+  padding:20px;
+  border-bottom:1px solid var(--border);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.modalHeader h3{
+  font-size:18px;
+}
+
+.closeModal{
+  border:0;
+  background:#f1f5f9;
+  width:35px;
+  height:35px;
+  border-radius:10px;
+  cursor:pointer;
+}
+
+.modalBody{
+  padding:22px;
+}
+
+.modalFooter{
+  padding:18px 22px;
+  border-top:1px solid var(--border);
+  display:flex;
+  justify-content:flex-end;
+  gap:10px;
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+.mobileMenu{
+  display:none;
+}
+
+@media(max-width:1000px){
+
+  .statsGrid{
+    grid-template-columns:
+      repeat(2,minmax(0,1fr));
+  }
+
+  .twoColumns{
+    grid-template-columns:1fr;
+  }
+
+}
+
+@media(max-width:750px){
+
+  .sidebar{
+    transform:translateX(-100%);
+    transition:.25s;
+  }
+
+  .sidebar.open{
+    transform:translateX(0);
+  }
+
+  .main{
+    margin-left:0;
+  }
+
+  .mobileMenu{
+    display:block;
+  }
+
+  .content{
+    padding:18px;
+  }
+
+  .topbar{
+    padding:0 15px;
+  }
+
+  .statsGrid{
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+  }
+
+  .statCard{
+    padding:15px;
+  }
+
+  .statValue{
+    font-size:22px;
+  }
+
+}
+
+@media(max-width:500px){
+
+  #authScreen{
+    padding:12px;
+  }
+
+  .authBox{
+    border-radius:20px;
+  }
+
+  .authHeader{
+    padding:28px 20px;
+  }
+
+  .authBody{
+    padding:22px;
+  }
+
+  .statsGrid{
+    grid-template-columns:1fr;
+  }
+
+  .pageHeader h2{
+    font-size:21px;
+  }
+
+}
+
+
+/* =====================================================
+   EMPTY STATE
+===================================================== */
+
+.empty{
+  padding:45px 20px;
+  text-align:center;
+  color:var(--muted);
+}
+
+.emptyIcon{
+  font-size:40px;
+  margin-bottom:10px;
+}
+
+
+/* =====================================================
+   PROGRESS
+===================================================== */
+
+.progress{
+  height:8px;
+  background:#e2e8f0;
+  border-radius:20px;
+  overflow:hidden;
+}
+
+.progressBar{
+  height:100%;
+  background:var(--accent);
+  border-radius:20px;
+}
+
+
+/* =====================================================
+   FORM GRID
+===================================================== */
+
+.formGrid{
+  display:grid;
+  grid-template-columns:
+    repeat(2,minmax(0,1fr));
+  gap:15px;
+}
+
+.formGrid .full{
+  grid-column:1/-1;
+}
+
+@media(max-width:600px){
+  .formGrid{
+    grid-template-columns:1fr;
+  }
+
+  .formGrid .full{
+    grid-column:auto;
+  }
+}
+
+</style>
 </head>
 
 <body>
 
-<div class="page">
 
-  <!-- HEADER -->
+<!-- ===================================================
+     LOADING
+=================================================== -->
 
-  <header>
+<div id="loading">
 
-    <div class="logo">
+  <div class="loader"></div>
 
-      <div class="logo-icon">
-        🛵
-      </div>
-
-      <div class="logo-text">
-
-        <strong>MUANA BITINDA</strong>
-
-        <span>
-          LOGISTIQUE • STOCK • LIVRAISON
-        </span>
-
-      </div>
-
-    </div>
-
-    <div class="status">
-
-      <span class="status-dot"></span>
-
-      Plateforme opérationnelle
-
-    </div>
-
-  </header>
-
-
-  <!-- MAIN -->
-
-  <main>
-
-    <section class="hero">
-
-      <div class="badge">
-        🔐 ESPACE PARTENAIRE SÉCURISÉ
-      </div>
-
-      <h1>
-        Gérez votre activité
-        <span>simplement.</span>
-      </h1>
-
-      <p>
-        Retrouvez votre stock, vos mouvements,
-        vos livraisons et vos rapports dans
-        un seul espace professionnel.
-      </p>
-
-    </section>
-
-
-    <!-- CARDS -->
-
-    <section class="cards">
-
-
-      <!-- CONNEXION -->
-
-      <article class="card">
-
-        <div class="card-icon">
-          🔑
-        </div>
-
-        <h2>
-          Je possède déjà un compte
-        </h2>
-
-        <p>
-          Connectez-vous à votre espace
-          partenaire pour consulter vos
-          stocks, mouvements, livraisons
-          et rapports.
-        </p>
-
-        <button
-          class="btn btn-primary"
-          onclick="openApplication()"
-        >
-          Se connecter
-        </button>
-
-      </article>
-
-
-      <!-- INSCRIPTION -->
-
-      <article class="card">
-
-        <div class="card-icon">
-          📝
-        </div>
-
-        <h2>
-          Nouveau partenaire
-        </h2>
-
-        <p>
-          Vous êtes partenaire de
-          Muana Bitinda ? Créez votre
-          propre compte et recevez votre
-          accès personnel.
-        </p>
-
-        <button
-          class="btn btn-secondary"
-          onclick="openApplication()"
-        >
-          Créer mon compte
-        </button>
-
-      </article>
-
-    </section>
-
-
-    <!-- FEATURES -->
-
-    <section class="features">
-
-      <div class="feature">
-
-        <div class="feature-icon">
-          📦
-        </div>
-
-        <strong>
-          STOCK
-        </strong>
-
-        <span>
-          Suivez vos produits
-        </span>
-
-      </div>
-
-
-      <div class="feature">
-
-        <div class="feature-icon">
-          🔄
-        </div>
-
-        <strong>
-          MOUVEMENTS
-        </strong>
-
-        <span>
-          Entrées et sorties
-        </span>
-
-      </div>
-
-
-      <div class="feature">
-
-        <div class="feature-icon">
-          🛵
-        </div>
-
-        <strong>
-          LIVRAISONS
-        </strong>
-
-        <span>
-          Suivez vos livraisons
-        </span>
-
-      </div>
-
-
-      <div class="feature">
-
-        <div class="feature-icon">
-          📊
-        </div>
-
-        <strong>
-          RAPPORTS
-        </strong>
-
-        <span>
-          Consultez votre activité
-        </span>
-
-      </div>
-
-    </section>
-
-
-    <!-- INFO -->
-
-    <section class="info">
-
-      <strong>
-        🔒 Vos données restent séparées
-      </strong>
-
-      <p>
-        Chaque partenaire dispose de son propre
-        espace. Les données affichées correspondent
-        uniquement à son compte et à son activité.
-      </p>
-
-    </section>
-
-  </main>
-
-
-  <!-- FOOTER -->
-
-  <footer>
-
-    © 2026 Muana Bitinda —
-    Plateforme professionnelle de gestion
-    logistique.
-
-  </footer>
+  <div id="loadingText">
+    Chargement...
+  </div>
 
 </div>
 
 
+<!-- ===================================================
+     TOAST
+=================================================== -->
+
+<div id="toastContainer"></div>
+
+
+<!-- ===================================================
+     AUTH SCREEN
+=================================================== -->
+
+<div id="authScreen">
+
+  <div class="authBox">
+
+    <div class="authHeader">
+
+      <div class="logoCircle">
+        MB
+      </div>
+
+      <h1>MUANA BITINDA</h1>
+
+      <p>
+        Plateforme professionnelle de gestion logistique
+      </p>
+
+    </div>
+
+
+    <!-- LOGIN -->
+
+    <div
+      class="authBody"
+      id="loginBox"
+    >
+
+      <div class="authTitle">
+        Connexion
+      </div>
+
+      <div class="authSubtitle">
+        Connectez-vous à votre espace sécurisé.
+      </div>
+
+
+      <form id="loginForm">
+
+        <div class="formGroup">
+
+          <label>
+            Adresse email
+          </label>
+
+          <input
+            id="loginEmail"
+            class="formControl"
+            type="email"
+            placeholder="exemple@email.com"
+            required
+          >
+
+        </div>
+
+
+        <div class="formGroup">
+
+          <label>
+            Mot de passe
+          </label>
+
+          <div class="passwordWrap">
+
+            <input
+              id="loginPassword"
+              class="formControl"
+              type="password"
+              placeholder="Votre mot de passe"
+              required
+            >
+
+            <button
+              type="button"
+              class="passwordToggle"
+              onclick="togglePassword('loginPassword',this)"
+            >
+              👁
+            </button>
+
+          </div>
+
+        </div>
+
+
+        <button
+          class="btn btnPrimary"
+          type="submit"
+        >
+          Se connecter
+        </button>
+
+      </form>
+
+
+      <div class="authSwitch">
+
+        Vous n'avez pas encore de compte ?
+
+        <button
+          type="button"
+          onclick="showRegister()"
+        >
+          Créer mon compte
+        </button>
+
+      </div>
+
+    </div>
+
+
+    <!-- REGISTER -->
+
+    <div
+      class="authBody hidden"
+      id="registerBox"
+    >
+
+      <div class="authTitle">
+        Créer mon compte
+      </div>
+
+      <div class="authSubtitle">
+        Le partenaire crée lui-même son compte.
+      </div>
+
+
+      <form id="registerForm">
+
+        <div class="formGroup">
+
+          <label>
+            Nom de l'entreprise *
+          </label>
+
+          <input
+            id="registerName"
+            class="formControl"
+            type="text"
+            placeholder="Nom de votre entreprise"
+            required
+          >
+
+        </div>
+
+
+        <div class="formGroup">
+
+          <label>
+            Email *
+          </label>
+
+          <input
+            id="registerEmail"
+            class="formControl"
+            type="email"
+            placeholder="email@entreprise.com"
+            required
+          >
+
+        </div>
+
+
+        <div class="formGroup">
+
+          <label>
+            Téléphone
+          </label>
+
+          <input
+            id="registerPhone"
+            class="formControl"
+            type="tel"
+            placeholder="+242..."
+          >
+
+        </div>
+
+
+        <div class="formGroup">
+
+          <label>
+            Ville
+          </label>
+
+          <input
+            id="registerCity"
+            class="formControl"
+            type="text"
+            placeholder="Pointe-Noire / Brazzaville..."
+          >
+
+        </div>
+
+
+        <div class="formGroup">
+
+          <label>
+            Adresse
+          </label>
+
+          <input
+            id="registerAddress"
+            class="formControl"
+            type="text"
+            placeholder="Votre adresse"
+          >
+
+        </div>
+
+
+        <div class="formGroup">
+
+          <label>
+            Mot de passe *
+          </label>
+
+          <div class="passwordWrap">
+
+            <input
+              id="registerPassword"
+              class="formControl"
+              type="password"
+              minlength="6"
+              placeholder="Minimum 6 caractères"
+              required
+            >
+
+            <button
+              type="button"
+              class="passwordToggle"
+              onclick="togglePassword('registerPassword',this)"
+            >
+              👁
+            </button>
+
+          </div>
+
+        </div>
+
+
+        <div class="formGroup">
+
+          <label>
+            Confirmer le mot de passe *
+          </label>
+
+          <input
+            id="registerPassword2"
+            class="formControl"
+            type="password"
+            minlength="6"
+            placeholder="Confirmez votre mot de passe"
+            required
+          >
+
+        </div>
+
+
+        <button
+          class="btn btnPrimary"
+          type="submit"
+        >
+          Créer mon compte
+        </button>
+
+      </form>
+
+
+      <div class="authSwitch">
+
+        Vous avez déjà un compte ?
+
+        <button
+          type="button"
+          onclick="showLogin()"
+        >
+          Se connecter
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- ===================================================
+     APPLICATION
+=================================================== -->
+
+<div id="appScreen">
+
+
+  <!-- SIDEBAR -->
+
+  <aside
+    class="sidebar"
+    id="sidebar"
+  >
+
+    <div class="sidebarLogo">
+
+      <strong>
+        MUANA BITINDA
+      </strong>
+
+      <small>
+        Gestion Logistique
+      </small>
+
+    </div>
+
+
+    <div class="userMini">
+
+      <div
+        class="userMiniName"
+        id="sideUserName"
+      >
+        Utilisateur
+      </div>
+
+      <div
+        class="userMiniRole"
+        id="sideUserRole"
+      >
+        PARTENAIRE
+      </div>
+
+    </div>
+
+
+    <nav class="nav">
+
+      <div class="navTitle">
+        Principal
+      </div>
+
+      <button
+        class="navItem active"
+        onclick="openPage('dashboard')"
+      >
+        <span class="navIcon">📊</span>
+        Tableau de bord
+      </button>
+
+
+      <button
+        class="navItem partnerOnly"
+        onclick="openPage('stock')"
+      >
+        <span class="navIcon">📦</span>
+        Mon stock
+      </button>
+
+
+      <div class="navTitle partnerOnly">
+        Opérations
+      </div>
+
+
+      <button
+        class="navItem partnerOnly"
+        onclick="openPage('receptions')"
+      >
+        <span class="navIcon">📥</span>
+        Réceptions
+      </button>
+
+
+      <button
+        class="navItem partnerOnly"
+        onclick="openPage('evacuations')"
+      >
+        <span class="navIcon">📤</span>
+        Évacuations
+      </button>
+
+
+      <button
+        class="navItem partnerOnly"
+        onclick="openPage('deliveries')"
+      >
+        <span class="navIcon">🚚</span>
+        Livraisons
+      </button>
+
+
+      <button
+        class="navItem partnerOnly"
+        onclick="openPage('movements')"
+      >
+        <span class="navIcon">🔄</span>
+        Mouvements
+      </button>
+
+
+      <div
+        class="navTitle adminOnly hidden"
+      >
+        Administration
+      </div>
+
+
+      <button
+        class="navItem adminOnly hidden"
+        onclick="openPage('partners')"
+      >
+        <span class="navIcon">👥</span>
+        Partenaires
+      </button>
+
+
+      <button
+        class="navItem adminOnly hidden"
+        onclick="openPage('adminProducts')"
+      >
+        <span class="navIcon">🛍️</span>
+        Produits
+      </button>
+
+
+      <button
+        class="navItem adminOnly hidden"
+        onclick="openPage('adminStats')"
+      >
+        <span class="navIcon">📈</span>
+        Statistiques
+      </button>
+
+
+      <div class="navTitle">
+        Compte
+      </div>
+
+
+      <button
+        class="navItem"
+        onclick="openPage('profile')"
+      >
+        <span class="navIcon">👤</span>
+        Mon profil
+      </button>
+
+
+      <button
+        class="navItem"
+        onclick="openPage('password')"
+      >
+        <span class="navIcon">🔐</span>
+        Mot de passe
+      </button>
+
+
+      <button
+        class="navItem"
+        onclick="logoutUser()"
+      >
+        <span class="navIcon">🚪</span>
+        Déconnexion
+      </button>
+
+    </nav>
+
+  </aside>
+
+
+  <!-- MAIN -->
+
+  <main class="main">
+
+    <header class="topbar">
+
+      <div class="topbarRight">
+
+        <button
+          class="iconButton mobileMenu"
+          onclick="toggleSidebar()"
+        >
+          ☰
+        </button>
+
+        <div class="topbarTitle"
+             id="pageTitle">
+          Tableau de bord
+        </div>
+
+      </div>
+
+
+      <div class="topbarRight">
+
+        <span
+          id="topUserName"
+          style="font-size:13px;font-weight:700;"
+        >
+          -
+        </span>
+
+        <button
+          class="iconButton"
+          onclick="logoutUser()"
+          title="Déconnexion"
+        >
+          🚪
+        </button>
+
+      </div>
+
+    </header>
+
+
+    <div class="content">
+
+
+      <!-- =============================================
+           DASHBOARD
+      ============================================== -->
+
+      <section
+        class="page active"
+        id="page-dashboard"
+      >
+
+        <div class="pageHeader">
+
+          <h2>
+            Tableau de bord
+          </h2>
+
+          <p id="welcomeText">
+            Bienvenue dans votre espace MUANA BITINDA.
+          </p>
+
+        </div>
+
+
+        <div
+          class="statsGrid"
+          id="statsContainer"
+        >
+        </div>
+
+
+        <div class="twoColumns">
+
+          <div class="panel">
+
+            <div class="panelHeader">
+
+              <h3>
+                Produits / Stock
+              </h3>
+
+            </div>
+
+            <div
+              class="panelBody"
+              id="dashboardProducts"
+            >
+            </div>
+
+          </div>
+
+
+          <div class="panel">
+
+            <div class="panelHeader">
+
+              <h3>
+                Activité récente
+              </h3>
+
+            </div>
+
+            <div
+              class="panelBody"
+              id="dashboardActivity"
+            >
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- =============================================
+           STOCK
+      ============================================== -->
+
+      <section
+        class="page"
+        id="page-stock"
+      >
+
+        <div class="pageHeader">
+
+          <h2>
+            Mon stock
+          </h2>
+
+          <p>
+            Consultez votre stock disponible en temps réel.
+          </p>
+
+        </div>
+
+
+        <div class="toolbar">
+
+          <div class="searchBox">
+
+            <span class="searchIcon">
+              🔎
+            </span>
+
+            <input
+              id="stockSearch"
+              type="text"
+              placeholder="Rechercher un produit..."
+              oninput="filterStock()"
+            >
+
+          </div>
+
+
+          <button
+            class="btn btnPrimary"
+            onclick="openProductModal()"
+          >
+            + Ajouter un produit
+          </button>
+
+        </div>
+
+
+        <div class="panel">
+
+          <div
+            class="panelBody"
+            id="stockTable"
+          >
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- =============================================
+           RECEPTIONS
+      ============================================== -->
+
+      <section
+        class="page"
+        id="page-receptions"
+      >
+
+        <div class="pageHeader">
+
+          <h2>
+            Réceptions
+          </h2>
+
+          <p>
+            Enregistrez les marchandises reçues.
+          </p>
+
+        </div>
+
+
+        <div class="toolbar">
+
+          <button
+            class="btn btnPrimary"
+            onclick="openReceptionModal()"
+          >
+            + Nouvelle réception
+          </button>
+
+        </div>
+
+
+        <div class="panel">
+
+          <div
+            class="panelBody"
+            id="receptionsTable"
+          >
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- =============================================
+           EVACUATIONS
+      ============================================== -->
+
+      <section
+        class="page"
+        id="page-evacuations"
+      >
+
+        <div class="pageHeader">
+
+          <h2>
+            Évacuations
+          </h2>
+
+          <p>
+            Gérez les sorties de stock.
+          </p>
+
+        </div>
+
+
+        <div class="toolbar">
+
+          <button
+            class="btn btnPrimary"
+            onclick="openEvacuationModal()"
+          >
+            + Nouvelle évacuation
+          </button>
+
+        </div>
+
+
+        <div class="panel">
+
+          <div
+            class="panelBody"
+            id="evacuationsTable"
+          >
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- =============================================
+           LIVRAISONS
+      ============================================== -->
+
+      <section
+        class="page"
+        id="page-deliveries"
+      >
+
+        <div class="pageHeader">
+
+          <h2>
+            Livraisons
+          </h2>
+
+          <p>
+            Suivez les livraisons liées à votre stock.
+          </p>
+
+        </div>
+
+
+        <div class="toolbar">
+
+          <button
+            class="btn btnPrimary"
+            onclick="openDeliveryModal()"
+          >
+            + Nouvelle livraison
+          </button>
+
+        </div>
+
+
+        <div class="panel">
+
+          <div
+            class="panelBody"
+            id="deliveriesTable"
+          >
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- =============================================
+           MOUVEMENTS
+      ============================================== -->
+
+      <section
+        class="page"
+        id="page-movements"
+      >
+
+        <div class="pageHeader">
+
+          <h2>
+            Mouvements
+          </h2>
+
+          <p>
+            Historique complet des entrées et sorties.
+          </p>
+
+        </div>
+
+
+        <div class="panel">
+
+          <div
+            class="panelBody"
+            id="movementsTable"
+          >
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- =============================================
+           PARTENAIRES ADMIN
+      ============================================== -->
+
+      <section
+        class="page"
+        id="page-partners"
+      >
+
+        <div class="pageHeader">
+
+          <h2>
+            Partenaires
+          </h2>
+
+          <p>
+            Gérez les comptes partenaires.
+          </p>
+
+        </div>
+
+
+        <div class="panel">
+
+          <div
+            class="panelBody"
+            id="partnersTable"
+          >
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- =============================================
+           PRODUITS ADMIN
+      ============================================== -->
+
+      <section
+        class="page"
+        id="page-adminProducts"
+      >
+
+        <div class="pageHeader">
+
+          <h2>
+            Produits
+          </h2>
+
+          <p>
+            Vue globale des stocks partenaires.
+          </p>
+
+        </div>
+
+
+        <div class="panel">
+
+          <div
+            class="panelBody"
+            id="adminProductsTable"
+          >
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- =============================================
+           STATISTIQUES ADMIN
+      ============================================== -->
+
+      <section
+        class="page"
+        id="page-adminStats"
+      >
+
+        <div class="pageHeader">
+
+          <h2>
+            Statistiques
+          </h2>
+
+          <p>
+            Vue globale de l'activité.
+          </p>
+
+        </div>
+
+
+        <div
+          class="statsGrid"
+          id="adminStatsContainer"
+        >
+        </div>
+
+      </section>
+
+
+      <!-- =============================================
+           PROFIL
+      ============================================== -->
+
+      <section
+        class="page"
+        id="page-profile"
+      >
+
+        <div class="pageHeader">
+
+          <h2>
+            Mon profil
+          </h2>
+
+          <p>
+            Informations de votre compte.
+          </p>
+
+        </div>
+
+
+        <div class="panel">
+
+          <div
+            class="panelBody"
+            id="profileContent"
+          >
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- =============================================
+           PASSWORD
+      ============================================== -->
+
+      <section
+        class="page"
+        id="page-password"
+      >
+
+        <div class="pageHeader">
+
+          <h2>
+            Mot de passe
+          </h2>
+
+          <p>
+            Modifiez votre mot de passe sécurisé.
+          </p>
+
+        </div>
+
+
+        <div class="panel">
+
+          <div class="panelBody">
+
+            <form
+              id="passwordForm"
+              style="max-width:500px;"
+            >
+
+              <div class="formGroup">
+
+                <label>
+                  Ancien mot de passe
+                </label>
+
+                <input
+                  id="oldPassword"
+                  class="formControl"
+                  type="password"
+                  required
+                >
+
+              </div>
+
+
+              <div class="formGroup">
+
+                <label>
+                  Nouveau mot de passe
+                </label>
+
+                <input
+                  id="newPassword"
+                  class="formControl"
+                  type="password"
+                  minlength="6"
+                  required
+                >
+
+              </div>
+
+
+              <div class="formGroup">
+
+                <label>
+                  Confirmer le nouveau mot de passe
+                </label>
+
+                <input
+                  id="newPassword2"
+                  class="formControl"
+                  type="password"
+                  minlength="6"
+                  required
+                >
+
+              </div>
+
+
+              <button
+                class="btn btnPrimary"
+                type="submit"
+              >
+                Modifier le mot de passe
+              </button>
+
+            </form>
+
+          </div>
+
+        </div>
+
+      </section>
+
+    </div>
+
+  </main>
+
+</div>
+
+
+<!-- ===================================================
+     MODAL
+=================================================== -->
+
+<div
+  class="modal"
+  id="modal"
+>
+
+  <div class="modalBox">
+
+    <div class="modalHeader">
+
+      <h3 id="modalTitle">
+        Formulaire
+      </h3>
+
+      <button
+        class="closeModal"
+        onclick="closeModal()"
+      >
+        ✕
+      </button>
+
+    </div>
+
+
+    <div
+      class="modalBody"
+      id="modalBody"
+    >
+    </div>
+
+
+    <div class="modalFooter">
+
+      <button
+        class="btn btnSecondary"
+        onclick="closeModal()"
+      >
+        Annuler
+      </button>
+
+      <button
+        class="btn btnPrimary"
+        id="modalSubmit"
+      >
+        Enregistrer
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
 <script>
 
-  /*
-   * URL DE TON APPLICATION GOOGLE APPS SCRIPT
-   */
+/* =====================================================
+   VARIABLES
+===================================================== */
 
-  const APP_URL =
-    "https://script.google.com/macros/s/AKfycbwq7TZ5T_mqBzThPZI4tDLewbYosiRuM-pXjVF7ho9WPgoqhmKFFxEXiWDIuxsRjvoy/exec";
+let sessionToken = null;
+
+let currentUser = null;
+
+let dashboardData = null;
+
+let stockData = [];
+
+let modalAction = null;
 
 
-  /*
-   * OUVERTURE DE L'APPLICATION
-   */
+/* =====================================================
+   ELEMENTS
+===================================================== */
 
-  function openApplication(){
+const loading =
+  document.getElementById('loading');
 
-    window.location.href = APP_URL;
+const loadingText =
+  document.getElementById('loadingText');
+
+const authScreen =
+  document.getElementById('authScreen');
+
+const appScreen =
+  document.getElementById('appScreen');
+
+
+/* =====================================================
+   LOADING
+===================================================== */
+
+function showLoading(text){
+
+  loadingText.textContent =
+    text || 'Chargement...';
+
+  loading.style.display =
+    'flex';
+}
+
+
+function hideLoading(){
+
+  loading.style.display =
+    'none';
+}
+
+
+/* =====================================================
+   TOAST
+===================================================== */
+
+function toast(
+  message,
+  type='success'
+){
+
+  const container =
+    document.getElementById(
+      'toastContainer'
+    );
+
+  const item =
+    document.createElement(
+      'div'
+    );
+
+  item.className =
+    'toast ' +
+    (
+      type === 'error'
+        ? 'error'
+        : type === 'warning'
+          ? 'warning'
+          : ''
+    );
+
+  item.textContent =
+    message;
+
+  container.appendChild(item);
+
+  setTimeout(
+    function(){
+
+      item.remove();
+
+    },
+    4500
+  );
+}
+
+
+/* =====================================================
+   ERREUR GOOGLE APPS SCRIPT
+===================================================== */
+
+function handleError(error){
+
+  hideLoading();
+
+  const message =
+    error &&
+    error.message
+      ? error.message
+      : String(error);
+
+  toast(
+    message,
+    'error'
+  );
+
+  console.error(error);
+}
+
+
+/* =====================================================
+   LOGIN / REGISTER
+===================================================== */
+
+function showRegister(){
+
+  document
+    .getElementById('loginBox')
+    .classList.add('hidden');
+
+  document
+    .getElementById('registerBox')
+    .classList.remove('hidden');
+
+}
+
+
+function showLogin(){
+
+  document
+    .getElementById('registerBox')
+    .classList.add('hidden');
+
+  document
+    .getElementById('loginBox')
+    .classList.remove('hidden');
+
+}
+
+
+/* =====================================================
+   TOGGLE PASSWORD
+===================================================== */
+
+function togglePassword(
+  id,
+  button
+){
+
+  const input =
+    document.getElementById(id);
+
+  if (
+    input.type === 'password'
+  ){
+
+    input.type =
+      'text';
+
+    button.textContent =
+      '🙈';
+
+  } else {
+
+    input.type =
+      'password';
+
+    button.textContent =
+      '👁';
+
+  }
+}
+
+
+/* =====================================================
+   FORM LOGIN
+===================================================== */
+
+document
+  .getElementById('loginForm')
+  .addEventListener(
+    'submit',
+    function(event){
+
+      event.preventDefault();
+
+      const email =
+        document
+          .getElementById(
+            'loginEmail'
+          )
+          .value
+          .trim();
+
+      const password =
+        document
+          .getElementById(
+            'loginPassword'
+          )
+          .value;
+
+
+      showLoading(
+        'Connexion sécurisée...'
+      );
+
+
+      google.script.run
+
+        .withSuccessHandler(
+          function(result){
+
+            hideLoading();
+
+            if (
+              !result ||
+              !result.success
+            ){
+
+              toast(
+                'Connexion impossible.',
+                'error'
+              );
+
+              return;
+            }
+
+
+            sessionToken =
+              result.token;
+
+            currentUser =
+              result.user;
+
+
+            sessionStorage.setItem(
+              'MB_TOKEN',
+              sessionToken
+            );
+
+
+            sessionStorage.setItem(
+              'MB_USER',
+              JSON.stringify(
+                currentUser
+              )
+            );
+
+
+            openApplication();
+
+          }
+        )
+
+        .withFailureHandler(
+          handleError
+        )
+
+        .login(
+          email,
+          password
+        );
+
+    }
+  );
+
+
+/* =====================================================
+   FORM REGISTER
+===================================================== */
+
+document
+  .getElementById('registerForm')
+  .addEventListener(
+    'submit',
+    function(event){
+
+      event.preventDefault();
+
+
+      const password =
+        document
+          .getElementById(
+            'registerPassword'
+          )
+          .value;
+
+
+      const password2 =
+        document
+          .getElementById(
+            'registerPassword2'
+          )
+          .value;
+
+
+      if (
+        password !== password2
+      ){
+
+        toast(
+          'Les deux mots de passe ne correspondent pas.',
+          'error'
+        );
+
+        return;
+      }
+
+
+      if (
+        password.length < 6
+      ){
+
+        toast(
+          'Le mot de passe doit contenir au moins 6 caractères.',
+          'error'
+        );
+
+        return;
+      }
+
+
+      const data = {
+
+        name:
+          document
+            .getElementById(
+              'registerName'
+            )
+            .value
+            .trim(),
+
+        email:
+          document
+            .getElementById(
+              'registerEmail'
+            )
+            .value
+            .trim(),
+
+        phone:
+          document
+            .getElementById(
+              'registerPhone'
+            )
+            .value
+            .trim(),
+
+        city:
+          document
+            .getElementById(
+              'registerCity'
+            )
+            .value
+            .trim(),
+
+        address:
+          document
+            .getElementById(
+              'registerAddress'
+            )
+            .value
+            .trim(),
+
+        password:
+          password
+
+      };
+
+
+      showLoading(
+        'Création de votre compte...'
+      );
+
+
+      google.script.run
+
+        .withSuccessHandler(
+          function(result){
+
+            hideLoading();
+
+
+            if (
+              result &&
+              result.success
+            ){
+
+              toast(
+                result.message,
+                'success'
+              );
+
+
+              alert(
+                'Votre compte a été créé avec succès.\n\n' +
+                'Votre code partenaire : ' +
+                result.partnerCode +
+                '\n\n' +
+                'Votre compte doit maintenant être validé par MUANA BITINDA.'
+              );
+
+
+              document
+                .getElementById(
+                  'registerForm'
+                )
+                .reset();
+
+
+              showLogin();
+
+            }
+
+          }
+        )
+
+        .withFailureHandler(
+          handleError
+        )
+
+        .registerPartner(
+          data
+        );
+
+    }
+  );
+
+
+/* =====================================================
+   INITIALISATION
+===================================================== */
+
+document.addEventListener(
+  'DOMContentLoaded',
+  function(){
+
+    const token =
+      sessionStorage.getItem(
+        'MB_TOKEN'
+      );
+
+
+    const user =
+      sessionStorage.getItem(
+        'MB_USER'
+      );
+
+
+    if (
+      token &&
+      user
+    ){
+
+      sessionToken =
+        token;
+
+      try {
+
+        currentUser =
+          JSON.parse(user);
+
+        verifySession();
+
+      } catch(error){
+
+        clearSession();
+
+      }
+
+    }
+
+  }
+);
+
+
+/* =====================================================
+   VERIFIER SESSION
+===================================================== */
+
+function verifySession(){
+
+  showLoading(
+    'Vérification de votre session...'
+  );
+
+
+  google.script.run
+
+    .withSuccessHandler(
+      function(result){
+
+        hideLoading();
+
+        if (
+          result &&
+          result.success
+        ){
+
+          currentUser =
+            result.user;
+
+          openApplication();
+
+        } else {
+
+          clearSession();
+
+        }
+
+      }
+    )
+
+    .withFailureHandler(
+      function(){
+
+        hideLoading();
+
+        clearSession();
+
+      }
+    )
+
+    .getProfile(
+      sessionToken
+    );
+}
+
+
+/* =====================================================
+   OUVRIR APPLICATION
+===================================================== */
+
+function openApplication(){
+
+  authScreen.style.display =
+    'none';
+
+  appScreen.style.display =
+    'block';
+
+
+  document
+    .getElementById(
+      'sideUserName'
+    )
+    .textContent =
+    currentUser.name ||
+    currentUser.email;
+
+
+  document
+    .getElementById(
+      'sideUserRole'
+    )
+    .textContent =
+    currentUser.role;
+
+
+  document
+    .getElementById(
+      'topUserName'
+    )
+    .textContent =
+    currentUser.name ||
+    currentUser.email;
+
+
+  configureMenu();
+
+
+  openPage(
+    'dashboard'
+  );
+
+}
+
+
+/* =====================================================
+   MENU SELON ROLE
+===================================================== */
+
+function configureMenu(){
+
+  const admin =
+    currentUser &&
+    String(
+      currentUser.role
+    ).toUpperCase()
+    === 'ADMIN';
+
+
+  document
+    .querySelectorAll(
+      '.adminOnly'
+    )
+    .forEach(
+      function(item){
+
+        item.classList.toggle(
+          'hidden',
+          !admin
+        );
+
+      }
+    );
+
+
+  document
+    .querySelectorAll(
+      '.partnerOnly'
+    )
+    .forEach(
+      function(item){
+
+        item.classList.toggle(
+          'hidden',
+          admin
+        );
+
+      }
+    );
+
+}
+
+
+/* =====================================================
+   OUVRIR PAGE
+===================================================== */
+
+function openPage(page){
+
+  document
+    .querySelectorAll(
+      '.page'
+    )
+    .forEach(
+      function(item){
+
+        item.classList.remove(
+          'active'
+        );
+
+      }
+    );
+
+
+  const target =
+    document.getElementById(
+      'page-' + page
+    );
+
+
+  if (!target)
+    return;
+
+
+  target.classList.add(
+    'active'
+  );
+
+
+  const titles = {
+
+    dashboard:
+      'Tableau de bord',
+
+    stock:
+      'Mon stock',
+
+    receptions:
+      'Réceptions',
+
+    evacuations:
+      'Évacuations',
+
+    deliveries:
+      'Livraisons',
+
+    movements:
+      'Mouvements',
+
+    partners:
+      'Partenaires',
+
+    adminProducts:
+      'Produits',
+
+    adminStats:
+      'Statistiques',
+
+    profile:
+      'Mon profil',
+
+    password:
+      'Mot de passe'
+
+  };
+
+
+  document
+    .getElementById(
+      'pageTitle'
+    )
+    .textContent =
+    titles[page] ||
+    'MUANA BITINDA';
+
+
+  document
+    .querySelectorAll(
+      '.navItem'
+    )
+    .forEach(
+      function(item){
+
+        item.classList.remove(
+          'active'
+        );
+
+      }
+    );
+
+
+  if (
+    window.innerWidth <= 750
+  ){
+
+    document
+      .getElementById(
+        'sidebar'
+      )
+      .classList.remove(
+        'open'
+      );
 
   }
 
+
+  if (
+    page === 'dashboard'
+  ){
+
+    loadDashboard();
+
+  }
+
+
+  if (
+    page === 'stock'
+  ){
+
+    loadStock();
+
+  }
+
+
+  if (
+    page === 'receptions'
+  ){
+
+    loadPartnerData();
+
+  }
+
+
+  if (
+    page === 'evacuations'
+  ){
+
+    loadPartnerData();
+
+  }
+
+
+  if (
+    page === 'deliveries'
+  ){
+
+    loadPartnerData();
+
+  }
+
+
+  if (
+    page === 'movements'
+  ){
+
+    loadPartnerData();
+
+  }
+
+
+  if (
+    page === 'partners'
+  ){
+
+    loadPartners();
+
+  }
+
+
+  if (
+    page === 'adminProducts'
+  ){
+
+    loadAdminProducts();
+
+  }
+
+
+  if (
+    page === 'adminStats'
+  ){
+
+    loadDashboard();
+
+  }
+
+
+  if (
+    page === 'profile'
+  ){
+
+    loadProfile();
+
+  }
+
+}
+
+
+/* =====================================================
+   DASHBOARD
+===================================================== */
+
+function loadDashboard(){
+
+  showLoading(
+    'Chargement du tableau de bord...'
+  );
+
+
+  google.script.run
+
+    .withSuccessHandler(
+      function(data){
+
+        hideLoading();
+
+        dashboardData =
+          data;
+
+        renderDashboard(
+          data
+        );
+
+      }
+    )
+
+    .withFailureHandler(
+      handleError
+    )
+
+    .getDashboard(
+      sessionToken
+    );
+
+}
+
+
+/* =====================================================
+   RENDU DASHBOARD
+===================================================== */
+
+function renderDashboard(data){
+
+  const stats =
+    document.getElementById(
+      'statsContainer'
+    );
+
+
+  if (
+    data.role === 'ADMIN'
+  ){
+
+    stats.innerHTML = `
+
+      ${statCard(
+        '👥',
+        data.stats.partners,
+        'Partenaires'
+      )}
+
+      ${statCard(
+        '🟢',
+        data.stats.activePartners,
+        'Partenaires actifs'
+      )}
+
+      ${statCard(
+        '⏳',
+        data.stats.pendingPartners,
+        'En attente'
+      )}
+
+      ${statCard(
+        '📦',
+        data.stats.totalStock,
+        'Stock total'
+      )}
+
+    `;
+
+
+    renderAdminDashboard(
+      data
+    );
+
+
+    return;
+  }
+
+
+  stats.innerHTML = `
+
+    ${statCard(
+      '📦',
+      data.stats.totalStock,
+      'Stock disponible'
+    )}
+
+    ${statCard(
+      '🛍️',
+      data.stats.products,
+      'Produits'
+    )}
+
+    ${statCard(
+      '⚠️',
+      data.stats.lowStock,
+      'Stock faible'
+    )}
+
+    ${statCard(
+      '🚚',
+      data.stats.deliveries,
+      'Livraisons'
+    )}
+
+  `;
+
+
+  document
+    .getElementById(
+      'welcomeText'
+    )
+    .textContent =
+    'Bienvenue ' +
+    (
+      currentUser.name ||
+      ''
+    ) +
+    '. Voici votre activité.';
+
+
+  renderDashboardProducts(
+    data.products
+  );
+
+
+  renderActivity(
+    data.recentMovements
+  );
+
+}
+
+
+/* =====================================================
+   STAT CARD
+===================================================== */
+
+function statCard(
+  icon,
+  value,
+  label
+){
+
+  return `
+
+    <div class="statCard">
+
+      <div class="statTop">
+
+        <div class="statIcon">
+          ${icon}
+        </div>
+
+      </div>
+
+      <div class="statValue">
+        ${formatNumber(value)}
+      </div>
+
+      <div class="statLabel">
+        ${escapeHtml(label)}
+      </div>
+
+    </div>
+
+  `;
+
+}
+
+
+/* =====================================================
+   DASHBOARD PRODUITS
+===================================================== */
+
+function renderDashboardProducts(
+  products
+){
+
+  const box =
+    document.getElementById(
+      'dashboardProducts'
+    );
+
+
+  if (
+    !products ||
+    !products.length
+  ){
+
+    box.innerHTML =
+      emptyState(
+        '📦',
+        'Aucun produit'
+      );
+
+    return;
+  }
+
+
+  box.innerHTML = `
+
+    <div class="tableWrap">
+
+      <table>
+
+        <thead>
+
+          <tr>
+
+            <th>Produit</th>
+            <th>Stock</th>
+            <th>État</th>
+
+          </tr>
+
+        </thead>
+
+        <tbody>
+
+          ${products
+            .slice(0,8)
+            .map(
+              function(item){
+
+                return `
+
+                  <tr>
+
+                    <td>
+                      <strong>
+                        ${escapeHtml(
+                          item.name
+                        )}
+                      </strong>
+
+                      <br>
+
+                      <small>
+                        ${escapeHtml(
+                          item.code
+                        )}
+                      </small>
+                    </td>
+
+                    <td>
+                      <strong>
+                        ${formatNumber(
+                          item.stock
+                        )}
+                      </strong>
+                    </td>
+
+                    <td>
+                      ${statusBadge(
+                        item.status
+                      )}
+                    </td>
+
+                  </tr>
+
+                `;
+
+              }
+            )
+            .join('')}
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+  `;
+
+}
+
+
+/* =====================================================
+   ACTIVITE
+===================================================== */
+
+function renderActivity(
+  movements
+){
+
+  const box =
+    document.getElementById(
+      'dashboardActivity'
+    );
+
+
+  if (
+    !movements ||
+    !movements.length
+  ){
+
+    box.innerHTML =
+      emptyState(
+        '🔄',
+        'Aucune activité récente'
+      );
+
+    return;
+  }
+
+
+  box.innerHTML =
+    movements
+      .slice(0,8)
+      .map(
+        function(item){
+
+          const positive =
+            Number(item.entry || 0)
+            > 0;
+
+
+          return `
+
+            <div
+              style="
+                display:flex;
+                justify-content:space-between;
+                gap:15px;
+                padding:12px 0;
+                border-bottom:1px solid #f1f5f9;
+              "
+            >
+
+              <div>
+
+                <strong>
+                  ${escapeHtml(
+                    item.type
+                  )}
+                </strong>
+
+                <div
+                  style="
+                    color:#64748b;
+                    font-size:11px;
+                    margin-top:3px;
+                  "
+                >
+                  ${escapeHtml(
+                    item.productCode
+                  )}
+                  ·
+                  ${escapeHtml(
+                    item.date
+                  )}
+                </div>
+
+              </div>
+
+              <strong
+                style="
+                  color:${positive
+                    ? '#16a34a'
+                    : '#dc2626'};
+                "
+              >
+                ${positive ? '+' : '-'}
+                ${formatNumber(
+                  item.quantity
+                )}
+              </strong>
+
+            </div>
+
+          `;
+
+        }
+      )
+      .join('');
+
+}
+
+
+/* =====================================================
+   STOCK
+===================================================== */
+
+function loadStock(){
+
+  showLoading(
+    'Chargement du stock...'
+  );
+
+
+  google.script.run
+
+    .withSuccessHandler(
+      function(data){
+
+        hideLoading();
+
+        stockData =
+          data.products || [];
+
+        renderStock(
+          stockData
+        );
+
+      }
+    )
+
+    .withFailureHandler(
+      handleError
+    )
+
+    .getPartnerData(
+      sessionToken
+    );
+
+}
+
+
+function renderStock(
+  products
+){
+
+  const box =
+    document.getElementById(
+      'stockTable'
+    );
+
+
+  if (
+    !products ||
+    !products.length
+  ){
+
+    box.innerHTML =
+      emptyState(
+        '📦',
+        'Aucun produit enregistré'
+      );
+
+    return;
+  }
+
+
+  box.innerHTML = `
+
+    <div class="tableWrap">
+
+      <table>
+
+        <thead>
+
+          <tr>
+
+            <th>Code</th>
+            <th>Produit</th>
+            <th>Prix</th>
+            <th>Stock initial</th>
+            <th>Disponible</th>
+            <th>Seuil</th>
+            <th>Statut</th>
+
+          </tr>
+
+        </thead>
+
+        <tbody>
+
+          ${products
+            .map(
+              function(item){
+
+                return `
+
+                  <tr>
+
+                    <td>
+                      <strong>
+                        ${escapeHtml(
+                          item.code
+                        )}
+                      </strong>
+                    </td>
+
+                    <td>
+                      ${escapeHtml(
+                        item.name
+                      )}
+                    </td>
+
+                    <td>
+                      ${formatMoney(
+                        item.price
+                      )}
+                    </td>
+
+                    <td>
+                      ${formatNumber(
+                        item.initialStock
+                      )}
+                    </td>
+
+                    <td>
+                      <strong>
+                        ${formatNumber(
+                          item.stock
+                        )}
+                      </strong>
+                    </td>
+
+                    <td>
+                      ${formatNumber(
+                        item.alertThreshold
+                      )}
+                    </td>
+
+                    <td>
+                      ${statusBadge(
+                        item.status
+                      )}
+                    </td>
+
+                  </tr>
+
+                `;
+
+              }
+            )
+            .join('')}
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+  `;
+
+}
+
+
+function filterStock(){
+
+  const value =
+    document
+      .getElementById(
+        'stockSearch'
+      )
+      .value
+      .toLowerCase()
+      .trim();
+
+
+  const filtered =
+    stockData.filter(
+      function(item){
+
+        return (
+          String(
+            item.name
+          )
+          .toLowerCase()
+          .includes(value)
+          ||
+          String(
+            item.code
+          )
+          .toLowerCase()
+          .includes(value)
+        );
+
+      }
+    );
+
+
+  renderStock(
+    filtered
+  );
+
+}
+
+
+/* =====================================================
+   PARTNER DATA
+===================================================== */
+
+function loadPartnerData(){
+
+  showLoading(
+    'Chargement des données...'
+  );
+
+
+  google.script.run
+
+    .withSuccessHandler(
+      function(data){
+
+        hideLoading();
+
+        renderReceptions(
+          data.receptions
+        );
+
+        renderEvacuations(
+          data.evacuations
+        );
+
+        renderDeliveries(
+          data.deliveries
+        );
+
+        renderMovements(
+          data.movements
+        );
+
+      }
+    )
+
+    .withFailureHandler(
+      handleError
+    )
+
+    .getPartnerData(
+      sessionToken
+    );
+
+}
+
+
+/* =====================================================
+   RECEPTIONS
+===================================================== */
+
+function renderReceptions(
+  data
+){
+
+  const box =
+    document.getElementById(
+      'receptionsTable'
+    );
+
+
+  if (
+    !data ||
+    !data.length
+  ){
+
+    box.innerHTML =
+      emptyState(
+        '📥',
+        'Aucune réception'
+      );
+
+    return;
+  }
+
+
+  box.innerHTML = `
+
+    <div class="tableWrap">
+
+      <table>
+
+        <thead>
+
+          <tr>
+            <th>Date</th>
+            <th>Produit</th>
+            <th>Quantité</th>
+            <th>Total</th>
+            <th>Référence</th>
+            <th>Statut</th>
+          </tr>
+
+        </thead>
+
+        <tbody>
+
+          ${data.map(
+            function(item){
+
+              return `
+
+                <tr>
+
+                  <td>
+                    ${escapeHtml(
+                      item.date
+                    )}
+                  </td>
+
+                  <td>
+                    ${escapeHtml(
+                      item.productCode
+                    )}
+                  </td>
+
+                  <td>
+                    <strong>
+                      ${formatNumber(
+                        item.quantity
+                      )}
+                    </strong>
+                  </td>
+
+                  <td>
+                    ${formatMoney(
+                      item.total
+                    )}
+                  </td>
+
+                  <td>
+                    ${escapeHtml(
+                      item.reference || '-'
+                    )}
+                  </td>
+
+                  <td>
+                    ${statusBadge(
+                      item.status
+                    )}
+                  </td>
+
+                </tr>
+
+              `;
+
+            }
+          ).join('')}
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+  `;
+
+}
+
+
+/* =====================================================
+   EVACUATIONS
+===================================================== */
+
+function renderEvacuations(
+  data
+){
+
+  const box =
+    document.getElementById(
+      'evacuationsTable'
+    );
+
+
+  if (
+    !data ||
+    !data.length
+  ){
+
+    box.innerHTML =
+      emptyState(
+        '📤',
+        'Aucune évacuation'
+      );
+
+    return;
+  }
+
+
+  box.innerHTML = `
+
+    <div class="tableWrap">
+
+      <table>
+
+        <thead>
+
+          <tr>
+            <th>Date</th>
+            <th>Produit</th>
+            <th>Quantité</th>
+            <th>Motif</th>
+            <th>Référence</th>
+            <th>Statut</th>
+          </tr>
+
+        </thead>
+
+        <tbody>
+
+          ${data.map(
+            function(item){
+
+              return `
+
+                <tr>
+
+                  <td>
+                    ${escapeHtml(
+                      item.date
+                    )}
+                  </td>
+
+                  <td>
+                    ${escapeHtml(
+                      item.productCode
+                    )}
+                  </td>
+
+                  <td>
+                    <strong>
+                      ${formatNumber(
+                        item.quantity
+                      )}
+                    </strong>
+                  </td>
+
+                  <td>
+                    ${escapeHtml(
+                      item.reason
+                    )}
+                  </td>
+
+                  <td>
+                    ${escapeHtml(
+                      item.reference || '-'
+                    )}
+                  </td>
+
+                  <td>
+                    ${statusBadge(
+                      item.status
+                    )}
+                  </td>
+
+                </tr>
+
+              `;
+
+            }
+          ).join('')}
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+  `;
+
+}
+
+
+/* =====================================================
+   LIVRAISONS
+===================================================== */
+
+function renderDeliveries(
+  data
+){
+
+  const box =
+    document.getElementById(
+      'deliveriesTable'
+    );
+
+
+  if (
+    !data ||
+    !data.length
+  ){
+
+    box.innerHTML =
+      emptyState(
+        '🚚',
+        'Aucune livraison'
+      );
+
+    return;
+  }
+
+
+  box.innerHTML = `
+
+    <div class="tableWrap">
+
+      <table>
+
+        <thead>
+
+          <tr>
+            <th>Date</th>
+            <th>Commande</th>
+            <th>Produit</th>
+            <th>Client</th>
+            <th>Quantité</th>
+            <th>Statut</th>
+          </tr>
+
+        </thead>
+
+        <tbody>
+
+          ${data.map(
+            function(item){
+
+              return `
+
+                <tr>
+
+                  <td>
+                    ${escapeHtml(
+                      item.date
+                    )}
+                  </td>
+
+                  <td>
+                    ${escapeHtml(
+                      item.order || '-'
+                    )}
+                  </td>
+
+                  <td>
+                    ${escapeHtml(
+                      item.productCode
+                    )}
+                  </td>
+
+                  <td>
+                    ${escapeHtml(
+                      item.client || '-'
+                    )}
+                  </td>
+
+                  <td>
+                    <strong>
+                      ${formatNumber(
+                        item.quantity
+                      )}
+                    </strong>
+                  </td>
+
+                  <td>
+                    ${statusBadge(
+                      item.status
+                    )}
+                  </td>
+
+                </tr>
+
+              `;
+
+            }
+          ).join('')}
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+  `;
+
+}
+
+
+/* =====================================================
+   MOUVEMENTS
+===================================================== */
+
+function renderMovements(
+  data
+){
+
+  const box =
+    document.getElementById(
+      'movementsTable'
+    );
+
+
+  if (
+    !data ||
+    !data.length
+  ){
+
+    box.innerHTML =
+      emptyState(
+        '🔄',
+        'Aucun mouvement'
+      );
+
+    return;
+  }
+
+
+  box.innerHTML = `
+
+    <div class="tableWrap">
+
+      <table>
+
+        <thead>
+
+          <tr>
+            <th>Date</th>
+            <th>Produit</th>
+            <th>Type</th>
+            <th>Entrée</th>
+            <th>Sortie</th>
+            <th>Motif</th>
+            <th>Référence</th>
+          </tr>
+
+        </thead>
+
+        <tbody>
+
+          ${data.map(
+            function(item){
+
+              return `
+
+                <tr>
+
+                  <td>
+                    ${escapeHtml(
+                      item.date
+                    )}
+                  </td>
+
+                  <td>
+                    ${escapeHtml(
+                      item.productCode
+                    )}
+                  </td>
+
+                  <td>
+                    ${statusBadge(
+                      item.type
+                    )}
+                  </td>
+
+                  <td
+                    style="color:#16a34a;font-weight:800;"
+                  >
+                    ${
+                      Number(item.entry || 0)
+                      > 0
+                        ? '+' +
+                          formatNumber(
+                            item.entry
+                          )
+                        : '-'
+                    }
+                  </td>
+
+                  <td
+                    style="color:#dc2626;font-weight:800;"
+                  >
+                    ${
+                      Number(item.exit || 0)
+                      > 0
+                        ? '-' +
+                          formatNumber(
+                            item.exit
+                          )
+                        : '-'
+                    }
+                  </td>
+
+                  <td>
+                    ${escapeHtml(
+                      item.reason || '-'
+                    )}
+                  </td>
+
+                  <td>
+                    ${escapeHtml(
+                      item.reference || '-'
+                    )}
+                  </td>
+
+                </tr>
+
+              `;
+
+            }
+          ).join('')}
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+  `;
+
+}
+
+
+/* =====================================================
+   ADMIN PARTNERS
+===================================================== */
+
+function loadPartners(){
+
+  showLoading(
+    'Chargement des partenaires...'
+  );
+
+
+  google.script.run
+
+    .withSuccessHandler(
+      function(data){
+
+        hideLoading();
+
+        renderPartners(
+          data
+        );
+
+      }
+    )
+
+    .withFailureHandler(
+      handleError
+    )
+
+    .adminGetPartners(
+      sessionToken
+    );
+
+}
+
+
+function renderPartners(
+  partners
+){
+
+  const box =
+    document.getElementById(
+      'partnersTable'
+    );
+
+
+  if (
+    !partners ||
+    !partners.length
+  ){
+
+    box.innerHTML =
+      emptyState(
+        '👥',
+        'Aucun partenaire'
+      );
+
+    return;
+  }
+
+
+  box.innerHTML = `
+
+    <div class="tableWrap">
+
+      <table>
+
+        <thead>
+
+          <tr>
+
+            <th>Partenaire</th>
+            <th>Email</th>
+            <th>Téléphone</th>
+            <th>Code</th>
+            <th>Statut</th>
+            <th>Action</th>
+
+          </tr>
+
+        </thead>
+
+        <tbody>
+
+          ${partners.map(
+            function(item){
+
+              return `
+
+                <tr>
+
+                  <td>
+                    <strong>
+                      ${escapeHtml(
+                        item.name
+                      )}
+                    </strong>
+                  </td>
+
+                  <td>
+                    ${escapeHtml(
+                      item.email
+                    )}
+                  </td>
+
+                  <td>
+                    ${escapeHtml(
+                      item.phone || '-'
+                    )}
+                  </td>
+
+                  <td>
+                    <strong>
+                      ${escapeHtml(
+                        item.code
+                      )}
+                    </strong>
+                  </td>
+
+                  <td>
+                    ${statusBadge(
+                      item.status
+                    )}
+                  </td>
+
+                  <td>
+
+                    ${
+                      String(
+                        item.status
+                      ).toUpperCase()
+                      === 'EN ATTENTE'
+                      ?
+
+                      `
+
+                      <button
+                        class="btn"
+                        style="
+                          background:#dcfce7;
+                          color:#166534;
+                          padding:8px 12px;
+                        "
+                        onclick="updatePartnerStatus(
+                          '${escapeJs(item.code)}',
+                          'ACTIF'
+                        )"
+                      >
+                        ✓ Valider
+                      </button>
+
+                      `
+
+                      :
+
+                      `
+
+                      <button
+                        class="btn"
+                        style="
+                          background:#fee2e2;
+                          color:#991b1b;
+                          padding:8px 12px;
+                        "
+                        onclick="updatePartnerStatus(
+                          '${escapeJs(item.code)}',
+                          'SUSPENDU'
+                        )"
+                      >
+                        Suspendre
+                      </button>
+
+                      `
+                    }
+
+                  </td>
+
+                </tr>
+
+              `;
+
+            }
+          ).join('')}
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+  `;
+
+}
+
+
+/* =====================================================
+   VALIDATION PARTENAIRE
+===================================================== */
+
+function updatePartnerStatus(
+  code,
+  status
+){
+
+  const action =
+    status === 'ACTIF'
+      ? 'valider'
+      : 'suspendre';
+
+
+  if (
+    !confirm(
+      'Voulez-vous vraiment ' +
+      action +
+      ' ce partenaire ?'
+    )
+  ){
+
+    return;
+  }
+
+
+  showLoading(
+    'Mise à jour...'
+  );
+
+
+  google.script.run
+
+    .withSuccessHandler(
+      function(result){
+
+        hideLoading();
+
+        toast(
+          result.message,
+          'success'
+        );
+
+        loadPartners();
+
+      }
+    )
+
+    .withFailureHandler(
+      handleError
+    )
+
+    .adminUpdatePartnerStatus(
+      sessionToken,
+      code,
+      status
+    );
+
+}
+
+
+/* =====================================================
+   ADMIN PRODUCTS
+===================================================== */
+
+function loadAdminProducts(){
+
+  showLoading(
+    'Chargement des produits...'
+  );
+
+
+  google.script.run
+
+    .withSuccessHandler(
+      function(data){
+
+        hideLoading();
+
+        renderAdminProducts(
+          data
+        );
+
+      }
+    )
+
+    .withFailureHandler(
+      handleError
+    )
+
+    .adminGetProducts(
+      sessionToken
+    );
+
+}
+
+
+function renderAdminProducts(
+  data
+){
+
+  const box =
+    document.getElementById(
+      'adminProductsTable'
+    );
+
+
+  if (
+    !data ||
+    !data.length
+  ){
+
+    box.innerHTML =
+      emptyState(
+        '📦',
+        'Aucun produit'
+      );
+
+    return;
+  }
+
+
+  box.innerHTML = `
+
+    <div class="tableWrap">
+
+      <table>
+
+        <thead>
+
+          <tr>
+
+            <th>Produit</th>
+            <th>Partenaire</th>
+            <th>Prix</th>
+            <th>Stock initial</th>
+            <th>Stock actuel</th>
+            <th>Seuil</th>
+            <th>Statut</th>
+
+          </tr>
+
+        </thead>
+
+        <tbody>
+
+          ${data.map(
+            function(item){
+
+              return `
+
+                <tr>
+
+                  <td>
+                    <strong>
+                      ${escapeHtml(
+                        item.name
+                      )}
+                    </strong>
+
+                    <br>
+
+                    <small>
+                      ${escapeHtml(
+                        item.code
+                      )}
+                    </small>
+                  </td>
+
+                  <td>
+                    ${escapeHtml(
+                      item.partnerCode
+                    )}
+                  </td>
+
+                  <td>
+                    ${formatMoney(
+                      item.price
+                    )}
+                  </td>
+
+                  <td>
+                    ${formatNumber(
+                      item.initialStock
+                    )}
+                  </td>
+
+                  <td>
+                    <strong>
+                      ${formatNumber(
+                        item.stock
+                      )}
+                    </strong>
+                  </td>
+
+                  <td>
+                    ${formatNumber(
+                      item.threshold
+                    )}
+                  </td>
+
+                  <td>
+                    ${statusBadge(
+                      item.status
+                    )}
+                  </td>
+
+                </tr>
+
+              `;
+
+            }
+          ).join('')}
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+  `;
+
+}
+
+
+/* =====================================================
+   ADMIN DASHBOARD
+===================================================== */
+
+function renderAdminDashboard(
+  data
+){
+
+  document
+    .getElementById(
+      'welcomeText'
+    )
+    .textContent =
+    'Vue globale de la plateforme MUANA BITINDA.';
+
+
+  document
+    .getElementById(
+      'dashboardProducts'
+    )
+    .innerHTML = `
+
+      <div class="empty">
+
+        <div class="emptyIcon">
+          👥
+        </div>
+
+        <strong>
+          ${formatNumber(
+            data.stats.partners
+          )}
+          partenaires
+        </strong>
+
+        <p style="margin-top:5px;">
+          ${formatNumber(
+            data.stats.activePartners
+          )}
+          comptes actifs
+        </p>
+
+      </div>
+
+    `;
+
+
+  document
+    .getElementById(
+      'dashboardActivity'
+    )
+    .innerHTML = `
+
+      <div class="empty">
+
+        <div class="emptyIcon">
+          📊
+        </div>
+
+        <strong>
+          Activité globale
+        </strong>
+
+        <p style="margin-top:7px;">
+          ${formatNumber(
+            data.stats.movements
+          )}
+          mouvements enregistrés
+        </p>
+
+      </div>
+
+    `;
+
+}
+
+
+/* =====================================================
+   PROFILE
+===================================================== */
+
+function loadProfile(){
+
+  const box =
+    document.getElementById(
+      'profileContent'
+    );
+
+
+  box.innerHTML = `
+
+    <div class="formGrid">
+
+      <div>
+
+        <label
+          style="
+            display:block;
+            font-size:12px;
+            font-weight:800;
+            margin-bottom:7px;
+          "
+        >
+          Nom
+        </label>
+
+        <input
+          class="formControl"
+          value="${escapeAttr(
+            currentUser.name || ''
+          )}"
+          disabled
+        >
+
+      </div>
+
+
+      <div>
+
+        <label
+          style="
+            display:block;
+            font-size:12px;
+            font-weight:800;
+            margin-bottom:7px;
+          "
+        >
+          Email
+        </label>
+
+        <input
+          class="formControl"
+          value="${escapeAttr(
+            currentUser.email || ''
+          )}"
+          disabled
+        >
+
+      </div>
+
+
+      <div>
+
+        <label
+          style="
+            display:block;
+            font-size:12px;
+            font-weight:800;
+            margin-bottom:7px;
+          "
+        >
+          Rôle
+        </label>
+
+        <input
+          class="formControl"
+          value="${escapeAttr(
+            currentUser.role || ''
+          )}"
+          disabled
+        >
+
+      </div>
+
+
+      <div>
+
+        <label
+          style="
+            display:block;
+            font-size:12px;
+            font-weight:800;
+            margin-bottom:7px;
+          "
+        >
+          Code partenaire
+        </label>
+
+        <input
+          class="formControl"
+          value="${escapeAttr(
+            currentUser.partnerCode || 'ADMIN'
+          )}"
+          disabled
+        >
+
+      </div>
+
+    </div>
+
+  `;
+
+}
+
+
+/* =====================================================
+   PASSWORD
+===================================================== */
+
+document
+  .getElementById(
+    'passwordForm'
+  )
+  .addEventListener(
+    'submit',
+    function(event){
+
+      event.preventDefault();
+
+
+      const oldPassword =
+        document
+          .getElementById(
+            'oldPassword'
+          )
+          .value;
+
+
+      const newPassword =
+        document
+          .getElementById(
+            'newPassword'
+          )
+          .value;
+
+
+      const newPassword2 =
+        document
+          .getElementById(
+            'newPassword2'
+          )
+          .value;
+
+
+      if (
+        newPassword !==
+        newPassword2
+      ){
+
+        toast(
+          'Les nouveaux mots de passe ne correspondent pas.',
+          'error'
+        );
+
+        return;
+      }
+
+
+      showLoading(
+        'Modification du mot de passe...'
+      );
+
+
+      google.script.run
+
+        .withSuccessHandler(
+          function(result){
+
+            hideLoading();
+
+            toast(
+              result.message,
+              'success'
+            );
+
+
+            document
+              .getElementById(
+                'passwordForm'
+              )
+              .reset();
+
+          }
+        )
+
+        .withFailureHandler(
+          handleError
+        )
+
+        .changePassword(
+          sessionToken,
+          oldPassword,
+          newPassword
+        );
+
+    }
+  );
+
+
+/* =====================================================
+   MODAL PRODUIT
+===================================================== */
+
+function openProductModal(){
+
+  document
+    .getElementById(
+      'modalTitle'
+    )
+    .textContent =
+    'Ajouter un produit';
+
+
+  document
+    .getElementById(
+      'modalBody'
+    )
+    .innerHTML = `
+
+      <div class="formGrid">
+
+        <div>
+
+          <label>
+            Code produit *
+          </label>
+
+          <input
+            id="modalProductCode"
+            class="formControl"
+            placeholder="PRD001"
+          >
+
+        </div>
+
+
+        <div>
+
+          <label>
+            Nom du produit *
+          </label>
+
+          <input
+            id="modalProductName"
+            class="formControl"
+            placeholder="Exemple : T-shirt"
+          >
+
+        </div>
+
+
+        <div>
+
+          <label>
+            Prix unitaire
+          </label>
+
+          <input
+            id="modalProductPrice"
+            class="formControl"
+            type="number"
+            min="0"
+            value="0"
+          >
+
+        </div>
+
+
+        <div>
+
+          <label>
+            Stock initial
+          </label>
+
+          <input
+            id="modalProductStock"
+            class="formControl"
+            type="number"
+            min="0"
+            value="0"
+          >
+
+        </div>
+
+
+        <div>
+
+          <label>
+            Seuil d'alerte
+          </label>
+
+          <input
+            id="modalProductThreshold"
+            class="formControl"
+            type="number"
+            min="0"
+            value="10"
+          >
+
+        </div>
+
+      </div>
+
+    `;
+
+
+  modalAction =
+    saveProduct;
+
+
+  openModal();
+
+}
+
+
+/* =====================================================
+   SAUVER PRODUIT
+===================================================== */
+
+function saveProduct(){
+
+  const data = {
+
+    code:
+      document
+        .getElementById(
+          'modalProductCode'
+        )
+        .value
+        .trim(),
+
+    name:
+      document
+        .getElementById(
+          'modalProductName'
+        )
+        .value
+        .trim(),
+
+    price:
+      Number(
+        document
+          .getElementById(
+            'modalProductPrice'
+          )
+          .value
+      ),
+
+    initialStock:
+      Number(
+        document
+          .getElementById(
+            'modalProductStock'
+          )
+          .value
+      ),
+
+    threshold:
+      Number(
+        document
+          .getElementById(
+            'modalProductThreshold'
+          )
+          .value
+      )
+
+  };
+
+
+  if (
+    !data.code ||
+    !data.name
+  ){
+
+    toast(
+      'Code et nom du produit obligatoires.',
+      'error'
+    );
+
+    return;
+  }
+
+
+  closeModal();
+
+
+  showLoading(
+    'Ajout du produit...'
+  );
+
+
+  google.script.run
+
+    .withSuccessHandler(
+      function(result){
+
+        hideLoading();
+
+        toast(
+          result.message,
+          'success'
+        );
+
+        loadStock();
+
+      }
+    )
+
+    .withFailureHandler(
+      handleError
+    )
+
+    .addProduct(
+      sessionToken,
+      data
+    );
+
+}
+
+
+/* =====================================================
+   MODAL RECEPTION
+===================================================== */
+
+function openReceptionModal(){
+
+  const products =
+    stockData;
+
+
+  document
+    .getElementById(
+      'modalTitle'
+    )
+    .textContent =
+    'Nouvelle réception';
+
+
+  document
+    .getElementById(
+      'modalBody'
+    )
+    .innerHTML = `
+
+      <div class="formGrid">
+
+        <div class="full">
+
+          <label>
+            Produit *
+          </label>
+
+          <select
+            id="modalReceptionProduct"
+            class="formControl"
+          >
+
+            <option value="">
+              Sélectionner un produit
+            </option>
+
+            ${products.map(
+              function(item){
+
+                return `
+
+                  <option
+                    value="${escapeAttr(
+                      item.code
+                    )}"
+                  >
+                    ${escapeHtml(
+                      item.name
+                    )}
+                    -
+                    ${escapeHtml(
+                      item.code
+                    )}
+                  </option>
+
+                `;
+
+              }
+            ).join('')}
+
+          </select>
+
+        </div>
+
+
+        <div>
+
+          <label>
+            Quantité *
+          </label>
+
+          <input
+            id="modalReceptionQuantity"
+            class="formControl"
+            type="number"
+            min="1"
+            value="1"
+          >
+
+        </div>
+
+
+        <div>
+
+          <label>
+            Prix unitaire
+          </label>
+
+          <input
+            id="modalReceptionPrice"
+            class="formControl"
+            type="number"
+            min="0"
+            value="0"
+          >
+
+        </div>
+
+
+        <div>
+
+          <label>
+            Référence colis
+          </label>
+
+          <input
+            id="modalReceptionReference"
+            class="formControl"
+            placeholder="REF-001"
+          >
+
+        </div>
+
+
+        <div>
+
+          <label>
+            Commentaire
+          </label>
+
+          <input
+            id="modalReceptionComment"
+            class="formControl"
+            placeholder="Commentaire"
+          >
+
+        </div>
+
+      </div>
+
+    `;
+
+
+  modalAction =
+    saveReception;
+
+
+  openModal();
+
+}
+
+
+/* =====================================================
+   SAUVER RECEPTION
+===================================================== */
+
+function saveReception(){
+
+  const data = {
+
+    productCode:
+      document
+        .getElementById(
+          'modalReceptionProduct'
+        )
+        .value,
+
+    quantity:
+      Number(
+        document
+          .getElementById(
+            'modalReceptionQuantity'
+          )
+          .value
+      ),
+
+    unitPrice:
+      Number(
+        document
+          .getElementById(
+            'modalReceptionPrice'
+          )
+          .value
+      ),
+
+    reference:
+      document
+        .getElementById(
+          'modalReceptionReference'
+        )
+        .value
+        .trim(),
+
+    comment:
+      document
+        .getElementById(
+          'modalReceptionComment'
+        )
+        .value
+        .trim()
+
+  };
+
+
+  closeModal();
+
+
+  showLoading(
+    'Enregistrement de la réception...'
+  );
+
+
+  google.script.run
+
+    .withSuccessHandler(
+      function(result){
+
+        hideLoading();
+
+        toast(
+          result.message,
+          'success'
+        );
+
+        loadPartnerData();
+
+      }
+    )
+
+    .withFailureHandler(
+      handleError
+    )
+
+    .addReception(
+      sessionToken,
+      data
+    );
+
+}
+
+
+/* =====================================================
+   MODAL EVACUATION
+===================================================== */
+
+function openEvacuationModal(){
+
+  document
+    .getElementById(
+      'modalTitle'
+    )
+    .textContent =
+    'Nouvelle évacuation';
+
+
+  document
+    .getElementById(
+      'modalBody'
+    )
+    .innerHTML = `
+
+      <div class="formGrid">
+
+        <div class="full">
+
+          <label>
+            Produit *
+          </label>
+
+          <select
+            id="modalEvacuationProduct"
+            class="formControl"
+          >
+
+            <option value="">
+              Sélectionner un produit
+            </option>
+
+            ${stockData.map(
+              function(item){
+
+                return `
+
+                  <option
+                    value="${escapeAttr(
+                      item.code
+                    )}"
+                  >
+                    ${escapeHtml(
+                      item.name
+                    )}
+                    -
+                    Stock :
+                    ${formatNumber(
+                      item.stock
+                    )}
+                  </option>
+
+                `;
+
+              }
+            ).join('')}
+
+          </select>
+
+        </div>
+
+
+        <div>
+
+          <label>
+            Quantité *
+          </label>
+
+          <input
+            id="modalEvacuationQuantity"
+            class="formControl"
+            type="number"
+            min="1"
+            value="1"
+          >
+
+        </div>
+
+
+        <div>
+
+          <label>
+            Montant
+          </label>
+
+          <input
+            id="modalEvacuationAmount"
+            class="formControl"
+            type="number"
+            min="0"
+            value="0"
+          >
+
+        </div>
+
+
+        <div>
+
+          <label>
+            Motif
+          </label>
+
+          <input
+            id="modalEvacuationReason"
+            class="formControl"
+            value="ÉVACUATION"
+          >
+
+        </div>
+
+
+        <div>
+
+          <label>
+            Référence
+          </label>
+
+          <input
+            id="modalEvacuationReference"
+            class="formControl"
+            placeholder="REF-001"
+          >
+
+        </div>
+
+
+        <div class="full">
+
+          <label>
+            Commentaire
+          </label>
+
+          <input
+            id="modalEvacuationComment"
+            class="formControl"
+          >
+
+        </div>
+
+      </div>
+
+    `;
+
+
+  modalAction =
+    saveEvacuation;
+
+
+  openModal();
+
+}
+
+
+/* =====================================================
+   SAUVER EVACUATION
+===================================================== */
+
+function saveEvacuation(){
+
+  const data = {
+
+    productCode:
+      document
+        .getElementById(
+          'modalEvacuationProduct'
+        )
+        .value,
+
+    quantity:
+      Number(
+        document
+          .getElementById(
+            'modalEvacuationQuantity'
+          )
+          .value
+      ),
+
+    amount:
+      Number(
+        document
+          .getElementById(
+            'modalEvacuationAmount'
+          )
+          .value
+      ),
+
+    reason:
+      document
+        .getElementById(
+          'modalEvacuationReason'
+        )
+        .value,
+
+    reference:
+      document
+        .getElementById(
+          'modalEvacuationReference'
+        )
+        .value,
+
+    comment:
+      document
+        .getElementById(
+          'modalEvacuationComment'
+        )
+        .value
+
+  };
+
+
+  closeModal();
+
+
+  showLoading(
+    'Enregistrement de l’évacuation...'
+  );
+
+
+  google.script.run
+
+    .withSuccessHandler(
+      function(result){
+
+        hideLoading();
+
+        toast(
+          result.message,
+          'success'
+        );
+
+        loadPartnerData();
+
+      }
+    )
+
+    .withFailureHandler(
+      handleError
+    )
+
+    .addEvacuation(
+      sessionToken,
+      data
+    );
+
+}
+
+
+/* =====================================================
+   MODAL LIVRAISON
+===================================================== */
+
+function openDeliveryModal(){
+
+  document
+    .getElementById(
+      'modalTitle'
+    )
+    .textContent =
+    'Nouvelle livraison';
+
+
+  document
+    .getElementById(
+      'modalBody'
+    )
+    .innerHTML = `
+
+      <div class="formGrid">
+
+        <div>
+
+          <label>
+            Produit *
+          </label>
+
+          <select
+            id="modalDeliveryProduct"
+            class="formControl"
+          >
+
+            <option value="">
+              Sélectionner
+            </option>
+
+            ${stockData.map(
+              function(item){
+
+                return `
+
+                  <option
+                    value="${escapeAttr(
+                      item.code
+                    )}"
+                  >
+                    ${escapeHtml(
+                      item.name
+                    )}
+                    -
+                    Stock :
+                    ${formatNumber(
+                      item.stock
+                    )}
+                  </option>
+
+                `;
+
+              }
+            ).join('')}
+
+          </select>
+
+        </div>
+
+
+        <div>
+
+          <label>
+            Quantité *
+          </label>
+
+          <input
+            id="modalDeliveryQuantity"
+            class="formControl"
+            type="number"
+            min="1"
+            value="1"
+          >
+
+        </div>
+
+
+        <div>
+
+          <label>
+            N° commande
+          </label>
+
+          <input
+            id="modalDeliveryOrder"
+            class="formControl"
+            placeholder="CMD-001"
+          >
+
+        </div>
+
+
+        <div>
+
+          <label>
+            Client
+          </label>
+
+          <input
+            id="modalDeliveryClient"
+            class="formControl"
+          >
+
+        </div>
+
+
+        <div>
+
+          <label>
+            Téléphone
+          </label>
+
+          <input
+            id="modalDeliveryPhone"
+            class="formControl"
+          >
+
+        </div>
+
+
+        <div>
+
+          <label>
+            Frais livraison
+          </label>
+
+          <input
+            id="modalDeliveryFee"
+            class="formControl"
+            type="number"
+            min="0"
+            value="0"
+          >
+
+        </div>
+
+
+        <div class="full">
+
+          <label>
+            Adresse
+          </label>
+
+          <input
+            id="modalDeliveryAddress"
+            class="formControl"
+          >
+
+        </div>
+
+
+        <div>
+
+          <label>
+            Montant produit
+          </label>
+
+          <input
+            id="modalDeliveryAmount"
+            class="formControl"
+            type="number"
+            min="0"
+            value="0"
+          >
+
+        </div>
+
+
+        <div>
+
+          <label>
+            Livreur
+          </label>
+
+          <input
+            id="modalDeliveryDriver"
+            class="formControl"
+          >
+
+        </div>
+
+
+        <div>
+
+          <label>
+            Statut
+          </label>
+
+          <select
+            id="modalDeliveryStatus"
+            class="formControl"
+          >
+
+            <option>
+              EN ATTENTE
+            </option>
+
+            <option>
+              EN COURS
+            </option>
+
+            <option>
+              LIVRÉE
+            </option>
+
+            <option>
+              ANNULÉE
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <div>
+
+          <label>
+            Référence
+          </label>
+
+          <input
+            id="modalDeliveryReference"
+            class="formControl"
+          >
+
+        </div>
+
+      </div>
+
+    `;
+
+
+  modalAction =
+    saveDelivery;
+
+
+  openModal();
+
+}
+
+
+/* =====================================================
+   SAUVER LIVRAISON
+===================================================== */
+
+function saveDelivery(){
+
+  const data = {
+
+    productCode:
+      document
+        .getElementById(
+          'modalDeliveryProduct'
+        )
+        .value,
+
+    quantity:
+      Number(
+        document
+          .getElementById(
+            'modalDeliveryQuantity'
+          )
+          .value
+      ),
+
+    order:
+      document
+        .getElementById(
+          'modalDeliveryOrder'
+        )
+        .value,
+
+    client:
+      document
+        .getElementById(
+          'modalDeliveryClient'
+        )
+        .value,
+
+    phone:
+      document
+        .getElementById(
+          'modalDeliveryPhone'
+        )
+        .value,
+
+    address:
+      document
+        .getElementById(
+          'modalDeliveryAddress'
+        )
+        .value,
+
+    deliveryFee:
+      Number(
+        document
+          .getElementById(
+            'modalDeliveryFee'
+          )
+          .value
+      ),
+
+    productAmount:
+      Number(
+        document
+          .getElementById(
+            'modalDeliveryAmount'
+          )
+          .value
+      ),
+
+    driver:
+      document
+        .getElementById(
+          'modalDeliveryDriver'
+        )
+        .value,
+
+    status:
+      document
+        .getElementById(
+          'modalDeliveryStatus'
+        )
+        .value,
+
+    reference:
+      document
+        .getElementById(
+          'modalDeliveryReference'
+        )
+        .value
+
+  };
+
+
+  closeModal();
+
+
+  showLoading(
+    'Enregistrement de la livraison...'
+  );
+
+
+  google.script.run
+
+    .withSuccessHandler(
+      function(result){
+
+        hideLoading();
+
+        toast(
+          result.message,
+          'success'
+        );
+
+        loadPartnerData();
+
+      }
+    )
+
+    .withFailureHandler(
+      handleError
+    )
+
+    .addDelivery(
+      sessionToken,
+      data
+    );
+
+}
+
+
+/* =====================================================
+   MODAL CONTROLS
+===================================================== */
+
+function openModal(){
+
+  document
+    .getElementById(
+      'modal'
+    )
+    .classList.add(
+      'show'
+    );
+
+
+  document
+    .getElementById(
+      'modalSubmit'
+    )
+    .onclick =
+    function(){
+
+      if (
+        typeof modalAction
+        === 'function'
+      ){
+
+        modalAction();
+
+      }
+
+    };
+
+}
+
+
+function closeModal(){
+
+  document
+    .getElementById(
+      'modal'
+    )
+    .classList.remove(
+      'show'
+    );
+
+}
+
+
+/* =====================================================
+   LOGOUT
+===================================================== */
+
+function logoutUser(){
+
+  if (
+    !confirm(
+      'Voulez-vous vous déconnecter ?'
+    )
+  ){
+
+    return;
+  }
+
+
+  if (
+    sessionToken
+  ){
+
+    google.script.run
+      .withSuccessHandler(
+        clearSession
+      )
+      .withFailureHandler(
+        clearSession
+      )
+      .logout(
+        sessionToken
+      );
+
+  } else {
+
+    clearSession();
+
+  }
+
+}
+
+
+function clearSession(){
+
+  sessionToken =
+    null;
+
+  currentUser =
+    null;
+
+
+  sessionStorage.removeItem(
+    'MB_TOKEN'
+  );
+
+  sessionStorage.removeItem(
+    'MB_USER'
+  );
+
+
+  appScreen.style.display =
+    'none';
+
+  authScreen.style.display =
+    'flex';
+
+
+  showLogin();
+
+}
+
+
+/* =====================================================
+   SIDEBAR MOBILE
+===================================================== */
+
+function toggleSidebar(){
+
+  document
+    .getElementById(
+      'sidebar'
+    )
+    .classList.toggle(
+      'open'
+    );
+
+}
+
+
+/* =====================================================
+   HELPERS
+===================================================== */
+
+function formatNumber(
+  value
+){
+
+  const number =
+    Number(value || 0);
+
+  return new Intl.NumberFormat(
+    'fr-FR'
+  ).format(number);
+
+}
+
+
+function formatMoney(
+  value
+){
+
+  return (
+    formatNumber(value) +
+    ' FCFA'
+  );
+
+}
+
+
+function statusBadge(
+  status
+){
+
+  const value =
+    String(
+      status || ''
+    ).toUpperCase();
+
+
+  let cls =
+    'badgeGray';
+
+
+  if (
+    value === 'ACTIF' ||
+    value === 'VALIDÉ' ||
+    value === 'LIVRÉE' ||
+    value === 'DISPONIBLE' ||
+    value === 'ENTRÉE'
+  ){
+
+    cls =
+      'badgeGreen';
+
+  }
+
+
+  if (
+    value === 'EN ATTENTE' ||
+    value === 'EN COURS' ||
+    value === 'STOCK FAIBLE'
+  ){
+
+    cls =
+      'badgeOrange';
+
+  }
+
+
+  if (
+    value === 'SUSPENDU' ||
+    value === 'ANNULÉE' ||
+    value === 'RUPTURE' ||
+    value === 'SORTIE'
+  ){
+
+    cls =
+      'badgeRed';
+
+  }
+
+
+  return `
+
+    <span class="badge ${cls}">
+      ${escapeHtml(
+        status || '-'
+      )}
+    </span>
+
+  `;
+
+}
+
+
+function emptyState(
+  icon,
+  message
+){
+
+  return `
+
+    <div class="empty">
+
+      <div class="emptyIcon">
+        ${icon}
+      </div>
+
+      <strong>
+        ${escapeHtml(
+          message
+        )}
+      </strong>
+
+    </div>
+
+  `;
+
+}
+
+
+function escapeHtml(
+  value
+){
+
+  return String(
+    value == null
+      ? ''
+      : value
+  )
+  .replace(
+    /&/g,
+    '&amp;'
+  )
+  .replace(
+    /</g,
+    '&lt;'
+  )
+  .replace(
+    />/g,
+    '&gt;'
+  )
+  .replace(
+    /"/g,
+    '&quot;'
+  )
+  .replace(
+    /'/g,
+    '&#039;'
+  );
+
+}
+
+
+function escapeAttr(
+  value
+){
+
+  return escapeHtml(
+    value
+  );
+
+}
+
+
+function escapeJs(
+  value
+){
+
+  return String(
+    value == null
+      ? ''
+      : value
+  )
+  .replace(
+    /\\/g,
+    '\\\\'
+  )
+  .replace(
+    /'/g,
+    "\\'"
+  )
+  .replace(
+    /"/g,
+    '\\"'
+  )
+  .replace(
+    /\n/g,
+    '\\n'
+  )
+  .replace(
+    /\r/g,
+    '\\r'
+  );
+
+}
 
 </script>
 
