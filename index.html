@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+  <meta name="theme-color"
+        content="#0b1220">
+
+  <meta name="description"
+        content="Muana Bitinda - Gestion logistique, stock, partenaires et livraisons">
+
+  <title>Muana Bitinda | Espace Partenaire</title>
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    html{
+      scroll-behavior:smooth;
+    }
+
+    body{
+      font-family:
+        Inter,
+        Arial,
+        Helvetica,
+        sans-serif;
+
+      min-height:100vh;
+
+      background:
+        radial-gradient(
+          circle at top right,
+          #243b64 0%,
+          #0b1220 45%,
+          #050914 100%
+        );
+
+      color:#ffffff;
+    }
+
+    button,
+    input{
+      font-family:inherit;
+    }
+
+    .page{
+      min-height:100vh;
+      display:flex;
+      flex-direction:column;
+    }
+
+    /* =========================
+       HEADER
+    ========================= */
+
+    header{
+      width:100%;
+      padding:18px 6%;
+
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+
+      border-bottom:1px solid rgba(255,255,255,.08);
+
+      background:rgba(5,9,20,.72);
+
+      backdrop-filter:blur(15px);
+
+      position:sticky;
+      top:0;
+      z-index:100;
+    }
+
+    .logo{
+      display:flex;
+      align-items:center;
+      gap:12px;
+    }
+
+    .logo-icon{
+      width:45px;
+      height:45px;
+
+      border-radius:14px;
+
+      display:flex;
+      align-items:center;
+      justify-content:center;
+
+      background:
+        linear-gradient(
+          135deg,
+          #00c6ff,
+          #0072ff
+        );
+
+      font-size:23px;
+
+      box-shadow:
+        0 8px 30px rgba(0,114,255,.3);
+    }
+
+    .logo-text strong{
+      display:block;
+      font-size:17px;
+      letter-spacing:.5px;
+    }
+
+    .logo-text span{
+      display:block;
+      margin-top:3px;
+
+      color:#9ba8bf;
+
+      font-size:11px;
+    }
+
+    .status{
+      display:flex;
+      align-items:center;
+      gap:8px;
+
+      padding:8px 13px;
+
+      border-radius:30px;
+
+      background:rgba(255,255,255,.06);
+
+      color:#cbd5e1;
+
+      font-size:12px;
+    }
+
+    .status-dot{
+      width:8px;
+      height:8px;
+
+      border-radius:50%;
+
+      background:#22c55e;
+
+      box-shadow:
+        0 0 10px #22c55e;
+    }
+
+    /* =========================
+       MAIN
+    ========================= */
+
+    main{
+      width:100%;
+      max-width:1200px;
+
+      margin:auto;
+
+      padding:
+        70px 6%
+        40px;
+    }
+
+    .hero{
+      text-align:center;
+
+      max-width:850px;
+
+      margin:0 auto 55px;
+    }
+
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+
+      padding:8px 15px;
+
+      border-radius:30px;
+
+      background:rgba(0,198,255,.09);
+
+      border:1px solid rgba(0,198,255,.18);
+
+      color:#61d9ff;
+
+      font-size:12px;
+      font-weight:600;
+
+      margin-bottom:20px;
+    }
+
+    .hero h1{
+      font-size:
+        clamp(36px,6vw,70px);
+
+      line-height:1.05;
+
+      letter-spacing:-2px;
+
+      margin-bottom:20px;
+    }
+
+    .hero h1 span{
+      background:
+        linear-gradient(
+          90deg,
+          #00c6ff,
+          #7c3aed
+        );
+
+      -webkit-background-clip:text;
+      background-clip:text;
+
+      color:transparent;
+    }
+
+    .hero p{
+      max-width:700px;
+
+      margin:auto;
+
+      color:#aeb9cc;
+
+      font-size:
+        clamp(15px,2vw,18px);
+
+      line-height:1.7;
+    }
+
+    /* =========================
+       ACCESS CARDS
+    ========================= */
+
+    .cards{
+      display:grid;
+
+      grid-template-columns:
+        repeat(2,1fr);
+
+      gap:22px;
+
+      max-width:850px;
+
+      margin:0 auto;
+    }
+
+    .card{
+      position:relative;
+
+      padding:30px;
+
+      min-height:290px;
+
+      border-radius:24px;
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(255,255,255,.09),
+          rgba(255,255,255,.035)
+        );
+
+      border:1px solid rgba(255,255,255,.10);
+
+      box-shadow:
+        0 20px 60px rgba(0,0,0,.25);
+
+      transition:
+        transform .25s ease,
+        border-color .25s ease;
+    }
+
+    .card:hover{
+      transform:translateY(-5px);
+
+      border-color:
+        rgba(0,198,255,.35);
+    }
+
+    .card-icon{
+      width:55px;
+      height:55px;
+
+      display:flex;
+      align-items:center;
+      justify-content:center;
+
+      border-radius:17px;
+
+      background:rgba(0,198,255,.12);
+
+      font-size:27px;
+
+      margin-bottom:20px;
+    }
+
+    .card h2{
+      font-size:23px;
+
+      margin-bottom:12px;
+    }
+
+    .card p{
+      color:#9ca9bd;
+
+      font-size:14px;
+
+      line-height:1.6;
+
+      margin-bottom:24px;
+    }
+
+    .btn{
+      width:100%;
+
+      border:0;
+
+      border-radius:13px;
+
+      padding:14px 18px;
+
+      font-size:14px;
+
+      font-weight:700;
+
+      cursor:pointer;
+
+      transition:
+        transform .2s ease,
+        opacity .2s ease;
+    }
+
+    .btn:hover{
+      transform:translateY(-2px);
+      opacity:.92;
+    }
+
+    .btn-primary{
+      color:white;
+
+      background:
+        linear-gradient(
+          135deg,
+          #0072ff,
+          #00c6ff
+        );
+
+      box-shadow:
+        0 10px 25px
+        rgba(0,114,255,.25);
+    }
+
+    .btn-secondary{
+      color:#ffffff;
+
+      background:
+        rgba(255,255,255,.07);
+
+      border:1px solid
+        rgba(255,255,255,.12);
+    }
+
+    /* =========================
+       FEATURES
+    ========================= */
+
+    .features{
+      margin-top:65px;
+
+      display:grid;
+
+      grid-template-columns:
+        repeat(4,1fr);
+
+      gap:15px;
+    }
+
+    .feature{
+      padding:22px 18px;
+
+      border-radius:18px;
+
+      background:
+        rgba(255,255,255,.045);
+
+      border:
+        1px solid
+        rgba(255,255,255,.07);
+
+      text-align:center;
+    }
+
+    .feature-icon{
+      font-size:25px;
+
+      margin-bottom:10px;
+    }
+
+    .feature strong{
+      display:block;
+
+      font-size:13px;
+
+      margin-bottom:5px;
+    }
+
+    .feature span{
+      color:#7f8ca3;
+
+      font-size:11px;
+    }
+
+    /* =========================
+       INFO
+    ========================= */
+
+    .info{
+      margin-top:50px;
+
+      padding:25px;
+
+      border-radius:20px;
+
+      background:
+        rgba(0,198,255,.055);
+
+      border:
+        1px solid
+        rgba(0,198,255,.12);
+
+      text-align:center;
+    }
+
+    .info strong{
+      display:block;
+
+      margin-bottom:8px;
+    }
+
+    .info p{
+      color:#9ba8bd;
+
+      font-size:13px;
+
+      line-height:1.6;
+    }
+
+    /* =========================
+       FOOTER
+    ========================= */
+
+    footer{
+      margin-top:auto;
+
+      padding:25px 6%;
+
+      text-align:center;
+
+      border-top:
+        1px solid
+        rgba(255,255,255,.07);
+
+      color:#6f7b90;
+
+      font-size:11px;
+    }
+
+    /* =========================
+       MOBILE
+    ========================= */
+
+    @media(max-width:750px){
+
+      header{
+        padding:15px 5%;
+      }
+
+      .status{
+        display:none;
+      }
+
+      main{
+        padding:
+          50px 5%
+          30px;
+      }
+
+      .hero{
+        margin-bottom:35px;
+      }
+
+      .hero h1{
+        letter-spacing:-1px;
+      }
+
+      .cards{
+        grid-template-columns:1fr;
+
+        gap:15px;
+      }
+
+      .card{
+        min-height:auto;
+
+        padding:25px;
+      }
+
+      .features{
+        grid-template-columns:
+          repeat(2,1fr);
+
+        gap:10px;
+
+        margin-top:35px;
+      }
+
+      .feature{
+        padding:18px 10px;
+      }
+
+      .info{
+        margin-top:30px;
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+
+<div class="page">
+
+  <!-- HEADER -->
+
+  <header>
+
+    <div class="logo">
+
+      <div class="logo-icon">
+        🛵
+      </div>
+
+      <div class="logo-text">
+
+        <strong>MUANA BITINDA</strong>
+
+        <span>
+          LOGISTIQUE • STOCK • LIVRAISON
+        </span>
+
+      </div>
+
+    </div>
+
+    <div class="status">
+
+      <span class="status-dot"></span>
+
+      Plateforme opérationnelle
+
+    </div>
+
+  </header>
+
+
+  <!-- MAIN -->
+
+  <main>
+
+    <section class="hero">
+
+      <div class="badge">
+        🔐 ESPACE PARTENAIRE SÉCURISÉ
+      </div>
+
+      <h1>
+        Gérez votre activité
+        <span>simplement.</span>
+      </h1>
+
+      <p>
+        Retrouvez votre stock, vos mouvements,
+        vos livraisons et vos rapports dans
+        un seul espace professionnel.
+      </p>
+
+    </section>
+
+
+    <!-- CARDS -->
+
+    <section class="cards">
+
+
+      <!-- CONNEXION -->
+
+      <article class="card">
+
+        <div class="card-icon">
+          🔑
+        </div>
+
+        <h2>
+          Je possède déjà un compte
+        </h2>
+
+        <p>
+          Connectez-vous à votre espace
+          partenaire pour consulter vos
+          stocks, mouvements, livraisons
+          et rapports.
+        </p>
+
+        <button
+          class="btn btn-primary"
+          onclick="openApplication()"
+        >
+          Se connecter
+        </button>
+
+      </article>
+
+
+      <!-- INSCRIPTION -->
+
+      <article class="card">
+
+        <div class="card-icon">
+          📝
+        </div>
+
+        <h2>
+          Nouveau partenaire
+        </h2>
+
+        <p>
+          Vous êtes partenaire de
+          Muana Bitinda ? Créez votre
+          propre compte et recevez votre
+          accès personnel.
+        </p>
+
+        <button
+          class="btn btn-secondary"
+          onclick="openApplication()"
+        >
+          Créer mon compte
+        </button>
+
+      </article>
+
+    </section>
+
+
+    <!-- FEATURES -->
+
+    <section class="features">
+
+      <div class="feature">
+
+        <div class="feature-icon">
+          📦
+        </div>
+
+        <strong>
+          STOCK
+        </strong>
+
+        <span>
+          Suivez vos produits
+        </span>
+
+      </div>
+
+
+      <div class="feature">
+
+        <div class="feature-icon">
+          🔄
+        </div>
+
+        <strong>
+          MOUVEMENTS
+        </strong>
+
+        <span>
+          Entrées et sorties
+        </span>
+
+      </div>
+
+
+      <div class="feature">
+
+        <div class="feature-icon">
+          🛵
+        </div>
+
+        <strong>
+          LIVRAISONS
+        </strong>
+
+        <span>
+          Suivez vos livraisons
+        </span>
+
+      </div>
+
+
+      <div class="feature">
+
+        <div class="feature-icon">
+          📊
+        </div>
+
+        <strong>
+          RAPPORTS
+        </strong>
+
+        <span>
+          Consultez votre activité
+        </span>
+
+      </div>
+
+    </section>
+
+
+    <!-- INFO -->
+
+    <section class="info">
+
+      <strong>
+        🔒 Vos données restent séparées
+      </strong>
+
+      <p>
+        Chaque partenaire dispose de son propre
+        espace. Les données affichées correspondent
+        uniquement à son compte et à son activité.
+      </p>
+
+    </section>
+
+  </main>
+
+
+  <!-- FOOTER -->
+
+  <footer>
+
+    © 2026 Muana Bitinda —
+    Plateforme professionnelle de gestion
+    logistique.
+
+  </footer>
+
+</div>
+
+
+<script>
+
+  /*
+   * URL DE TON APPLICATION GOOGLE APPS SCRIPT
+   */
+
+  const APP_URL =
+    "https://script.google.com/macros/s/AKfycbwq7TZ5T_mqBzThPZI4tDLewbYosiRuM-pXjVF7ho9WPgoqhmKFFxEXiWDIuxsRjvoy/exec";
+
+
+  /*
+   * OUVERTURE DE L'APPLICATION
+   */
+
+  function openApplication(){
+
+    window.location.href = APP_URL;
+
+  }
+
+
+</script>
+
+</body>
+</html>
