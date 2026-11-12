@@ -257,7 +257,7 @@ footer a:hover{color:var(--gold2)}
       <button data-f="Villa">Villas</button><button data-f="Appartement">Appartements</button><button data-f="Terrain">Terrains</button>
     </div>
     <div class="grid" id="biensGrid"></div>
-    <p id="biensEmpty" style="text-align:center;color:var(--muted);display:none;padding:30px">Aucun bien ne correspond à votre recherche. <a href="#contact" style="color:var(--gold);font-weight:700">Contactez-nous</a>, nous trouvons votre bien sur mesure.</p>
+    <p id="biensEmpty" style="text-align:center;color:var(--muted);display:none;padding:30px">Aucun bien ne correspond à votre recherche. <button type="button" onclick="renderBiens('all')" style="background:none;border:0;color:var(--navy);font-weight:800;text-decoration:underline;cursor:pointer;font-family:inherit;font-size:inherit">Voir tous les biens</button> ou <a href="#contact" style="color:var(--gold);font-weight:700">contactez-nous</a> pour une recherche sur mesure.</p>
   </div>
 </section>
 
@@ -409,15 +409,15 @@ footer a:hover{color:var(--gold2)}
 
 <script>
 const BIENS=[
- {t:"Villa moderne 4 chambres avec piscine",v:"Brazzaville",type:"Villa",mode:"vente",prix:"85 000 000 FCFA",img:"https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=1200&auto=format&fit=crop",d:"320 m² • 4 ch • 3 sdb • Piscine"},
- {t:"Appartement F3 centre-ville",v:"Pointe-Noire",type:"Appartement",mode:"location",prix:"450 000 FCFA / mois",img:"https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?q=80&w=1200&auto=format&fit=crop",d:"85 m² • 3 ch • Balcon"},
- {t:"Terrain titré 600 m² — quartier résidentiel",v:"Brazzaville",type:"Terrain",mode:"vente",prix:"18 000 000 FCFA",img:"https://images.unsplash.com/photo-1500382017468-9049fed747ef?q=80&w=1200&auto=format&fit=crop",d:"600 m² • Titre foncier vérifié"},
- {t:"Villa familiale 3 chambres",v:"Kinshasa",type:"Villa",mode:"vente",prix:"120 000 000 FCFA",img:"https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1200&auto=format&fit=crop",d:"250 m² • 3 ch • Jardin"},
- {t:"Bureaux open-space 200 m²",v:"Douala",type:"Bureau",mode:"location",prix:"1 200 000 FCFA / mois",img:"https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1200&auto=format&fit=crop",d:"200 m² • Parking • Fibre"},
- {t:"Appartement standing F4",v:"Libreville",type:"Appartement",mode:"vente",prix:"95 000 000 FCFA",img:"https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=1200&auto=format&fit=crop",d:"140 m² • 4 ch • Vue mer"},
- {t:"Villa contemporaine avec studio",v:"Yaoundé",type:"Villa",mode:"vente",prix:"72 000 000 FCFA",img:"https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?q=80&w=1200&auto=format&fit=crop",d:"280 m² • 4 ch • Studio indépendant"},
- {t:"Terrain 1000 m² bord de route",v:"Pointe-Noire",type:"Terrain",mode:"vente",prix:"25 000 000 FCFA",img:"https://images.unsplash.com/photo-1628624747186-a941c476b7ef?q=80&w=1200&auto=format&fit=crop",d:"1000 m² • Idéal projet immobilier"},
- {t:"Immeuble de rapport R+3",v:"Brazzaville",type:"Immeuble",mode:"vente",prix:"350 000 000 FCFA",img:"https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?q=80&w=1200&auto=format&fit=crop",d:"12 appartements • Rentabilité 8%/an"}
+ {t:"Villa moderne 4 chambres avec piscine",v:"Brazzaville",type:"Villa",mode:"vente",prix:"85 000 000 FCFA",prixNum:85000000,img:"https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=1200&auto=format&fit=crop",d:"320 m² • 4 ch • 3 sdb • Piscine"},
+ {t:"Appartement F3 centre-ville",v:"Pointe-Noire",type:"Appartement",mode:"location",prix:"450 000 FCFA / mois",prixNum:450000,img:"https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?q=80&w=1200&auto=format&fit=crop",d:"85 m² • 3 ch • Balcon"},
+ {t:"Terrain titré 600 m² — quartier résidentiel",v:"Brazzaville",type:"Terrain",mode:"vente",prix:"18 000 000 FCFA",prixNum:18000000,img:"https://images.unsplash.com/photo-1500382017468-9049fed747ef?q=80&w=1200&auto=format&fit=crop",d:"600 m² • Titre foncier vérifié"},
+ {t:"Villa familiale 3 chambres",v:"Kinshasa",type:"Villa",mode:"vente",prix:"120 000 000 FCFA",prixNum:120000000,img:"https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1200&auto=format&fit=crop",d:"250 m² • 3 ch • Jardin"},
+ {t:"Bureaux open-space 200 m²",v:"Douala",type:"Bureau",mode:"location",prix:"1 200 000 FCFA / mois",prixNum:1200000,img:"https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1200&auto=format&fit=crop",d:"200 m² • Parking • Fibre"},
+ {t:"Appartement standing F4",v:"Libreville",type:"Appartement",mode:"vente",prix:"95 000 000 FCFA",prixNum:95000000,img:"https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=1200&auto=format&fit=crop",d:"140 m² • 4 ch • Vue mer"},
+ {t:"Villa contemporaine avec studio",v:"Yaoundé",type:"Villa",mode:"vente",prix:"72 000 000 FCFA",prixNum:72000000,img:"https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?q=80&w=1200&auto=format&fit=crop",d:"280 m² • 4 ch • Studio indépendant"},
+ {t:"Terrain 1000 m² bord de route",v:"Pointe-Noire",type:"Terrain",mode:"vente",prix:"25 000 000 FCFA",prixNum:25000000,img:"https://images.unsplash.com/photo-1628624747186-a941c476b7ef?q=80&w=1200&auto=format&fit=crop",d:"1000 m² • Idéal projet immobilier"},
+ {t:"Immeuble de rapport R+3",v:"Brazzaville",type:"Immeuble",mode:"vente",prix:"350 000 000 FCFA",prixNum:350000000,img:"https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?q=80&w=1200&auto=format&fit=crop",d:"12 appartements • Rentabilité 8%/an"}
 ];
 const PROJETS=[
  {t:"Villa Horizon — Brazzaville",c:"villa",img:"https://images.unsplash.com/photo-1600585154526-990dced4db0d?q=80&w=1200&auto=format&fit=crop",d:"180 m² • 7 mois • Clé en main"},
@@ -430,11 +430,14 @@ const PROJETS=[
  {t:"Centre d'affaires Plateau — Brazzaville",c:"bureau",img:"https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1200&auto=format&fit=crop",d:"800 m² • Façade vitrée"},
  {t:"Rénovation Hôtel Le Fleuve — Brazzaville",c:"reno",img:"https://images.unsplash.com/photo-1600121848594-d8644e57abab?q=80&w=1200&auto=format&fit=crop",d:"Hall & suites • 5 mois"}
 ];
-function renderBiens(f="all"){
+function paintBiens(list){
   const g=document.getElementById('biensGrid');
-  const list=BIENS.filter(b=>f==="all"||b.mode===f||b.type===f);
   document.getElementById('biensEmpty').style.display=list.length?"none":"block";
   g.innerHTML=list.map(b=>`<article class="prop"><img src="${b.img}" alt="${b.t}" loading="lazy"><div class="prop-body"><span class="badge ${b.mode==='vente'?'gold':''}">${b.mode==='vente'?'À vendre':'À louer'}</span><h3>${b.t}</h3><div class="meta"><span>📍 ${b.v}</span><span>${b.d}</span></div><div class="prop-price">${b.prix}</div><a class="btn btn-navy" style="width:100%;justify-content:center" href="https://wa.me/242060000000?text=${encodeURIComponent('Bonjour, je suis intéressé par : '+b.t+' à '+b.v+' ('+b.prix+'). Puis-je planifier une visite ?')}" target="_blank" rel="noopener">Réserver une visite</a></div></article>`).join('');
+}
+function renderBiens(f="all"){
+  const list=BIENS.filter(b=>f==="all"||b.mode===f||b.type===f);
+  paintBiens(list);
 }
 function renderProjets(f="all"){
   const g=document.getElementById('projGrid');
@@ -446,7 +449,16 @@ function bindFilters(id,fn){
 }
 bindFilters('biensFilters',renderBiens); bindFilters('projFilters',renderProjets);
 renderBiens(); renderProjets();
-function searchBiens(e){e.preventDefault();document.getElementById('biens').scrollIntoView({behavior:'smooth'});showToast('🔍 Recherche appliquée — parcourez les biens ci-dessous.');return false}
+function searchBiens(e){
+  e.preventDefault();
+  const v=document.getElementById('sVille').value, t=document.getElementById('sType').value, max=+document.getElementById('sBudget').value;
+  document.querySelectorAll('#biensFilters button').forEach((x,i)=>x.classList.toggle('active',i===0));
+  const list=BIENS.filter(b=>(!v||b.v===v)&&(!t||b.type===t)&&(!max||b.prixNum<=max));
+  paintBiens(list);
+  document.getElementById('biens').scrollIntoView({behavior:'smooth'});
+  showToast('🔍 '+list.length+' bien'+(list.length>1?'s':'')+' trouvé'+(list.length>1?'s':'')+'.');
+  return false;
+}
 function fmt(n){return n.toLocaleString('fr-FR').replace(/\u202F/g,' ')}
 function calcDevis(){
   const surf=+document.getElementById('cSurf').value, prix=+document.getElementById('cType').value, ville=+document.getElementById('cVille').value, fin=+document.getElementById('cFin').value;
@@ -469,8 +481,8 @@ function sendForm(e){
   window.open('https://wa.me/242060000000?text='+txt,'_blank');
   return false;
 }
-// Compteurs
-const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');if(e.target.dataset&&e.target.dataset.count!==undefined){}} }),{threshold:.15});
+// Compteurs & animations
+const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')}),{threshold:.15});
 document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 document.querySelectorAll('[data-count]').forEach(el=>{const target=+el.dataset.count;let cur=0;const iv=setInterval(()=>{cur+=Math.ceil(target/40);if(cur>=target){cur=target;clearInterval(iv)}el.textContent=cur+'+'},40)});
 document.getElementById('year').textContent=new Date().getFullYear();
