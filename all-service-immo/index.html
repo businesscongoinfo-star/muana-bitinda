@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>All Service Immo — Immobilier, Architecture & Construction | Afrique Centrale</title>
+<meta name="description" content="All Service Immo : agence immobilière, bureau d'architecture et entreprise de construction en Afrique centrale. Vente, location, conception de plans, construction clé en main. Brazzaville, Pointe-Noire, Kinshasa, Douala, Libreville.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#0b1d33; --navy2:#122a4a; --gold:#c9a24b; --gold2:#e8c97a;
+  --cream:#faf7f0; --white:#fff; --muted:#64748b; --line:#e7e2d6;
+  --green:#16a34a; --shadow:0 20px 50px rgba(11,29,51,.12);
+}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--cream);color:var(--navy);line-height:1.6}
+img{max-width:100%;display:block}
+a{text-decoration:none;color:inherit}
+.wrap{max-width:1200px;margin:0 auto;padding:0 20px}
+h1,h2,h3,.serif{font-family:'Playfair Display',serif;line-height:1.15}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:14px 26px;border-radius:999px;font-weight:700;font-size:15px;border:0;cursor:pointer;transition:.25s}
+.btn-gold{background:var(--gold);color:var(--navy)}
+.btn-gold:hover{background:var(--gold2);transform:translateY(-2px)}
+.btn-navy{background:var(--navy);color:#fff}
+.btn-navy:hover{background:var(--navy2);transform:translateY(-2px)}
+.btn-outline{background:transparent;color:#fff;border:2px solid rgba(255,255,255,.6)}
+.btn-outline:hover{border-color:#fff;background:rgba(255,255,255,.1)}
+.btn-wa{background:#25d366;color:#fff}
+.btn-wa:hover{background:#1fb857;transform:translateY(-2px)}
+.tag{display:inline-block;background:rgba(201,162,75,.15);color:#8a6d2b;border:1px solid rgba(201,162,75,.4);padding:6px 14px;border-radius:999px;font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase}
+.section{padding:90px 0}
+.section-head{text-align:center;max-width:720px;margin:0 auto 50px}
+.section-head h2{font-size:clamp(30px,4vw,44px);margin:16px 0 12px}
+.section-head p{color:var(--muted);font-size:17px}
+
+/* NAV */
+header{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(11,29,51,.92);backdrop-filter:blur(12px);color:#fff}
+.nav{display:flex;align-items:center;justify-content:space-between;height:72px;gap:16px}
+.logo{display:flex;align-items:center;gap:12px;font-weight:800}
+.logo-mark{width:44px;height:44px;background:var(--gold);color:var(--navy);display:grid;place-items:center;border-radius:12px;font-family:'Playfair Display',serif;font-size:22px;font-weight:800}
+.logo small{display:block;font-weight:500;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold2)}
+.logo span{font-size:19px;line-height:1}
+.nav-links{display:flex;gap:28px;font-size:14px;font-weight:600}
+.nav-links a{opacity:.85}.nav-links a:hover{opacity:1;color:var(--gold2)}
+.nav-cta{display:flex;gap:10px;align-items:center}
+.burger{display:none;background:none;border:0;color:#fff;font-size:28px;cursor:pointer}
+@media(max-width:900px){.nav-links,.nav-cta .btn-navy{display:none}.burger{display:block}.nav-links.open{display:flex;position:absolute;top:72px;left:0;right:0;background:var(--navy);flex-direction:column;padding:20px;gap:16px}}
+
+/* HERO */
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;color:#fff;padding:130px 0 70px;background:linear-gradient(90deg,rgba(11,29,51,.92) 0%,rgba(11,29,51,.65) 55%,rgba(11,29,51,.25) 100%),url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2000&auto=format&fit=crop') center/cover}
+.hero h1{font-size:clamp(38px,6vw,68px);margin:20px 0 18px}
+.hero h1 em{color:var(--gold2);font-style:normal}
+.hero p.lead{font-size:19px;max-width:620px;opacity:.92}
+.hero-actions{display:flex;gap:14px;flex-wrap:wrap;margin-top:30px}
+.hero-stats{display:flex;gap:36px;flex-wrap:wrap;margin-top:48px}
+.hero-stats b{font-size:30px;display:block;color:var(--gold2)}
+.hero-stats span{font-size:13px;opacity:.85;text-transform:uppercase;letter-spacing:.08em}
+.searchbar{background:#fff;color:var(--navy);border-radius:20px;padding:18px;display:grid;grid-template-columns:1.2fr 1fr 1fr auto;gap:12px;margin-top:36px;box-shadow:var(--shadow)}
+.searchbar label{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);display:block;margin-bottom:4px}
+.searchbar select,.searchbar input{width:100%;border:1px solid var(--line);border-radius:12px;padding:12px;font-size:15px;font-family:inherit;background:#fff}
+@media(max-width:800px){.searchbar{grid-template-columns:1fr}}
+
+/* SERVICES */
+.services{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+@media(max-width:900px){.services{grid-template-columns:1fr}}
+.card{background:#fff;border-radius:24px;overflow:hidden;box-shadow:0 10px 30px rgba(11,29,51,.08);border:1px solid var(--line);transition:.3s}
+.card:hover{transform:translateY(-6px);box-shadow:var(--shadow)}
+.card img{height:230px;width:100%;object-fit:cover}
+.card-body{padding:26px}
+.card-body h3{font-size:24px;margin-bottom:10px}
+.card-body p{color:var(--muted);font-size:15px}
+.card ul{list-style:none;margin:16px 0}
+.card li{padding:7px 0;border-bottom:1px dashed var(--line);font-size:14px;display:flex;gap:8px}
+.card li::before{content:"✓";color:var(--gold);font-weight:800}
+.price{font-weight:800;color:var(--navy);margin:10px 0 16px}
+.price small{color:var(--muted);font-weight:500}
+
+/* BIENS + PROJETS */
+.filters{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-bottom:30px}
+.filters button{padding:10px 20px;border-radius:999px;border:1.5px solid var(--line);background:#fff;font-weight:700;cursor:pointer;font-family:inherit}
+.filters button.active{background:var(--navy);color:#fff;border-color:var(--navy)}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+@media(max-width:900px){.grid{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.grid{grid-template-columns:1fr}}
+.prop{background:#fff;border-radius:20px;overflow:hidden;border:1px solid var(--line);box-shadow:0 8px 24px rgba(11,29,51,.06)}
+.prop img{height:210px;width:100%;object-fit:cover}
+.prop-body{padding:20px}
+.prop-body h3{font-size:20px;margin-bottom:6px}
+.meta{color:var(--muted);font-size:13px;display:flex;gap:14px;flex-wrap:wrap;margin:8px 0}
+.badge{display:inline-block;background:var(--navy);color:#fff;font-size:11px;font-weight:800;padding:4px 10px;border-radius:999px;text-transform:uppercase;letter-spacing:.06em}
+.badge.gold{background:var(--gold);color:var(--navy)}
+.prop-price{font-size:22px;font-weight:800;margin:10px 0}
+.prop-price small{font-size:13px;color:var(--muted);font-weight:500}
+
+/* PROCESS */
+.process{background:var(--navy);color:#fff}
+.process .section-head p{color:#b8c4d6}
+.steps{display:grid;grid-template-columns:repeat(5,1fr);gap:18px}
+@media(max-width:900px){.steps{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.steps{grid-template-columns:1fr}}
+.step{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:20px;padding:24px}
+.step b.num{font-family:'Playfair Display',serif;font-size:38px;color:var(--gold2)}
+.step h3{font-size:19px;margin:10px 0 8px}
+.step p{font-size:14px;color:#cbd5e1}
+
+/* CALC */
+.calc{background:#fff;border-radius:28px;padding:36px;box-shadow:var(--shadow);display:grid;grid-template-columns:1.1fr .9fr;gap:36px;border:1px solid var(--line)}
+@media(max-width:800px){.calc{grid-template-columns:1fr}}
+.calc label{font-weight:700;font-size:14px;display:block;margin:18px 0 8px}
+.calc select,.calc input[type=range],.calc input[type=number]{width:100%}
+.calc select,.calc input[type=number]{padding:13px;border:1.5px solid var(--line);border-radius:12px;font-family:inherit;font-size:15px}
+.calc-result{background:var(--navy);color:#fff;border-radius:20px;padding:28px;display:flex;flex-direction:column;justify-content:center}
+.calc-result .big{font-size:36px;font-weight:800;color:var(--gold2);margin:8px 0}
+.calc-result p{color:#cbd5e1;font-size:14px}
+
+/* TESTI + FAQ */
+.testis{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+@media(max-width:900px){.testis{grid-template-columns:1fr}}
+.testi{background:#fff;border-radius:20px;padding:28px;border:1px solid var(--line)}
+.testi .stars{color:var(--gold);font-size:18px;letter-spacing:2px}
+.testi p{font-style:italic;margin:14px 0;color:#334155}
+.testi b{display:block}
+.testi small{color:var(--muted)}
+.faq{max-width:800px;margin:0 auto}
+.faq-item{background:#fff;border:1px solid var(--line);border-radius:16px;margin-bottom:12px;overflow:hidden}
+.faq-q{width:100%;background:none;border:0;padding:20px 22px;text-align:left;font-weight:700;font-size:16px;cursor:pointer;display:flex;justify-content:space-between;font-family:inherit;color:var(--navy)}
+.faq-a{display:none;padding:0 22px 20px;color:var(--muted)}
+.faq-item.open .faq-a{display:block}
+
+/* CONTACT */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:30px}
+@media(max-width:800px){.contact-grid{grid-template-columns:1fr}}
+.contact-card{background:#fff;border-radius:24px;padding:32px;border:1px solid var(--line);box-shadow:0 10px 30px rgba(11,29,51,.06)}
+.contact-card h3{font-size:24px;margin-bottom:18px}
+.field{margin-bottom:16px}
+.field label{font-weight:700;font-size:14px;display:block;margin-bottom:6px}
+.field input,.field select,.field textarea{width:100%;padding:13px;border:1.5px solid var(--line);border-radius:12px;font-family:inherit;font-size:15px}
+.contact-info{display:flex;flex-direction:column;gap:16px}
+.info-box{background:var(--navy);color:#fff;border-radius:20px;padding:24px}
+.info-box h4{color:var(--gold2);margin-bottom:8px}
+.info-box p,.info-box a{color:#e2e8f0;font-size:15px}
+.info-box a:hover{color:#fff;text-decoration:underline}
+
+/* FOOTER */
+footer{background:#071426;color:#94a3b8;padding:60px 0 30px}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:30px;margin-bottom:40px}
+@media(max-width:800px){.footer-grid{grid-template-columns:1fr 1fr}}
+footer h4{color:#fff;margin-bottom:14px}
+footer a{display:block;padding:4px 0;font-size:14px}
+footer a:hover{color:var(--gold2)}
+.copy{border-top:1px solid rgba(255,255,255,.1);padding-top:20px;text-align:center;font-size:13px}
+
+/* FLOAT WA */
+.wa-float{position:fixed;bottom:22px;right:22px;z-index:200;background:#25d366;color:#fff;width:60px;height:60px;border-radius:50%;display:grid;place-items:center;box-shadow:0 10px 30px rgba(0,0,0,.25);font-size:28px}
+.wa-float:hover{transform:scale(1.08)}
+.toast{position:fixed;bottom:100px;right:22px;background:var(--navy);color:#fff;padding:14px 20px;border-radius:14px;z-index:300;display:none;max-width:320px;font-size:14px}
+.reveal{opacity:0;transform:translateY(24px);transition:.7s}
+.reveal.visible{opacity:1;transform:none}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="#accueil"><span class="logo-mark">A</span><span>All Service Immo<small>Immobilier • Archi • Construction</small></span></a>
+    <nav class="nav-links" id="navLinks">
+      <a href="#services">Services</a><a href="#biens">Biens</a><a href="#projets">Réalisations</a><a href="#processus">Processus</a><a href="#devis">Devis</a><a href="#contact">Contact</a>
+    </nav>
+    <div class="nav-cta">
+      <a class="btn btn-gold" href="#contact" style="padding:10px 20px">Demander un devis</a>
+      <button class="burger" onclick="document.getElementById('navLinks').classList.toggle('open')" aria-label="Menu">☰</button>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="accueil">
+  <div class="wrap">
+    <span class="tag">🏗️ Afrique Centrale — Brazzaville • Pointe-Noire • Kinshasa • Douala • Libreville</span>
+    <h1>Nous construisons<br>vos <em>projets de vie</em>,<br>de l'idée à la remise des clés.</h1>
+    <p class="lead">All Service Immo réunit en une seule équipe : <strong>immobilier</strong>, <strong>architecture</strong> et <strong>construction clé en main</strong>. Un terrain, un plan, un chantier, une maison — sans stress, avec un suivi transparent.</p>
+    <div class="hero-actions">
+      <a class="btn btn-gold" href="#devis">🧮 Estimer mon projet</a>
+      <a class="btn btn-outline" href="#biens">Voir les biens disponibles</a>
+      <a class="btn btn-wa" href="https://wa.me/242060000000?text=Bonjour%20All%20Service%20Immo%2C%20je%20souhaite%20un%20renseignement." target="_blank" rel="noopener">💬 WhatsApp</a>
+    </div>
+    <div class="hero-stats">
+      <div><b data-count="120">0</b><span>Projets livrés</span></div>
+      <div><b data-count="350">0</b><span>Clients satisfaits</span></div>
+      <div><b data-count="15">0</b><span>Ans d'expérience</span></div>
+      <div><b data-count="6">0</b><span>Villes desservies</span></div>
+    </div>
+    <form class="searchbar" onsubmit="return searchBiens(event)">
+      <div><label>Ville</label><select id="sVille"><option value="">Toutes les villes</option><option>Brazzaville</option><option>Pointe-Noire</option><option>Kinshasa</option><option>Douala</option><option>Libreville</option><option>Yaoundé</option></select></div>
+      <div><label>Type</label><select id="sType"><option value="">Tous types</option><option>Villa</option><option>Appartement</option><option>Terrain</option><option>Bureau</option><option>Immeuble</option></select></div>
+      <div><label>Budget max (FCFA)</label><input id="sBudget" type="number" placeholder="Ex : 50 000 000"></div>
+      <button class="btn btn-navy" type="submit" style="align-self:end">🔍 Rechercher</button>
+    </form>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="section" id="services">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="tag">Nos 3 métiers</span>
+      <h2>Un seul interlocuteur,<br>trois expertises</h2>
+      <p>Que vous cherchiez un bien, un plan ou un chantier, All Service Immo vous accompagne de A à Z.</p>
+    </div>
+    <div class="services">
+      <article class="card reveal">
+        <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?q=80&w=1200&auto=format&fit=crop" alt="Immobilier">
+        <div class="card-body">
+          <h3>🏠 Immobilier</h3>
+          <p>Achat, vente et location de biens vérifiés : villas, appartements, terrains titrés et locaux commerciaux.</p>
+          <ul><li>Visites accompagnées &amp; négociation</li><li>Vérification des titres fonciers</li><li>Gestion locative</li><li>Estimation gratuite de votre bien</li></ul>
+          <p class="price">Commission vente <small>à partir de 3%</small></p>
+          <a class="btn btn-navy" href="#biens">Voir les biens →</a>
+        </div>
+      </article>
+      <article class="card reveal">
+        <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=1200&auto=format&fit=crop" alt="Architecture">
+        <div class="card-body">
+          <h3>📐 Architecture</h3>
+          <p>Conception de plans sur mesure : villas, immeubles, bureaux. Visualisation 3D avant de construire.</p>
+          <ul><li>Esquisse, plans &amp; permis de construire</li><li>Rendu 3D réaliste</li><li>Étude de faisabilité &amp; budget</li><li>Suivi de chantier par architecte</li></ul>
+          <p class="price">Plan villa <small>à partir de 450 000 FCFA</small></p>
+          <a class="btn btn-navy" href="#devis">Estimer mon plan →</a>
+        </div>
+      </article>
+      <article class="card reveal">
+        <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=1200&auto=format&fit=crop" alt="Construction">
+        <div class="card-body">
+          <h3>🏗️ Construction</h3>
+          <p>Construction clé en main, gros œuvre, second œuvre, rénovation. Chantier suivi photo par photo.</p>
+          <ul><li>Devis détaillé sans surprise</li><li>Matériaux de qualité garantis</li><li>Rapport d'avancement hebdomadaire</li><li>Garantie décennale structure</li></ul>
+          <p class="price">Construction <small>à partir de 350 000 FCFA / m²</small></p>
+          <a class="btn btn-navy" href="#projets">Voir nos chantiers →</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- BIENS -->
+<section class="section" id="biens" style="background:#fff">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="tag">Immobilier</span>
+      <h2>Biens à vendre &amp; à louer</h2>
+      <p>Une sélection de biens vérifiés dans nos villes d'intervention. Cliquez sur un bien pour le réserver en visite.</p>
+    </div>
+    <div class="filters" id="biensFilters">
+      <button class="active" data-f="all">Tous</button><button data-f="vente">Vente</button><button data-f="location">Location</button>
+      <button data-f="Villa">Villas</button><button data-f="Appartement">Appartements</button><button data-f="Terrain">Terrains</button>
+    </div>
+    <div class="grid" id="biensGrid"></div>
+    <p id="biensEmpty" style="text-align:center;color:var(--muted);display:none;padding:30px">Aucun bien ne correspond à votre recherche. <a href="#contact" style="color:var(--gold);font-weight:700">Contactez-nous</a>, nous trouvons votre bien sur mesure.</p>
+  </div>
+</section>
+
+<!-- PROJETS -->
+<section class="section" id="projets">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="tag">Réalisations</span>
+      <h2>Nos chantiers &amp; plans récents</h2>
+      <p>Chaque projet est livré avec photos, plans et garanties. Inspirez-vous pour le vôtre.</p>
+    </div>
+    <div class="filters" id="projFilters">
+      <button class="active" data-f="all">Tous</button><button data-f="villa">Villas</button><button data-f="immeuble">Immeubles</button><button data-f="bureau">Bureaux</button><button data-f="reno">Rénovation</button>
+    </div>
+    <div class="grid" id="projGrid"></div>
+  </div>
+</section>
+
+<!-- PROCESSUS -->
+<section class="section process" id="processus">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="tag" style="background:rgba(201,162,75,.2);color:var(--gold2)">Comment ça marche</span>
+      <h2>Votre projet en 5 étapes</h2>
+      <p>Un parcours clair, du premier appel à la remise des clés.</p>
+    </div>
+    <div class="steps">
+      <div class="step reveal"><b class="num">01</b><h3>Écoute &amp; visite</h3><p>Nous visitons votre terrain ou écoutons votre besoin. Étude gratuite et sans engagement.</p></div>
+      <div class="step reveal"><b class="num">02</b><h3>Plan &amp; devis</h3><p>Esquisse, plans 3D et devis détaillé poste par poste. Vous validez avant tout engagement.</p></div>
+      <div class="step reveal"><b class="num">03</b><h3>Permis &amp; fondations</h3><p>Nous gérons les démarches administratives et lançons les fondations.</p></div>
+      <div class="step reveal"><b class="num">04</b><h3>Construction suivie</h3><p>Rapport photo hebdomadaire, réunions de chantier, contrôle qualité à chaque étape.</p></div>
+      <div class="step reveal"><b class="num">05</b><h3>Remise des clés</h3><p>Réception, garantie et accompagnement pour l'emménagement ou la mise en location.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- DEVIS -->
+<section class="section" id="devis">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="tag">Simulateur</span>
+      <h2>Estimez votre construction en 30 secondes</h2>
+      <p>Estimation indicative au m² (gros + second œuvre, hors terrain). Recevez un devis précis après visite gratuite.</p>
+    </div>
+    <div class="calc reveal">
+      <div>
+        <label>Type de bâtiment</label>
+        <select id="cType" onchange="calcDevis()">
+          <option value="350000">Villa simple — 350 000 FCFA/m²</option>
+          <option value="450000" selected>Villa moderne — 450 000 FCFA/m²</option>
+          <option value="600000">Villa haut de gamme — 600 000 FCFA/m²</option>
+          <option value="500000">Immeuble / Bureau — 500 000 FCFA/m²</option>
+          <option value="250000">Rénovation — 250 000 FCFA/m²</option>
+        </select>
+        <label>Surface à construire : <span id="cSurfVal">120</span> m²</label>
+        <input type="range" id="cSurf" min="30" max="1000" value="120" step="10" oninput="calcDevis()">
+        <label>Ville</label>
+        <select id="cVille" onchange="calcDevis()">
+          <option value="1">Brazzaville / Pointe-Noire (×1,0)</option>
+          <option value="1.05">Kinshasa (×1,05)</option>
+          <option value="1.1">Douala / Yaoundé (×1,1)</option>
+          <option value="1.15">Libreville (×1,15)</option>
+        </select>
+        <label>Finition</label>
+        <select id="cFin" onchange="calcDevis()">
+          <option value="1">Standard</option>
+          <option value="1.15">Premium (+15%)</option>
+          <option value="1.3">Luxe (+30%)</option>
+        </select>
+      </div>
+      <div class="calc-result">
+        <span style="text-transform:uppercase;letter-spacing:.1em;font-size:12px;color:#94a3b8">Estimation indicative</span>
+        <div class="big" id="cTotal">54 000 000 FCFA</div>
+        <p id="cDetail">120 m² × 450 000 FCFA</p>
+        <p style="margin-top:10px">⏱️ Durée estimée : <b id="cDuree" style="color:#fff">6–8 mois</b></p>
+        <a class="btn btn-gold" style="margin-top:20px;justify-content:center" id="cWa" href="#" target="_blank" rel="noopener">💬 Recevoir ce devis sur WhatsApp</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TÉMOIGNAGES -->
+<section class="section" id="avis" style="background:#fff">
+  <div class="wrap">
+    <div class="section-head reveal"><span class="tag">Témoignages</span><h2>Ils nous ont confié leurs clés</h2></div>
+    <div class="testis">
+      <div class="testi reveal"><div class="stars">★★★★★</div><p>« All Service Immo a construit notre villa à Brazzaville en 7 mois. Les photos de chantier chaque semaine nous ont rassurés. Budget respecté au franc près. »</p><b>Famille M.</b><small>Villa — Brazzaville</small></div>
+      <div class="testi reveal"><div class="stars">★★★★★</div><p>« J'ai acheté un terrain titré à Pointe-Noire via leur service immobilier, puis ils ont dessiné et construit ma maison. Un seul interlocuteur, zéro stress. »</p><b>Jean-Bosco K.</b><small>Terrain + Construction — Pointe-Noire</small></div>
+      <div class="testi reveal"><div class="stars">★★★★★</div><p>« Plans 3D superbes, équipe pro, et notre immeuble de bureaux à Douala livré dans les délais. Je recommande les yeux fermés. »</p><b>SARL Horizon Invest</b><small>Immeuble — Douala</small></div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section" id="faq">
+  <div class="wrap">
+    <div class="section-head reveal"><span class="tag">Questions fréquentes</span><h2>Tout savoir avant de commencer</h2></div>
+    <div class="faq">
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Combien coûte la construction d'une villa ? <span>+</span></button><div class="faq-a">Comptez entre 350 000 et 600 000 FCFA/m² selon la finition, hors terrain. Utilisez notre simulateur ci-dessus, puis demandez un devis gratuit après visite de votre terrain.</div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Travaillez-vous dans ma ville ? <span>+</span></button><div class="faq-a">Oui : Brazzaville, Pointe-Noire, Kinshasa, Douala, Yaoundé et Libreville. Pour d'autres villes d'Afrique centrale, contactez-nous — nous étudions chaque demande.</div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Comment suivre mon chantier si je suis à l'étranger ? <span>+</span></button><div class="faq-a">Vous recevez chaque semaine un rapport photo/vidéo et un point d'avancement. Un interlocuteur unique vous répond sur WhatsApp.</div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Vérifiez-vous les titres des terrains ? <span>+</span></button><div class="faq-a">Oui, chaque terrain proposé est vérifié : titre foncier, bornage et situation administrative avant toute mise en vente.</div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Quels sont vos délais pour les plans ? <span>+</span></button><div class="faq-a">Esquisse sous 7 jours, plans définitifs et rendu 3D sous 3 semaines en moyenne selon la complexité.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="section" id="contact" style="background:#fff">
+  <div class="wrap">
+    <div class="section-head reveal"><span class="tag">Contact</span><h2>Parlons de votre projet</h2><p>Réponse sous 24h ouvrées. Visite et devis d'étude gratuits.</p></div>
+    <div class="contact-grid">
+      <div class="contact-card reveal">
+        <h3>📩 Demande de devis / rendez-vous</h3>
+        <form onsubmit="return sendForm(event)">
+          <div class="field"><label>Nom complet *</label><input id="fNom" required placeholder="Votre nom"></div>
+          <div class="field"><label>Téléphone / WhatsApp *</label><input id="fTel" required placeholder="+242 06 000 00 00"></div>
+          <div class="field"><label>Ville</label><select id="fVille"><option>Brazzaville</option><option>Pointe-Noire</option><option>Kinshasa</option><option>Douala</option><option>Yaoundé</option><option>Libreville</option><option>Autre</option></select></div>
+          <div class="field"><label>Je suis intéressé par</label><select id="fType"><option>Acheter un bien</option><option>Louer un bien</option><option>Faire dessiner un plan</option><option>Construire (clé en main)</option><option>Rénover</option><option>Vendre mon bien</option></select></div>
+          <div class="field"><label>Votre projet en quelques mots</label><textarea id="fMsg" rows="4" placeholder="Ex : Je veux construire une villa de 150 m² à Brazzaville..."></textarea></div>
+          <button class="btn btn-gold" type="submit" style="width:100%;justify-content:center">Envoyer ma demande →</button>
+          <p style="font-size:12px;color:var(--muted);margin-top:10px;text-align:center">En envoyant, votre demande s'ouvre aussi dans WhatsApp pour une réponse immédiate.</p>
+        </form>
+      </div>
+      <div class="contact-info reveal">
+        <div class="info-box"><h4>📞 Téléphone</h4><p><a href="tel:+242060000000">+242 06 000 00 00</a><br><a href="tel:+242050000000">+242 05 000 00 00</a></p><p style="margin-top:8px;font-size:13px">Lun – Sam : 8h00 – 18h00</p></div>
+        <div class="info-box"><h4>💬 WhatsApp</h4><p>Réponse rapide, photos et visites virtuelles sur demande.</p><a class="btn btn-wa" style="margin-top:12px" href="https://wa.me/242060000000?text=Bonjour%20All%20Service%20Immo%2C%20je%20souhaite%20un%20renseignement." target="_blank" rel="noopener">Discuter sur WhatsApp</a></div>
+        <div class="info-box"><h4>📍 Zones d'intervention</h4><p>Brazzaville • Pointe-Noire • Kinshasa • Douala • Yaoundé • Libreville<br><span style="font-size:13px">Et toute l'Afrique centrale sur demande.</span></p></div>
+        <div class="info-box"><h4>✉️ Email</h4><p><a href="mailto:contact@allserviceimmo.com">contact@allserviceimmo.com</a></p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div><div class="logo" style="margin-bottom:14px"><span class="logo-mark">A</span><span>All Service Immo<small>Immobilier • Archi • Construction</small></span></div><p style="font-size:14px;max-width:340px">Votre partenaire de confiance pour acheter, concevoir et construire en Afrique centrale. Qualité, transparence, délais respectés.</p></div>
+      <div><h4>Services</h4><a href="#services">Immobilier</a><a href="#services">Architecture</a><a href="#services">Construction</a><a href="#devis">Simulateur de devis</a></div>
+      <div><h4>Explorer</h4><a href="#biens">Biens disponibles</a><a href="#projets">Réalisations</a><a href="#processus">Notre processus</a><a href="#faq">FAQ</a></div>
+      <div><h4>Contact</h4><a href="tel:+242060000000">+242 06 000 00 00</a><a href="mailto:contact@allserviceimmo.com">contact@allserviceimmo.com</a><a href="#contact">Brazzaville — Congo</a></div>
+    </div>
+    <div class="copy">© <span id="year"></span> All Service Immo — Tous droits réservés. Site stocké sur Google Drive • Déployable sur Vercel.</div>
+  </div>
+</footer>
+
+<a class="wa-float" href="https://wa.me/242060000000?text=Bonjour%20All%20Service%20Immo%2C%20je%20souhaite%20un%20renseignement." target="_blank" rel="noopener" aria-label="WhatsApp">💬</a>
+<div class="toast" id="toast"></div>
+
+<script>
+const BIENS=[
+ {t:"Villa moderne 4 chambres avec piscine",v:"Brazzaville",type:"Villa",mode:"vente",prix:"85 000 000 FCFA",img:"https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=1200&auto=format&fit=crop",d:"320 m² • 4 ch • 3 sdb • Piscine"},
+ {t:"Appartement F3 centre-ville",v:"Pointe-Noire",type:"Appartement",mode:"location",prix:"450 000 FCFA / mois",img:"https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?q=80&w=1200&auto=format&fit=crop",d:"85 m² • 3 ch • Balcon"},
+ {t:"Terrain titré 600 m² — quartier résidentiel",v:"Brazzaville",type:"Terrain",mode:"vente",prix:"18 000 000 FCFA",img:"https://images.unsplash.com/photo-1500382017468-9049fed747ef?q=80&w=1200&auto=format&fit=crop",d:"600 m² • Titre foncier vérifié"},
+ {t:"Villa familiale 3 chambres",v:"Kinshasa",type:"Villa",mode:"vente",prix:"120 000 000 FCFA",img:"https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1200&auto=format&fit=crop",d:"250 m² • 3 ch • Jardin"},
+ {t:"Bureaux open-space 200 m²",v:"Douala",type:"Bureau",mode:"location",prix:"1 200 000 FCFA / mois",img:"https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1200&auto=format&fit=crop",d:"200 m² • Parking • Fibre"},
+ {t:"Appartement standing F4",v:"Libreville",type:"Appartement",mode:"vente",prix:"95 000 000 FCFA",img:"https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=1200&auto=format&fit=crop",d:"140 m² • 4 ch • Vue mer"},
+ {t:"Villa contemporaine avec studio",v:"Yaoundé",type:"Villa",mode:"vente",prix:"72 000 000 FCFA",img:"https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?q=80&w=1200&auto=format&fit=crop",d:"280 m² • 4 ch • Studio indépendant"},
+ {t:"Terrain 1000 m² bord de route",v:"Pointe-Noire",type:"Terrain",mode:"vente",prix:"25 000 000 FCFA",img:"https://images.unsplash.com/photo-1628624747186-a941c476b7ef?q=80&w=1200&auto=format&fit=crop",d:"1000 m² • Idéal projet immobilier"},
+ {t:"Immeuble de rapport R+3",v:"Brazzaville",type:"Immeuble",mode:"vente",prix:"350 000 000 FCFA",img:"https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?q=80&w=1200&auto=format&fit=crop",d:"12 appartements • Rentabilité 8%/an"}
+];
+const PROJETS=[
+ {t:"Villa Horizon — Brazzaville",c:"villa",img:"https://images.unsplash.com/photo-1600585154526-990dced4db0d?q=80&w=1200&auto=format&fit=crop",d:"180 m² • 7 mois • Clé en main"},
+ {t:"Résidence Les Palmiers — Pointe-Noire",c:"immeuble",img:"https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?q=80&w=1200&auto=format&fit=crop",d:"R+4 • 16 logements • 14 mois"},
+ {t:"Bureaux Nova — Douala",c:"bureau",img:"https://images.unsplash.com/photo-1497366811353-6870744d04b2?q=80&w=1200&auto=format&fit=crop",d:"450 m² • Plateau moderne"},
+ {t:"Villa Savane — Kinshasa",c:"villa",img:"https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?q=80&w=1200&auto=format&fit=crop",d:"220 m² • Piscine • 8 mois"},
+ {t:"Rénovation Maison Blanche — Libreville",c:"reno",img:"https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=1200&auto=format&fit=crop",d:"Rénovation complète • 4 mois"},
+ {t:"Immeuble Kintélé — Brazzaville",c:"immeuble",img:"https://images.unsplash.com/photo-1600047509358-9dc75507daeb?q=80&w=1200&auto=format&fit=crop",d:"R+3 • Mixte bureaux/logements"},
+ {t:"Villa Lumière — Yaoundé",c:"villa",img:"https://images.unsplash.com/photo-1600585152220-90363fe7e115?q=80&w=1200&auto=format&fit=crop",d:"200 m² • Design contemporain"},
+ {t:"Centre d'affaires Plateau — Brazzaville",c:"bureau",img:"https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1200&auto=format&fit=crop",d:"800 m² • Façade vitrée"},
+ {t:"Rénovation Hôtel Le Fleuve — Brazzaville",c:"reno",img:"https://images.unsplash.com/photo-1600121848594-d8644e57abab?q=80&w=1200&auto=format&fit=crop",d:"Hall & suites • 5 mois"}
+];
+function renderBiens(f="all"){
+  const g=document.getElementById('biensGrid');
+  const list=BIENS.filter(b=>f==="all"||b.mode===f||b.type===f);
+  document.getElementById('biensEmpty').style.display=list.length?"none":"block";
+  g.innerHTML=list.map(b=>`<article class="prop"><img src="${b.img}" alt="${b.t}" loading="lazy"><div class="prop-body"><span class="badge ${b.mode==='vente'?'gold':''}">${b.mode==='vente'?'À vendre':'À louer'}</span><h3>${b.t}</h3><div class="meta"><span>📍 ${b.v}</span><span>${b.d}</span></div><div class="prop-price">${b.prix}</div><a class="btn btn-navy" style="width:100%;justify-content:center" href="https://wa.me/242060000000?text=${encodeURIComponent('Bonjour, je suis intéressé par : '+b.t+' à '+b.v+' ('+b.prix+'). Puis-je planifier une visite ?')}" target="_blank" rel="noopener">Réserver une visite</a></div></article>`).join('');
+}
+function renderProjets(f="all"){
+  const g=document.getElementById('projGrid');
+  const list=PROJETS.filter(p=>f==="all"||p.c===f);
+  g.innerHTML=list.map(p=>`<article class="prop"><img src="${p.img}" alt="${p.t}" loading="lazy"><div class="prop-body"><span class="badge gold">${p.c.toUpperCase()}</span><h3>${p.t}</h3><div class="meta"><span>${p.d}</span></div><a class="btn btn-navy" style="width:100%;justify-content:center" href="#devis">Je veux un projet similaire</a></div></article>`).join('');
+}
+function bindFilters(id,fn){
+  document.querySelectorAll('#'+id+' button').forEach(b=>b.onclick=()=>{document.querySelectorAll('#'+id+' button').forEach(x=>x.classList.remove('active'));b.classList.add('active');fn(b.dataset.f)});
+}
+bindFilters('biensFilters',renderBiens); bindFilters('projFilters',renderProjets);
+renderBiens(); renderProjets();
+function searchBiens(e){e.preventDefault();document.getElementById('biens').scrollIntoView({behavior:'smooth'});showToast('🔍 Recherche appliquée — parcourez les biens ci-dessous.');return false}
+function fmt(n){return n.toLocaleString('fr-FR').replace(/\u202F/g,' ')}
+function calcDevis(){
+  const surf=+document.getElementById('cSurf').value, prix=+document.getElementById('cType').value, ville=+document.getElementById('cVille').value, fin=+document.getElementById('cFin').value;
+  document.getElementById('cSurfVal').textContent=surf;
+  const total=Math.round(surf*prix*ville*fin/100000)*100000;
+  document.getElementById('cTotal').textContent=fmt(total)+' FCFA';
+  document.getElementById('cDetail').textContent=surf+' m² × '+fmt(prix)+' FCFA';
+  document.getElementById('cDuree').textContent=surf<100?'4–6 mois':surf<250?'6–8 mois':surf<500?'8–12 mois':'12–18 mois';
+  const typeTxt=document.getElementById('cType').selectedOptions[0].text.split('—')[0].trim();
+  document.getElementById('cWa').href='https://wa.me/242060000000?text='+encodeURIComponent(`Bonjour All Service Immo, j'ai estimé mon projet : ${typeTxt} de ${surf} m² ≈ ${fmt(total)} FCFA. Je souhaite un devis précis.`);
+}
+calcDevis();
+function toggleFaq(btn){const it=btn.parentElement;it.classList.toggle('open');btn.querySelector('span').textContent=it.classList.contains('open')?'−':'+'}
+function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.style.display='block';setTimeout(()=>t.style.display='none',4000)}
+function sendForm(e){
+  e.preventDefault();
+  const nom=document.getElementById('fNom').value, tel=document.getElementById('fTel').value, ville=document.getElementById('fVille').value, type=document.getElementById('fType').value, msg=document.getElementById('fMsg').value;
+  const txt=`Bonjour All Service Immo,%0A%0ANom : ${encodeURIComponent(nom)}%0ATél : ${encodeURIComponent(tel)}%0AVille : ${encodeURIComponent(ville)}%0AProjet : ${encodeURIComponent(type)}%0ADétails : ${encodeURIComponent(msg||'—')}`;
+  showToast('✅ Merci '+nom+' ! Ouverture de WhatsApp pour confirmer votre demande...');
+  window.open('https://wa.me/242060000000?text='+txt,'_blank');
+  return false;
+}
+// Compteurs
+const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');if(e.target.dataset&&e.target.dataset.count!==undefined){}} }),{threshold:.15});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+document.querySelectorAll('[data-count]').forEach(el=>{const target=+el.dataset.count;let cur=0;const iv=setInterval(()=>{cur+=Math.ceil(target/40);if(cur>=target){cur=target;clearInterval(iv)}el.textContent=cur+'+'},40)});
+document.getElementById('year').textContent=new Date().getFullYear();
+</script>
+</body>
+</html>
