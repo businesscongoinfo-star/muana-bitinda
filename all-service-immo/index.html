@@ -3,489 +3,2367 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>All Service Immo — Immobilier, Architecture & Construction | Afrique Centrale</title>
-<meta name="description" content="All Service Immo : agence immobilière, bureau d'architecture et entreprise de construction en Afrique centrale. Vente, location, conception de plans, construction clé en main. Brazzaville, Pointe-Noire, Kinshasa, Douala, Libreville.">
+<title>All Service Immo — Immobilier, Architecture, Construction | Espace Client &amp; Admin</title>
+<meta name="description" content="All Service Immo : agence immobilière, bureau d'architecture et entreprise de construction clé en main en Afrique centrale. Site public, Espace Client (suivi chantier, plans, paiements) et Espace Admin.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --navy:#0b1d33; --navy2:#122a4a; --gold:#c9a24b; --gold2:#e8c97a;
+  --navy:#0b1d33; --navy2:#122a4a; --navy3:#1b3a63; --gold:#c9a24b; --gold2:#e8c97a;
   --cream:#faf7f0; --white:#fff; --muted:#64748b; --line:#e7e2d6;
-  --green:#16a34a; --shadow:0 20px 50px rgba(11,29,51,.12);
+  --green:#16a34a; --amber:#d97706; --red:#dc2626; --blue:#2563eb;
+  --shadow:0 20px 50px rgba(11,29,51,.12);
 }
 html{scroll-behavior:smooth}
 body{font-family:'Inter',system-ui,sans-serif;background:var(--cream);color:var(--navy);line-height:1.6}
 img{max-width:100%;display:block}
 a{text-decoration:none;color:inherit}
+button,input,select,textarea{font-family:inherit}
 .wrap{max-width:1200px;margin:0 auto;padding:0 20px}
 h1,h2,h3,.serif{font-family:'Playfair Display',serif;line-height:1.15}
-.btn{display:inline-flex;align-items:center;gap:8px;padding:14px 26px;border-radius:999px;font-weight:700;font-size:15px;border:0;cursor:pointer;transition:.25s}
-.btn-gold{background:var(--gold);color:var(--navy)}
-.btn-gold:hover{background:var(--gold2);transform:translateY(-2px)}
-.btn-navy{background:var(--navy);color:#fff}
-.btn-navy:hover{background:var(--navy2);transform:translateY(-2px)}
-.btn-outline{background:transparent;color:#fff;border:2px solid rgba(255,255,255,.6)}
-.btn-outline:hover{border-color:#fff;background:rgba(255,255,255,.1)}
-.btn-wa{background:#25d366;color:#fff}
-.btn-wa:hover{background:#1fb857;transform:translateY(-2px)}
-.tag{display:inline-block;background:rgba(201,162,75,.15);color:#8a6d2b;border:1px solid rgba(201,162,75,.4);padding:6px 14px;border-radius:999px;font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase}
-.section{padding:90px 0}
-.section-head{text-align:center;max-width:720px;margin:0 auto 50px}
-.section-head h2{font-size:clamp(30px,4vw,44px);margin:16px 0 12px}
-.section-head p{color:var(--muted);font-size:17px}
 
-/* NAV */
-header{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(11,29,51,.92);backdrop-filter:blur(12px);color:#fff}
-.nav{display:flex;align-items:center;justify-content:space-between;height:72px;gap:16px}
-.logo{display:flex;align-items:center;gap:12px;font-weight:800}
-.logo-mark{width:44px;height:44px;background:var(--gold);color:var(--navy);display:grid;place-items:center;border-radius:12px;font-family:'Playfair Display',serif;font-size:22px;font-weight:800}
-.logo small{display:block;font-weight:500;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold2)}
-.logo span{font-size:19px;line-height:1}
-.nav-links{display:flex;gap:28px;font-size:14px;font-weight:600}
+/* BUTTONS & BADGES */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 22px;border-radius:999px;font-weight:700;font-size:14px;border:0;cursor:pointer;transition:.2s;white-space:nowrap}
+.btn-sm{padding:8px 14px;font-size:12px}
+.btn-gold{background:var(--gold);color:var(--navy)}
+.btn-gold:hover{background:var(--gold2);transform:translateY(-1px)}
+.btn-navy{background:var(--navy);color:#fff}
+.btn-navy:hover{background:var(--navy2);transform:translateY(-1px)}
+.btn-outline{background:transparent;color:#fff;border:2px solid rgba(255,255,255,.55)}
+.btn-outline:hover{border-color:#fff;background:rgba(255,255,255,.1)}
+.btn-light{background:#fff;color:var(--navy);border:1.5px solid var(--line)}
+.btn-light:hover{border-color:var(--navy);background:#f8fafc}
+.btn-wa{background:#25d366;color:#fff}
+.btn-wa:hover{background:#1fb857}
+.btn-green{background:var(--green);color:#fff}
+.btn-red{background:var(--red);color:#fff}
+.tag{display:inline-block;background:rgba(201,162,75,.15);color:#8a6d2b;border:1px solid rgba(201,162,75,.4);padding:6px 14px;border-radius:999px;font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase}
+.pill{display:inline-flex;align-items:center;gap:5px;padding:4px 10px;border-radius:999px;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.04em}
+.pill-green{background:#dcfce7;color:#166534}
+.pill-amber{background:#fef3c7;color:#92400e}
+.pill-red{background:#fee2e2;color:#991b1b}
+.pill-blue{background:#dbeafe;color:#1e40af}
+.pill-navy{background:var(--navy);color:#fff}
+.pill-gold{background:var(--gold);color:var(--navy)}
+
+/* VIEWS */
+.app-view{display:none}
+.app-view.active{display:block}
+
+/* PUBLIC HEADER */
+header.pub-header{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(11,29,51,.94);backdrop-filter:blur(12px);color:#fff;border-bottom:1px solid rgba(255,255,255,.08)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:72px;gap:14px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;cursor:pointer}
+.logo-mark{width:42px;height:42px;background:var(--gold);color:var(--navy);display:grid;place-items:center;border-radius:12px;font-family:'Playfair Display',serif;font-size:22px;font-weight:800;flex-shrink:0}
+.logo small{display:block;font-weight:500;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold2)}
+.logo span{font-size:18px;line-height:1.1}
+.nav-links{display:flex;gap:22px;font-size:14px;font-weight:600}
 .nav-links a{opacity:.85}.nav-links a:hover{opacity:1;color:var(--gold2)}
-.nav-cta{display:flex;gap:10px;align-items:center}
-.burger{display:none;background:none;border:0;color:#fff;font-size:28px;cursor:pointer}
-@media(max-width:900px){.nav-links,.nav-cta .btn-navy{display:none}.burger{display:block}.nav-links.open{display:flex;position:absolute;top:72px;left:0;right:0;background:var(--navy);flex-direction:column;padding:20px;gap:16px}}
+.nav-cta{display:flex;gap:8px;align-items:center}
+.burger{display:none;background:none;border:0;color:#fff;font-size:26px;cursor:pointer}
+@media(max-width:1020px){
+  .nav-links{display:none}
+  .burger{display:block}
+  .nav-links.open{display:flex;position:absolute;top:72px;left:0;right:0;background:var(--navy);flex-direction:column;padding:20px;gap:14px;border-bottom:1px solid rgba(255,255,255,.15)}
+}
+@media(max-width:600px){.nav-cta .hide-sm{display:none}}
 
 /* HERO */
-.hero{position:relative;min-height:100vh;display:flex;align-items:center;color:#fff;padding:130px 0 70px;background:linear-gradient(90deg,rgba(11,29,51,.92) 0%,rgba(11,29,51,.65) 55%,rgba(11,29,51,.25) 100%),url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2000&auto=format&fit=crop') center/cover}
-.hero h1{font-size:clamp(38px,6vw,68px);margin:20px 0 18px}
+.section{padding:86px 0}
+.section-head{text-align:center;max-width:720px;margin:0 auto 46px}
+.section-head h2{font-size:clamp(30px,4vw,44px);margin:14px 0 12px}
+.section-head p{color:var(--muted);font-size:17px}
+.hero{position:relative;min-height:94vh;display:flex;align-items:center;color:#fff;padding:120px 0 70px;background:linear-gradient(90deg,rgba(11,29,51,.93) 0%,rgba(11,29,51,.7) 55%,rgba(11,29,51,.3) 100%),url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2000&auto=format&fit=crop') center/cover}
+.hero h1{font-size:clamp(36px,5.6vw,64px);margin:18px 0 16px}
 .hero h1 em{color:var(--gold2);font-style:normal}
-.hero p.lead{font-size:19px;max-width:620px;opacity:.92}
-.hero-actions{display:flex;gap:14px;flex-wrap:wrap;margin-top:30px}
-.hero-stats{display:flex;gap:36px;flex-wrap:wrap;margin-top:48px}
-.hero-stats b{font-size:30px;display:block;color:var(--gold2)}
-.hero-stats span{font-size:13px;opacity:.85;text-transform:uppercase;letter-spacing:.08em}
-.searchbar{background:#fff;color:var(--navy);border-radius:20px;padding:18px;display:grid;grid-template-columns:1.2fr 1fr 1fr auto;gap:12px;margin-top:36px;box-shadow:var(--shadow)}
+.hero p.lead{font-size:18px;max-width:620px;opacity:.92}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+.hero-stats{display:flex;gap:34px;flex-wrap:wrap;margin-top:44px}
+.hero-stats b{font-size:28px;display:block;color:var(--gold2)}
+.hero-stats span{font-size:12px;opacity:.85;text-transform:uppercase;letter-spacing:.08em}
+.searchbar{background:#fff;color:var(--navy);border-radius:20px;padding:18px;display:grid;grid-template-columns:1.1fr 1fr 1fr auto;gap:12px;margin-top:34px;box-shadow:var(--shadow)}
 .searchbar label{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);display:block;margin-bottom:4px}
-.searchbar select,.searchbar input{width:100%;border:1px solid var(--line);border-radius:12px;padding:12px;font-size:15px;font-family:inherit;background:#fff}
-@media(max-width:800px){.searchbar{grid-template-columns:1fr}}
+.searchbar select,.searchbar input{width:100%;border:1px solid var(--line);border-radius:12px;padding:12px;font-size:15px;background:#fff}
+@media(max-width:820px){.searchbar{grid-template-columns:1fr}}
 
-/* SERVICES */
+/* SERVICES + CARDS */
 .services{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
 @media(max-width:900px){.services{grid-template-columns:1fr}}
-.card{background:#fff;border-radius:24px;overflow:hidden;box-shadow:0 10px 30px rgba(11,29,51,.08);border:1px solid var(--line);transition:.3s}
-.card:hover{transform:translateY(-6px);box-shadow:var(--shadow)}
-.card img{height:230px;width:100%;object-fit:cover}
-.card-body{padding:26px}
-.card-body h3{font-size:24px;margin-bottom:10px}
+.card{background:#fff;border-radius:24px;overflow:hidden;box-shadow:0 10px 30px rgba(11,29,51,.08);border:1px solid var(--line);transition:.25s}
+.card:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+.card img{height:220px;width:100%;object-fit:cover}
+.card-body{padding:24px}
+.card-body h3{font-size:23px;margin-bottom:8px}
 .card-body p{color:var(--muted);font-size:15px}
-.card ul{list-style:none;margin:16px 0}
-.card li{padding:7px 0;border-bottom:1px dashed var(--line);font-size:14px;display:flex;gap:8px}
+.card ul{list-style:none;margin:14px 0}
+.card li{padding:6px 0;border-bottom:1px dashed var(--line);font-size:14px;display:flex;gap:8px}
 .card li::before{content:"✓";color:var(--gold);font-weight:800}
-.price{font-weight:800;color:var(--navy);margin:10px 0 16px}
+.price{font-weight:800;color:var(--navy);margin:10px 0 14px}
 .price small{color:var(--muted);font-weight:500}
 
-/* BIENS + PROJETS */
-.filters{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-bottom:30px}
-.filters button{padding:10px 20px;border-radius:999px;border:1.5px solid var(--line);background:#fff;font-weight:700;cursor:pointer;font-family:inherit}
+/* GRIDS BIENS + PROJETS */
+.filters{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-bottom:28px}
+.filters button{padding:9px 18px;border-radius:999px;border:1.5px solid var(--line);background:#fff;font-weight:700;cursor:pointer;font-size:14px}
 .filters button.active{background:var(--navy);color:#fff;border-color:var(--navy)}
 .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
-@media(max-width:900px){.grid{grid-template-columns:1fr 1fr}}
-@media(max-width:600px){.grid{grid-template-columns:1fr}}
-.prop{background:#fff;border-radius:20px;overflow:hidden;border:1px solid var(--line);box-shadow:0 8px 24px rgba(11,29,51,.06)}
-.prop img{height:210px;width:100%;object-fit:cover}
-.prop-body{padding:20px}
-.prop-body h3{font-size:20px;margin-bottom:6px}
-.meta{color:var(--muted);font-size:13px;display:flex;gap:14px;flex-wrap:wrap;margin:8px 0}
-.badge{display:inline-block;background:var(--navy);color:#fff;font-size:11px;font-weight:800;padding:4px 10px;border-radius:999px;text-transform:uppercase;letter-spacing:.06em}
-.badge.gold{background:var(--gold);color:var(--navy)}
-.prop-price{font-size:22px;font-weight:800;margin:10px 0}
-.prop-price small{font-size:13px;color:var(--muted);font-weight:500}
+@media(max-width:920px){.grid{grid-template-columns:1fr 1fr}}
+@media(max-width:620px){.grid{grid-template-columns:1fr}}
+.prop{background:#fff;border-radius:20px;overflow:hidden;border:1px solid var(--line);box-shadow:0 8px 24px rgba(11,29,51,.06);display:flex;flex-direction:column}
+.prop-media{position:relative}
+.prop-media img{height:210px;width:100%;object-fit:cover}
+.fav-btn{position:absolute;top:12px;right:12px;width:36px;height:36px;border-radius:50%;border:0;background:rgba(255,255,255,.92);cursor:pointer;font-size:17px;display:grid;place-items:center;box-shadow:0 4px 12px rgba(0,0,0,.15)}
+.fav-btn.liked{background:#fee2e2}
+.prop-status{position:absolute;top:12px;left:12px}
+.prop-body{padding:20px;display:flex;flex-direction:column;flex:1}
+.prop-body h3{font-size:19px;margin:8px 0 6px}
+.meta{color:var(--muted);font-size:13px;display:flex;gap:12px;flex-wrap:wrap;margin:6px 0}
+.prop-price{font-size:20px;font-weight:800;margin:10px 0}
+.prop-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:auto}
 
-/* PROCESS */
+/* PROCESS, CALC, TESTI, FAQ, CONTACT */
 .process{background:var(--navy);color:#fff}
 .process .section-head p{color:#b8c4d6}
-.steps{display:grid;grid-template-columns:repeat(5,1fr);gap:18px}
+.steps{display:grid;grid-template-columns:repeat(5,1fr);gap:16px}
 @media(max-width:900px){.steps{grid-template-columns:1fr 1fr}}
 @media(max-width:520px){.steps{grid-template-columns:1fr}}
-.step{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:20px;padding:24px}
-.step b.num{font-family:'Playfair Display',serif;font-size:38px;color:var(--gold2)}
-.step h3{font-size:19px;margin:10px 0 8px}
-.step p{font-size:14px;color:#cbd5e1}
+.step{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:20px;padding:22px}
+.step b.num{font-family:'Playfair Display',serif;font-size:36px;color:var(--gold2)}
+.step h3{font-size:18px;margin:8px 0 6px}
+.step p{font-size:13.5px;color:#cbd5e1}
 
-/* CALC */
-.calc{background:#fff;border-radius:28px;padding:36px;box-shadow:var(--shadow);display:grid;grid-template-columns:1.1fr .9fr;gap:36px;border:1px solid var(--line)}
+.calc{background:#fff;border-radius:26px;padding:34px;box-shadow:var(--shadow);display:grid;grid-template-columns:1.1fr .9fr;gap:32px;border:1px solid var(--line)}
 @media(max-width:800px){.calc{grid-template-columns:1fr}}
-.calc label{font-weight:700;font-size:14px;display:block;margin:18px 0 8px}
+.calc label{font-weight:700;font-size:14px;display:block;margin:16px 0 6px}
 .calc select,.calc input[type=range],.calc input[type=number]{width:100%}
-.calc select,.calc input[type=number]{padding:13px;border:1.5px solid var(--line);border-radius:12px;font-family:inherit;font-size:15px}
+.calc select,.calc input[type=number]{padding:12px;border:1.5px solid var(--line);border-radius:12px;font-size:15px}
 .calc-result{background:var(--navy);color:#fff;border-radius:20px;padding:28px;display:flex;flex-direction:column;justify-content:center}
-.calc-result .big{font-size:36px;font-weight:800;color:var(--gold2);margin:8px 0}
+.calc-result .big{font-size:34px;font-weight:800;color:var(--gold2);margin:8px 0}
 .calc-result p{color:#cbd5e1;font-size:14px}
 
-/* TESTI + FAQ */
-.testis{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.testis{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
 @media(max-width:900px){.testis{grid-template-columns:1fr}}
-.testi{background:#fff;border-radius:20px;padding:28px;border:1px solid var(--line)}
+.testi{background:#fff;border-radius:20px;padding:26px;border:1px solid var(--line)}
 .testi .stars{color:var(--gold);font-size:18px;letter-spacing:2px}
-.testi p{font-style:italic;margin:14px 0;color:#334155}
-.testi b{display:block}
-.testi small{color:var(--muted)}
+.testi p{font-style:italic;margin:12px 0;color:#334155}
+.testi b{display:block}.testi small{color:var(--muted)}
+
 .faq{max-width:800px;margin:0 auto}
 .faq-item{background:#fff;border:1px solid var(--line);border-radius:16px;margin-bottom:12px;overflow:hidden}
-.faq-q{width:100%;background:none;border:0;padding:20px 22px;text-align:left;font-weight:700;font-size:16px;cursor:pointer;display:flex;justify-content:space-between;font-family:inherit;color:var(--navy)}
-.faq-a{display:none;padding:0 22px 20px;color:var(--muted)}
+.faq-q{width:100%;background:none;border:0;padding:18px 22px;text-align:left;font-weight:700;font-size:16px;cursor:pointer;display:flex;justify-content:space-between;color:var(--navy)}
+.faq-a{display:none;padding:0 22px 18px;color:var(--muted)}
 .faq-item.open .faq-a{display:block}
 
-/* CONTACT */
-.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:30px}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px}
 @media(max-width:800px){.contact-grid{grid-template-columns:1fr}}
-.contact-card{background:#fff;border-radius:24px;padding:32px;border:1px solid var(--line);box-shadow:0 10px 30px rgba(11,29,51,.06)}
-.contact-card h3{font-size:24px;margin-bottom:18px}
-.field{margin-bottom:16px}
-.field label{font-weight:700;font-size:14px;display:block;margin-bottom:6px}
-.field input,.field select,.field textarea{width:100%;padding:13px;border:1.5px solid var(--line);border-radius:12px;font-family:inherit;font-size:15px}
-.contact-info{display:flex;flex-direction:column;gap:16px}
-.info-box{background:var(--navy);color:#fff;border-radius:20px;padding:24px}
-.info-box h4{color:var(--gold2);margin-bottom:8px}
-.info-box p,.info-box a{color:#e2e8f0;font-size:15px}
-.info-box a:hover{color:#fff;text-decoration:underline}
+.contact-card{background:#fff;border-radius:24px;padding:30px;border:1px solid var(--line);box-shadow:0 10px 30px rgba(11,29,51,.06)}
+.contact-card h3{font-size:23px;margin-bottom:16px}
+.field{margin-bottom:14px}
+.field label{font-weight:700;font-size:13px;display:block;margin-bottom:5px;color:var(--navy)}
+.field input,.field select,.field textarea{width:100%;padding:11px 13px;border:1.5px solid var(--line);border-radius:12px;font-size:14px;background:#fff}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--gold)}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:600px){.form-row{grid-template-columns:1fr}}
 
-/* FOOTER */
-footer{background:#071426;color:#94a3b8;padding:60px 0 30px}
-.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:30px;margin-bottom:40px}
+.contact-info{display:flex;flex-direction:column;gap:14px}
+.info-box{background:var(--navy);color:#fff;border-radius:20px;padding:22px}
+.info-box h4{color:var(--gold2);margin-bottom:6px}
+.info-box p,.info-box a{color:#e2e8f0;font-size:14.5px}
+
+footer{background:#071426;color:#94a3b8;padding:54px 0 28px}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:28px;margin-bottom:36px}
 @media(max-width:800px){.footer-grid{grid-template-columns:1fr 1fr}}
-footer h4{color:#fff;margin-bottom:14px}
-footer a{display:block;padding:4px 0;font-size:14px}
-footer a:hover{color:var(--gold2)}
-.copy{border-top:1px solid rgba(255,255,255,.1);padding-top:20px;text-align:center;font-size:13px}
+footer h4{color:#fff;margin-bottom:12px}
+footer a,footer button.link-btn{display:block;padding:4px 0;font-size:14px;background:none;border:0;color:#94a3b8;cursor:pointer;text-align:left}
+footer a:hover,footer button.link-btn:hover{color:var(--gold2)}
+.copy{border-top:1px solid rgba(255,255,255,.1);padding-top:18px;text-align:center;font-size:13px}
 
-/* FLOAT WA */
-.wa-float{position:fixed;bottom:22px;right:22px;z-index:200;background:#25d366;color:#fff;width:60px;height:60px;border-radius:50%;display:grid;place-items:center;box-shadow:0 10px 30px rgba(0,0,0,.25);font-size:28px}
-.wa-float:hover{transform:scale(1.08)}
-.toast{position:fixed;bottom:100px;right:22px;background:var(--navy);color:#fff;padding:14px 20px;border-radius:14px;z-index:300;display:none;max-width:320px;font-size:14px}
-.reveal{opacity:0;transform:translateY(24px);transition:.7s}
-.reveal.visible{opacity:1;transform:none}
+/* AUTH PORTALS */
+.auth-screen{min-height:100vh;display:grid;place-items:center;padding:30px 16px;background:linear-gradient(135deg,#071426 0%,#122a4a 100%)}
+.auth-card{width:100%;max-width:470px;background:#fff;border-radius:26px;padding:34px;box-shadow:0 30px 70px rgba(0,0,0,.35)}
+.auth-tabs{display:grid;grid-template-columns:1fr 1fr;background:#f1f5f9;border-radius:12px;padding:4px;margin:18px 0}
+.auth-tabs button{border:0;background:transparent;padding:10px;border-radius:10px;font-weight:700;cursor:pointer;color:var(--muted)}
+.auth-tabs button.active{background:#fff;color:var(--navy);box-shadow:0 2px 8px rgba(0,0,0,.08)}
+.demo-box{background:#faf7f0;border:1px dashed var(--gold);border-radius:14px;padding:14px;margin-top:18px;font-size:13px}
+.demo-box b{display:block;margin-bottom:6px;color:var(--navy)}
+
+/* PORTAL SHELL (CLIENT + ADMIN) */
+.portal-shell{display:flex;min-height:100vh;background:#f4f1ea}
+.sidebar{width:270px;background:var(--navy);color:#fff;display:flex;flex-direction:column;padding:20px 16px;flex-shrink:0;position:sticky;top:0;height:100vh;overflow-y:auto}
+.sidebar-user{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:16px;padding:14px;margin:16px 0}
+.sidebar-user b{display:block;font-size:15px}
+.sidebar-user small{color:var(--gold2);font-size:12px}
+.side-nav{display:flex;flex-direction:column;gap:4px;flex:1}
+.side-btn{display:flex;align-items:center;justify-content:space-between;gap:10px;width:100%;padding:11px 14px;border-radius:12px;border:0;background:transparent;color:#cbd5e1;font-weight:600;font-size:14px;cursor:pointer;text-align:left;transition:.15s}
+.side-btn:hover{background:rgba(255,255,255,.08);color:#fff}
+.side-btn.active{background:var(--gold);color:var(--navy);font-weight:800}
+.side-count{background:rgba(255,255,255,.18);color:#fff;font-size:11px;font-weight:800;padding:2px 8px;border-radius:999px}
+.side-btn.active .side-count{background:var(--navy);color:#fff}
+.side-foot{border-top:1px solid rgba(255,255,255,.12);padding-top:14px;display:flex;flex-direction:column;gap:8px}
+.portal-main{flex:1;min-width:0;display:flex;flex-direction:column}
+.portal-top{background:#fff;border-bottom:1px solid var(--line);padding:16px 26px;display:flex;align-items:center;justify-content:space-between;gap:12px;position:sticky;top:0;z-index:40}
+.portal-top h2{font-size:22px}
+.portal-body{padding:24px 26px;max-width:1300px;width:100%;margin:0 auto}
+.portal-burger{display:none;background:var(--navy);color:#fff;border:0;border-radius:10px;padding:8px 12px;font-size:18px;cursor:pointer}
+@media(max-width:960px){
+  .sidebar{position:fixed;left:-290px;top:0;bottom:0;z-index:200;transition:.25s}
+  .sidebar.open{left:0}
+  .portal-burger{display:inline-flex}
+  .portal-body{padding:18px 14px}
+}
+
+/* PORTAL CARDS, KPIS, TABLES, PROGRESS, CHAT */
+.kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:22px}
+@media(max-width:1000px){.kpi-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.kpi-grid{grid-template-columns:1fr}}
+.kpi{background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px 20px;box-shadow:0 4px 16px rgba(11,29,51,.04)}
+.kpi small{font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+.kpi b{display:block;font-size:26px;color:var(--navy);margin:6px 0 2px}
+.kpi span{font-size:12px;color:var(--muted)}
+
+.panel{background:#fff;border:1px solid var(--line);border-radius:20px;padding:22px;margin-bottom:20px;box-shadow:0 4px 18px rgba(11,29,51,.04)}
+.panel-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:16px}
+.panel-head h3{font-size:20px}
+.two-col{display:grid;grid-template-columns:1.2fr .8fr;gap:20px}
+@media(max-width:900px){.two-col{grid-template-columns:1fr}}
+
+.prog-track{height:12px;background:#e2e8f0;border-radius:999px;overflow:hidden;margin:8px 0}
+.prog-fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--green));border-radius:999px;transition:.4s}
+
+.jalons-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:14px}
+@media(max-width:780px){.jalons-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:480px){.jalons-grid{grid-template-columns:1fr}}
+.jalon{border:1px solid var(--line);border-radius:14px;padding:14px;background:#fafaf8}
+.jalon.done{border-color:#86efac;background:#f0fdf4}
+.jalon.curr{border-color:var(--gold);background:#fffbeb}
+
+.timeline{display:flex;flex-direction:column;gap:16px}
+.t-item{display:grid;grid-template-columns:160px 1fr;gap:16px;border:1px solid var(--line);border-radius:16px;padding:14px;background:#fff}
+.t-item img{width:160px;height:110px;object-fit:cover;border-radius:12px}
+@media(max-width:600px){.t-item{grid-template-columns:1fr}.t-item img{width:100%;height:180px}}
+
+.tbl-wrap{overflow-x:auto}
+table.tbl{width:100%;border-collapse:collapse;font-size:13.5px}
+table.tbl th,table.tbl td{padding:11px 12px;text-align:left;border-bottom:1px solid var(--line);vertical-align:middle}
+table.tbl th{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);background:#faf8f3}
+table.tbl tr:hover td{background:#fcfbf8}
+
+.bar-row{display:flex;align-items:center;gap:10px;margin:10px 0;font-size:13px}
+.bar-label{width:160px;flex-shrink:0;font-weight:600}
+.bar-bg{flex:1;height:12px;background:#e2e8f0;border-radius:999px;overflow:hidden}
+.bar-val{height:100%;background:var(--navy);border-radius:999px}
+
+.chat-box{display:flex;flex-direction:column;height:430px;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#faf8f3}
+.chat-msgs{flex:1;padding:16px;overflow-y:auto;display:flex;flex-direction:column;gap:10px}
+.msg{max-width:78%;padding:10px 14px;border-radius:16px;font-size:14px}
+.msg.me{align-self:flex-end;background:var(--navy);color:#fff;border-bottom-right-radius:4px}
+.msg.them{align-self:flex-start;background:#fff;border:1px solid var(--line);border-bottom-left-radius:4px}
+.msg small{display:block;font-size:11px;opacity:.7;margin-top:4px}
+.chat-form{display:flex;gap:8px;padding:12px;background:#fff;border-top:1px solid var(--line)}
+.chat-form input{flex:1;padding:11px 14px;border:1.5px solid var(--line);border-radius:999px;font-size:14px}
+
+/* MODALS & PRINT */
+.modal-backdrop{position:fixed;inset:0;background:rgba(7,20,38,.65);backdrop-filter:blur(4px);z-index:500;display:none;align-items:center;justify-content:center;padding:16px}
+.modal-backdrop.open{display:flex}
+.modal-box{background:#fff;border-radius:24px;max-width:620px;width:100%;max-height:90vh;overflow-y:auto;padding:28px;box-shadow:0 30px 80px rgba(0,0,0,.35)}
+.modal-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
+.modal-close{background:#f1f5f9;border:0;width:34px;height:34px;border-radius:50%;font-size:18px;cursor:pointer}
+
+.wa-float{position:fixed;bottom:22px;right:22px;z-index:200;background:#25d366;color:#fff;width:58px;height:58px;border-radius:50%;display:grid;place-items:center;box-shadow:0 10px 30px rgba(0,0,0,.25);font-size:26px}
+.toast{position:fixed;bottom:92px;right:22px;background:var(--navy);color:#fff;padding:13px 18px;border-radius:14px;z-index:900;display:none;max-width:340px;font-size:14px;box-shadow:0 10px 30px rgba(0,0,0,.25)}
+
+#printArea{display:none}
+@media print{
+  body>*:not(#printArea){display:none !important}
+  #printArea{display:block !important;padding:30px;font-family:'Inter',sans-serif;color:#0b1d33}
+}
 </style>
 </head>
 <body>
 
-<header>
-  <div class="wrap nav">
-    <a class="logo" href="#accueil"><span class="logo-mark">A</span><span>All Service Immo<small>Immobilier • Archi • Construction</small></span></a>
-    <nav class="nav-links" id="navLinks">
-      <a href="#services">Services</a><a href="#biens">Biens</a><a href="#projets">Réalisations</a><a href="#processus">Processus</a><a href="#devis">Devis</a><a href="#contact">Contact</a>
-    </nav>
-    <div class="nav-cta">
-      <a class="btn btn-gold" href="#contact" style="padding:10px 20px">Demander un devis</a>
-      <button class="burger" onclick="document.getElementById('navLinks').classList.toggle('open')" aria-label="Menu">☰</button>
+<!-- =========================================================
+     VUE 1 : SITE PUBLIC
+     ========================================================= -->
+<div id="view-public" class="app-view active">
+  <header class="pub-header">
+    <div class="wrap nav">
+      <div class="logo" onclick="goSection('accueil')"><span class="logo-mark">A</span><span><span class="js-brand">All Service Immo</span><small>Immobilier • Archi • Construction</small></span></div>
+      <nav class="nav-links" id="navLinks">
+        <a href="#services" onclick="closeMobNav()">Services</a>
+        <a href="#biens" onclick="closeMobNav()">Biens</a>
+        <a href="#projets" onclick="closeMobNav()">Réalisations</a>
+        <a href="#devis" onclick="closeMobNav()">Devis</a>
+        <a href="#contact" onclick="closeMobNav()">Contact</a>
+      </nav>
+      <div class="nav-cta">
+        <button type="button" class="btn btn-outline btn-sm" onclick="switchView('client')">👤 Espace Client</button>
+        <button type="button" class="btn btn-gold btn-sm" onclick="switchView('admin')">⚙️ Admin</button>
+        <button type="button" class="burger" onclick="document.getElementById('navLinks').classList.toggle('open')" aria-label="Menu">☰</button>
+      </div>
     </div>
-  </div>
-</header>
+  </header>
 
-<!-- HERO -->
-<section class="hero" id="accueil">
-  <div class="wrap">
-    <span class="tag">🏗️ Afrique Centrale — Brazzaville • Pointe-Noire • Kinshasa • Douala • Libreville</span>
-    <h1>Nous construisons<br>vos <em>projets de vie</em>,<br>de l'idée à la remise des clés.</h1>
-    <p class="lead">All Service Immo réunit en une seule équipe : <strong>immobilier</strong>, <strong>architecture</strong> et <strong>construction clé en main</strong>. Un terrain, un plan, un chantier, une maison — sans stress, avec un suivi transparent.</p>
-    <div class="hero-actions">
-      <a class="btn btn-gold" href="#devis">🧮 Estimer mon projet</a>
-      <a class="btn btn-outline" href="#biens">Voir les biens disponibles</a>
-      <a class="btn btn-wa" href="https://wa.me/242060000000?text=Bonjour%20All%20Service%20Immo%2C%20je%20souhaite%20un%20renseignement." target="_blank" rel="noopener">💬 WhatsApp</a>
+  <section class="hero" id="accueil">
+    <div class="wrap">
+      <span class="tag">🏗️ Afrique Centrale — Brazzaville • Pointe-Noire • Kinshasa • Douala • Libreville</span>
+      <h1>Nous construisons<br>vos <em>projets de vie</em>,<br>de l'idée à la remise des clés.</h1>
+      <p class="lead"><strong class="js-brand">All Service Immo</strong> réunit en une seule équipe : <strong>immobilier</strong>, <strong>architecture</strong> et <strong>construction clé en main</strong> — avec votre <strong>Espace Client en ligne</strong> pour suivre votre chantier, vos plans et vos paiements en temps réel.</p>
+      <div class="hero-actions">
+        <a class="btn btn-gold" href="#devis">🧮 Estimer mon projet</a>
+        <button type="button" class="btn btn-outline" onclick="switchView('client')">👤 Accéder à mon Espace Client</button>
+        <a class="btn btn-wa js-wa-main" href="#" target="_blank" rel="noopener">💬 WhatsApp</a>
+      </div>
+      <div class="hero-stats">
+        <div><b>120+</b><span>Projets livrés</span></div>
+        <div><b>350+</b><span>Clients satisfaits</span></div>
+        <div><b>15 ans</b><span>D'expérience</span></div>
+        <div><b>6 villes</b><span>Afrique centrale</span></div>
+      </div>
+      <form class="searchbar" onsubmit="return searchBiens(event)">
+        <div><label>Ville</label><select id="sVille"><option value="">Toutes les villes</option><option>Brazzaville</option><option>Pointe-Noire</option><option>Kinshasa</option><option>Douala</option><option>Libreville</option><option>Yaoundé</option></select></div>
+        <div><label>Type</label><select id="sType"><option value="">Tous types</option><option>Villa</option><option>Appartement</option><option>Terrain</option><option>Bureau</option><option>Immeuble</option></select></div>
+        <div><label>Budget max (FCFA)</label><input id="sBudget" type="number" placeholder="Ex : 90 000 000"></div>
+        <button class="btn btn-navy" type="submit" style="align-self:end">🔍 Rechercher</button>
+      </form>
     </div>
-    <div class="hero-stats">
-      <div><b data-count="120">0</b><span>Projets livrés</span></div>
-      <div><b data-count="350">0</b><span>Clients satisfaits</span></div>
-      <div><b data-count="15">0</b><span>Ans d'expérience</span></div>
-      <div><b data-count="6">0</b><span>Villes desservies</span></div>
-    </div>
-    <form class="searchbar" onsubmit="return searchBiens(event)">
-      <div><label>Ville</label><select id="sVille"><option value="">Toutes les villes</option><option>Brazzaville</option><option>Pointe-Noire</option><option>Kinshasa</option><option>Douala</option><option>Libreville</option><option>Yaoundé</option></select></div>
-      <div><label>Type</label><select id="sType"><option value="">Tous types</option><option>Villa</option><option>Appartement</option><option>Terrain</option><option>Bureau</option><option>Immeuble</option></select></div>
-      <div><label>Budget max (FCFA)</label><input id="sBudget" type="number" placeholder="Ex : 50 000 000"></div>
-      <button class="btn btn-navy" type="submit" style="align-self:end">🔍 Rechercher</button>
-    </form>
-  </div>
-</section>
+  </section>
 
-<!-- SERVICES -->
-<section class="section" id="services">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <span class="tag">Nos 3 métiers</span>
-      <h2>Un seul interlocuteur,<br>trois expertises</h2>
-      <p>Que vous cherchiez un bien, un plan ou un chantier, All Service Immo vous accompagne de A à Z.</p>
+  <section class="section" id="services">
+    <div class="wrap">
+      <div class="section-head"><span class="tag">Nos 3 métiers</span><h2>Un seul interlocuteur,<br>trois expertises</h2><p>De la recherche foncière à la remise des clés, tout est centralisé dans votre espace client.</p></div>
+      <div class="services">
+        <article class="card"><img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?q=80&w=1200&auto=format&fit=crop" alt="Immobilier"><div class="card-body"><h3>🏠 Immobilier</h3><p>Achat, vente et location de biens vérifiés : villas, appartements, terrains titrés et locaux.</p><ul><li>Visites accompagnées &amp; négociation</li><li>Vérification des titres fonciers</li><li>Gestion locative transparente</li><li>Estimation gratuite de votre bien</li></ul><p class="price">Commission vente <small class="js-commission">à partir de 3%</small></p><a class="btn btn-navy" href="#biens">Voir les biens →</a></div></article>
+        <article class="card"><img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=1200&auto=format&fit=crop" alt="Architecture"><div class="card-body"><h3>📐 Architecture</h3><p>Conception de plans sur mesure : villas, immeubles, bureaux. Validation des plans 2D/3D en ligne.</p><ul><li>Esquisse, plans &amp; permis de construire</li><li>Rendu 3D réaliste</li><li>Étude de faisabilité &amp; budget</li><li>Validation en 1 clic dans l'Espace Client</li></ul><p class="price">Plan villa <small>à partir de 450 000 FCFA</small></p><a class="btn btn-navy" href="#devis">Estimer mon plan →</a></div></article>
+        <article class="card"><img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=1200&auto=format&fit=crop" alt="Construction"><div class="card-body"><h3>🏗️ Construction</h3><p>Construction clé en main, gros œuvre, rénovation. Suivi hebdomadaire photo par photo.</p><ul><li>Devis détaillé poste par poste</li><li>Matériaux certifiés &amp; garantie structure</li><li>Journal photo hebdomadaire en ligne</li><li>Échéancier &amp; reçus disponibles 24h/24</li></ul><p class="price">Construction <small>à partir de 350 000 FCFA / m²</small></p><button type="button" class="btn btn-navy" onclick="switchView('client')">Suivre un chantier →</button></div></article>
+      </div>
     </div>
-    <div class="services">
-      <article class="card reveal">
-        <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?q=80&w=1200&auto=format&fit=crop" alt="Immobilier">
-        <div class="card-body">
-          <h3>🏠 Immobilier</h3>
-          <p>Achat, vente et location de biens vérifiés : villas, appartements, terrains titrés et locaux commerciaux.</p>
-          <ul><li>Visites accompagnées &amp; négociation</li><li>Vérification des titres fonciers</li><li>Gestion locative</li><li>Estimation gratuite de votre bien</li></ul>
-          <p class="price">Commission vente <small>à partir de 3%</small></p>
-          <a class="btn btn-navy" href="#biens">Voir les biens →</a>
+  </section>
+
+  <section class="section" id="biens" style="background:#fff">
+    <div class="wrap">
+      <div class="section-head"><span class="tag">Immobilier</span><h2>Biens à vendre &amp; à louer</h2><p>Catalogue géré en direct depuis notre espace administrateur. Ajoutez vos coups de cœur en favoris ❤️ ou réservez une visite.</p></div>
+      <div class="filters" id="biensFilters">
+        <button class="active" data-f="all">Tous</button><button data-f="vente">Vente</button><button data-f="location">Location</button>
+        <button data-f="Villa">Villas</button><button data-f="Appartement">Appartements</button><button data-f="Terrain">Terrains</button>
+      </div>
+      <div class="grid" id="biensGrid"></div>
+      <p id="biensEmpty" style="text-align:center;color:var(--muted);display:none;padding:30px">Aucun bien ne correspond à cette recherche. <button type="button" onclick="renderPublicBiens('all')" style="background:none;border:0;color:var(--navy);font-weight:800;text-decoration:underline;cursor:pointer">Voir tous les biens</button></p>
+    </div>
+  </section>
+
+  <section class="section" id="projets">
+    <div class="wrap">
+      <div class="section-head"><span class="tag">Réalisations</span><h2>Nos chantiers &amp; plans récents</h2><p>Villas, immeubles, bureaux et rénovations livrés clé en main en Afrique centrale.</p></div>
+      <div class="filters" id="projFilters">
+        <button class="active" data-f="all">Tous</button><button data-f="villa">Villas</button><button data-f="immeuble">Immeubles</button><button data-f="bureau">Bureaux</button><button data-f="reno">Rénovation</button>
+      </div>
+      <div class="grid" id="projGrid"></div>
+    </div>
+  </section>
+
+  <section class="section process" id="processus">
+    <div class="wrap">
+      <div class="section-head"><span class="tag" style="background:rgba(201,162,75,.2);color:var(--gold2)">Comment ça marche</span><h2>Votre projet en 5 étapes</h2><p>Chaque étape est visible et validée directement depuis votre Espace Client.</p></div>
+      <div class="steps">
+        <div class="step"><b class="num">01</b><h3>Écoute &amp; visite</h3><p>Visite gratuite de votre terrain ou sélection du bien avec vérification du titre foncier.</p></div>
+        <div class="step"><b class="num">02</b><h3>Plan 3D &amp; devis</h3><p>Vous consultez et approuvez vos plans et votre devis détaillé depuis votre espace en ligne.</p></div>
+        <div class="step"><b class="num">03</b><h3>Permis &amp; fondations</h3><p>Gestion administrative du permis et lancement des travaux de terrassement et fondations.</p></div>
+        <div class="step"><b class="num">04</b><h3>Suivi photo live</h3><p>Chaque semaine, votre chef de chantier publie photos et pourcentage d'avancement.</p></div>
+        <div class="step"><b class="num">05</b><h3>Remise des clés</h3><p>Réception des travaux, facture soldée, garantie et accompagnement locatif si souhaité.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="devis">
+    <div class="wrap">
+      <div class="section-head"><span class="tag">Simulateur</span><h2>Estimez votre construction en 30 secondes</h2><p>Estimation indicative hors terrain. Enregistrez votre devis directement dans notre CRM ou envoyez-le sur WhatsApp.</p></div>
+      <div class="calc">
+        <div>
+          <label>Type de bâtiment</label>
+          <select id="cType" onchange="calcDevis()">
+            <option value="350000">Villa simple — 350 000 FCFA/m²</option>
+            <option value="450000" selected>Villa moderne — 450 000 FCFA/m²</option>
+            <option value="600000">Villa haut de gamme — 600 000 FCFA/m²</option>
+            <option value="500000">Immeuble / Bureau — 500 000 FCFA/m²</option>
+            <option value="250000">Rénovation — 250 000 FCFA/m²</option>
+          </select>
+          <label>Surface à construire : <span id="cSurfVal">120</span> m²</label>
+          <input type="range" id="cSurf" min="30" max="1000" value="120" step="10" oninput="calcDevis()">
+          <label>Ville</label>
+          <select id="cVille" onchange="calcDevis()">
+            <option value="1">Brazzaville / Pointe-Noire (×1,0)</option>
+            <option value="1.05">Kinshasa (×1,05)</option>
+            <option value="1.1">Douala / Yaoundé (×1,1)</option>
+            <option value="1.15">Libreville (×1,15)</option>
+          </select>
+          <label>Finition</label>
+          <select id="cFin" onchange="calcDevis()">
+            <option value="1">Standard</option><option value="1.15">Premium (+15%)</option><option value="1.3">Luxe (+30%)</option>
+          </select>
         </div>
-      </article>
-      <article class="card reveal">
-        <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=1200&auto=format&fit=crop" alt="Architecture">
-        <div class="card-body">
-          <h3>📐 Architecture</h3>
-          <p>Conception de plans sur mesure : villas, immeubles, bureaux. Visualisation 3D avant de construire.</p>
-          <ul><li>Esquisse, plans &amp; permis de construire</li><li>Rendu 3D réaliste</li><li>Étude de faisabilité &amp; budget</li><li>Suivi de chantier par architecte</li></ul>
-          <p class="price">Plan villa <small>à partir de 450 000 FCFA</small></p>
-          <a class="btn btn-navy" href="#devis">Estimer mon plan →</a>
+        <div class="calc-result">
+          <span style="text-transform:uppercase;letter-spacing:.1em;font-size:12px;color:#94a3b8">Estimation indicative</span>
+          <div class="big" id="cTotal">54 000 000 FCFA</div>
+          <p id="cDetail">120 m² × 450 000 FCFA</p>
+          <p style="margin-top:8px">⏱️ Durée estimée : <b id="cDuree" style="color:#fff">6–8 mois</b></p>
+          <div style="display:flex;flex-direction:column;gap:10px;margin-top:20px">
+            <button type="button" class="btn btn-gold" onclick="openModalDevisFromCalc()">📩 Demander un devis officiel</button>
+            <a class="btn btn-wa" id="cWa" href="#" target="_blank" rel="noopener">💬 Envoyer sur WhatsApp</a>
+          </div>
         </div>
-      </article>
-      <article class="card reveal">
-        <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=1200&auto=format&fit=crop" alt="Construction">
-        <div class="card-body">
-          <h3>🏗️ Construction</h3>
-          <p>Construction clé en main, gros œuvre, second œuvre, rénovation. Chantier suivi photo par photo.</p>
-          <ul><li>Devis détaillé sans surprise</li><li>Matériaux de qualité garantis</li><li>Rapport d'avancement hebdomadaire</li><li>Garantie décennale structure</li></ul>
-          <p class="price">Construction <small>à partir de 350 000 FCFA / m²</small></p>
-          <a class="btn btn-navy" href="#projets">Voir nos chantiers →</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="avis" style="background:#fff">
+    <div class="wrap">
+      <div class="section-head"><span class="tag">Témoignages</span><h2>Ils nous ont confié leurs clés</h2></div>
+      <div class="testis" id="publicTestis"></div>
+    </div>
+  </section>
+
+  <section class="section" id="faq">
+    <div class="wrap">
+      <div class="section-head"><span class="tag">Questions fréquentes</span><h2>Tout savoir avant de commencer</h2></div>
+      <div class="faq">
+        <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Comment accéder à mon Espace Client pour suivre mon chantier ? <span>+</span></button><div class="faq-a">Cliquez sur « Espace Client » en haut du site. Connectez-vous avec votre email (ou testez le compte démo en 1 clic) pour voir l'avancement photo, vos plans 3D, vos factures et échanger avec l'architecte.</div></div>
+        <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Combien coûte la construction d'une villa ? <span>+</span></button><div class="faq-a">Entre 350 000 et 600 000 FCFA/m² selon le standing et la ville, hors terrain. Utilisez le simulateur ci-dessus pour obtenir une estimation immédiate.</div></div>
+        <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Comment suivre les travaux si je réside à l'étranger (diaspora) ? <span>+</span></button><div class="faq-a">Chaque semaine, le chef de chantier publie un rapport photo dans votre Espace Client. Vous validez les étapes et vos factures en ligne en toute transparence.</div></div>
+        <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Vérifiez-vous les titres fonciers des terrains ? <span>+</span></button><div class="faq-a">Oui, chaque terrain vendu passe par une vérification complète (titre foncier, bornage, cadastre) dont les justificatifs sont déposés dans votre Espace Client.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="contact" style="background:#fff">
+    <div class="wrap">
+      <div class="section-head"><span class="tag">Contact</span><h2>Parlons de votre projet</h2><p>Votre demande est enregistrée immédiatement dans notre système et suivie sous 24h ouvrées.</p></div>
+      <div class="contact-grid">
+        <div class="contact-card">
+          <h3>📩 Demande de devis / rendez-vous</h3>
+          <form id="publicContactForm" onsubmit="return submitPublicContact(event)">
+            <div class="form-row">
+              <div class="field"><label>Nom complet *</label><input id="fNom" required placeholder="Votre nom"></div>
+              <div class="field"><label>Téléphone / WhatsApp *</label><input id="fTel" required placeholder="+242 06 000 00 00"></div>
+            </div>
+            <div class="form-row">
+              <div class="field"><label>Email</label><input id="fEmail" type="email" placeholder="vous@exemple.com"></div>
+              <div class="field"><label>Ville</label><select id="fVille"><option>Brazzaville</option><option>Pointe-Noire</option><option>Kinshasa</option><option>Douala</option><option>Yaoundé</option><option>Libreville</option><option>Autre</option></select></div>
+            </div>
+            <div class="field"><label>Je suis intéressé par</label><select id="fType"><option>Construire (clé en main)</option><option>Faire dessiner un plan / Architecture</option><option>Acheter un bien</option><option>Louer un bien</option><option>Rénover</option><option>Vendre mon bien</option></select></div>
+            <div class="field"><label>Votre projet en quelques mots</label><textarea id="fMsg" rows="4" placeholder="Surface souhaitée, terrain acquis ou à trouver, budget..."></textarea></div>
+            <button class="btn btn-gold" type="submit" style="width:100%">Envoyer ma demande →</button>
+          </form>
         </div>
-      </article>
-    </div>
-  </div>
-</section>
-
-<!-- BIENS -->
-<section class="section" id="biens" style="background:#fff">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <span class="tag">Immobilier</span>
-      <h2>Biens à vendre &amp; à louer</h2>
-      <p>Une sélection de biens vérifiés dans nos villes d'intervention. Cliquez sur un bien pour le réserver en visite.</p>
-    </div>
-    <div class="filters" id="biensFilters">
-      <button class="active" data-f="all">Tous</button><button data-f="vente">Vente</button><button data-f="location">Location</button>
-      <button data-f="Villa">Villas</button><button data-f="Appartement">Appartements</button><button data-f="Terrain">Terrains</button>
-    </div>
-    <div class="grid" id="biensGrid"></div>
-    <p id="biensEmpty" style="text-align:center;color:var(--muted);display:none;padding:30px">Aucun bien ne correspond à votre recherche. <button type="button" onclick="renderBiens('all')" style="background:none;border:0;color:var(--navy);font-weight:800;text-decoration:underline;cursor:pointer;font-family:inherit;font-size:inherit">Voir tous les biens</button> ou <a href="#contact" style="color:var(--gold);font-weight:700">contactez-nous</a> pour une recherche sur mesure.</p>
-  </div>
-</section>
-
-<!-- PROJETS -->
-<section class="section" id="projets">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <span class="tag">Réalisations</span>
-      <h2>Nos chantiers &amp; plans récents</h2>
-      <p>Chaque projet est livré avec photos, plans et garanties. Inspirez-vous pour le vôtre.</p>
-    </div>
-    <div class="filters" id="projFilters">
-      <button class="active" data-f="all">Tous</button><button data-f="villa">Villas</button><button data-f="immeuble">Immeubles</button><button data-f="bureau">Bureaux</button><button data-f="reno">Rénovation</button>
-    </div>
-    <div class="grid" id="projGrid"></div>
-  </div>
-</section>
-
-<!-- PROCESSUS -->
-<section class="section process" id="processus">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <span class="tag" style="background:rgba(201,162,75,.2);color:var(--gold2)">Comment ça marche</span>
-      <h2>Votre projet en 5 étapes</h2>
-      <p>Un parcours clair, du premier appel à la remise des clés.</p>
-    </div>
-    <div class="steps">
-      <div class="step reveal"><b class="num">01</b><h3>Écoute &amp; visite</h3><p>Nous visitons votre terrain ou écoutons votre besoin. Étude gratuite et sans engagement.</p></div>
-      <div class="step reveal"><b class="num">02</b><h3>Plan &amp; devis</h3><p>Esquisse, plans 3D et devis détaillé poste par poste. Vous validez avant tout engagement.</p></div>
-      <div class="step reveal"><b class="num">03</b><h3>Permis &amp; fondations</h3><p>Nous gérons les démarches administratives et lançons les fondations.</p></div>
-      <div class="step reveal"><b class="num">04</b><h3>Construction suivie</h3><p>Rapport photo hebdomadaire, réunions de chantier, contrôle qualité à chaque étape.</p></div>
-      <div class="step reveal"><b class="num">05</b><h3>Remise des clés</h3><p>Réception, garantie et accompagnement pour l'emménagement ou la mise en location.</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- DEVIS -->
-<section class="section" id="devis">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <span class="tag">Simulateur</span>
-      <h2>Estimez votre construction en 30 secondes</h2>
-      <p>Estimation indicative au m² (gros + second œuvre, hors terrain). Recevez un devis précis après visite gratuite.</p>
-    </div>
-    <div class="calc reveal">
-      <div>
-        <label>Type de bâtiment</label>
-        <select id="cType" onchange="calcDevis()">
-          <option value="350000">Villa simple — 350 000 FCFA/m²</option>
-          <option value="450000" selected>Villa moderne — 450 000 FCFA/m²</option>
-          <option value="600000">Villa haut de gamme — 600 000 FCFA/m²</option>
-          <option value="500000">Immeuble / Bureau — 500 000 FCFA/m²</option>
-          <option value="250000">Rénovation — 250 000 FCFA/m²</option>
-        </select>
-        <label>Surface à construire : <span id="cSurfVal">120</span> m²</label>
-        <input type="range" id="cSurf" min="30" max="1000" value="120" step="10" oninput="calcDevis()">
-        <label>Ville</label>
-        <select id="cVille" onchange="calcDevis()">
-          <option value="1">Brazzaville / Pointe-Noire (×1,0)</option>
-          <option value="1.05">Kinshasa (×1,05)</option>
-          <option value="1.1">Douala / Yaoundé (×1,1)</option>
-          <option value="1.15">Libreville (×1,15)</option>
-        </select>
-        <label>Finition</label>
-        <select id="cFin" onchange="calcDevis()">
-          <option value="1">Standard</option>
-          <option value="1.15">Premium (+15%)</option>
-          <option value="1.3">Luxe (+30%)</option>
-        </select>
+        <div class="contact-info">
+          <div class="info-box"><h4>📞 Téléphone</h4><p><a class="js-tel1-link" href="#"><span class="js-tel1">+242 06 000 00 00</span></a><br><a class="js-tel2-link" href="#"><span class="js-tel2">+242 05 000 00 00</span></a></p><p style="margin-top:6px;font-size:13px">Lun – Sam : 8h00 – 18h00</p></div>
+          <div class="info-box"><h4>💬 WhatsApp Direct</h4><p>Réponse rapide, photos et visites virtuelles sur demande.</p><a class="btn btn-wa js-wa-main" style="margin-top:10px" href="#" target="_blank" rel="noopener">Discuter sur WhatsApp</a></div>
+          <div class="info-box"><h4>👤 Déjà client ?</h4><p>Suivez votre chantier, validez vos plans et consultez vos factures en ligne.</p><button type="button" class="btn btn-gold" style="margin-top:10px" onclick="switchView('client')">Ouvrir l'Espace Client →</button></div>
+          <div class="info-box"><h4>✉️ Email &amp; Zones</h4><p><a class="js-email-link" href="#"><span class="js-email">contact@allserviceimmo.com</span></a><br><span class="js-zones" style="font-size:13px;color:#cbd5e1">Brazzaville • Pointe-Noire • Kinshasa • Douala • Yaoundé • Libreville</span></p></div>
+        </div>
       </div>
-      <div class="calc-result">
-        <span style="text-transform:uppercase;letter-spacing:.1em;font-size:12px;color:#94a3b8">Estimation indicative</span>
-        <div class="big" id="cTotal">54 000 000 FCFA</div>
-        <p id="cDetail">120 m² × 450 000 FCFA</p>
-        <p style="margin-top:10px">⏱️ Durée estimée : <b id="cDuree" style="color:#fff">6–8 mois</b></p>
-        <a class="btn btn-gold" style="margin-top:20px;justify-content:center" id="cWa" href="#" target="_blank" rel="noopener">💬 Recevoir ce devis sur WhatsApp</a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <div class="footer-grid">
+        <div><div class="logo" style="margin-bottom:12px"><span class="logo-mark">A</span><span><span class="js-brand">All Service Immo</span><small>Immobilier • Archi • Construction</small></span></div><p style="font-size:14px;max-width:340px">Votre partenaire pour acheter, concevoir et construire en Afrique centrale. Transparence totale via notre portail client.</p></div>
+        <div><h4>Services</h4><a href="#services">Immobilier</a><a href="#services">Architecture</a><a href="#services">Construction</a><a href="#devis">Simulateur de devis</a></div>
+        <div><h4>Portails</h4><button class="link-btn" onclick="switchView('client')">👤 Espace Client</button><button class="link-btn" onclick="switchView('admin')">⚙️ Espace Admin</button><a href="#biens">Catalogue biens</a><a href="#projets">Réalisations</a></div>
+        <div><h4>Contact</h4><a class="js-tel1-link" href="#"><span class="js-tel1">+242 06 000 00 00</span></a><a class="js-email-link" href="#"><span class="js-email">contact@allserviceimmo.com</span></a><a href="#contact">Afrique centrale</a></div>
+      </div>
+      <div class="copy">© <span class="js-year"></span> <span class="js-brand">All Service Immo</span> — Site Vitrine, Espace Client &amp; Administration.</div>
+    </div>
+  </footer>
+  <a class="wa-float js-wa-main" href="#" target="_blank" rel="noopener" aria-label="WhatsApp">💬</a>
+</div>
+
+<!-- =========================================================
+     VUE 2 : ESPACE CLIENT
+     ========================================================= -->
+<div id="view-client" class="app-view">
+  <div id="clientAuthScreen" class="auth-screen">
+    <div class="auth-card">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <div class="logo" onclick="switchView('public')"><span class="logo-mark">A</span><span><span class="js-brand">All Service Immo</span><small>Espace Client</small></span></div>
+        <button type="button" class="btn btn-light btn-sm" onclick="switchView('public')">← Site</button>
+      </div>
+      <div class="auth-tabs">
+        <button id="cTabLogin" class="active" onclick="toggleClientAuthTab('login')">Connexion</button>
+        <button id="cTabReg" onclick="toggleClientAuthTab('reg')">Créer un compte</button>
+      </div>
+      <form id="clientLoginForm" onsubmit="return doClientLogin(event)">
+        <div class="field"><label>Email *</label><input id="cLogEmail" type="email" required placeholder="client@exemple.com"></div>
+        <div class="field"><label>Mot de passe *</label><input id="cLogPass" type="password" required placeholder="••••••••"></div>
+        <button class="btn btn-navy" type="submit" style="width:100%">Se connecter à mon espace →</button>
+      </form>
+      <form id="clientRegForm" style="display:none" onsubmit="return doClientRegister(event)">
+        <div class="field"><label>Nom complet *</label><input id="cRegNom" required placeholder="Ex : Marie Koumba"></div>
+        <div class="form-row">
+          <div class="field"><label>Email *</label><input id="cRegEmail" type="email" required placeholder="marie@exemple.com"></div>
+          <div class="field"><label>Téléphone *</label><input id="cRegTel" required placeholder="+242 06 ..."></div>
+        </div>
+        <div class="form-row">
+          <div class="field"><label>Ville</label><select id="cRegVille"><option>Brazzaville</option><option>Pointe-Noire</option><option>Kinshasa</option><option>Douala</option><option>Yaoundé</option><option>Libreville</option></select></div>
+          <div class="field"><label>Mot de passe *</label><input id="cRegPass" type="password" required minlength="4" placeholder="Min. 4 caractères"></div>
+        </div>
+        <button class="btn btn-gold" type="submit" style="width:100%">Créer mon Espace Client →</button>
+      </form>
+      <div class="demo-box">
+        <b>⚡ Accès démo rapide (1 clic) :</b>
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <button type="button" class="btn btn-light btn-sm" onclick="quickClientLogin('famille.m@client.com')">🏠 Famille Mbemba — Villa Horizon (72% avancé)</button>
+          <button type="button" class="btn btn-light btn-sm" onclick="quickClientLogin('jean.bosco@client.com')">📐 Jean-Bosco K. — Projet Pointe-Noire (35% avancé)</button>
+        </div>
       </div>
     </div>
   </div>
-</section>
 
-<!-- TÉMOIGNAGES -->
-<section class="section" id="avis" style="background:#fff">
-  <div class="wrap">
-    <div class="section-head reveal"><span class="tag">Témoignages</span><h2>Ils nous ont confié leurs clés</h2></div>
-    <div class="testis">
-      <div class="testi reveal"><div class="stars">★★★★★</div><p>« All Service Immo a construit notre villa à Brazzaville en 7 mois. Les photos de chantier chaque semaine nous ont rassurés. Budget respecté au franc près. »</p><b>Famille M.</b><small>Villa — Brazzaville</small></div>
-      <div class="testi reveal"><div class="stars">★★★★★</div><p>« J'ai acheté un terrain titré à Pointe-Noire via leur service immobilier, puis ils ont dessiné et construit ma maison. Un seul interlocuteur, zéro stress. »</p><b>Jean-Bosco K.</b><small>Terrain + Construction — Pointe-Noire</small></div>
-      <div class="testi reveal"><div class="stars">★★★★★</div><p>« Plans 3D superbes, équipe pro, et notre immeuble de bureaux à Douala livré dans les délais. Je recommande les yeux fermés. »</p><b>SARL Horizon Invest</b><small>Immeuble — Douala</small></div>
-    </div>
-  </div>
-</section>
-
-<!-- FAQ -->
-<section class="section" id="faq">
-  <div class="wrap">
-    <div class="section-head reveal"><span class="tag">Questions fréquentes</span><h2>Tout savoir avant de commencer</h2></div>
-    <div class="faq">
-      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Combien coûte la construction d'une villa ? <span>+</span></button><div class="faq-a">Comptez entre 350 000 et 600 000 FCFA/m² selon la finition, hors terrain. Utilisez notre simulateur ci-dessus, puis demandez un devis gratuit après visite de votre terrain.</div></div>
-      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Travaillez-vous dans ma ville ? <span>+</span></button><div class="faq-a">Oui : Brazzaville, Pointe-Noire, Kinshasa, Douala, Yaoundé et Libreville. Pour d'autres villes d'Afrique centrale, contactez-nous — nous étudions chaque demande.</div></div>
-      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Comment suivre mon chantier si je suis à l'étranger ? <span>+</span></button><div class="faq-a">Vous recevez chaque semaine un rapport photo/vidéo et un point d'avancement. Un interlocuteur unique vous répond sur WhatsApp.</div></div>
-      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Vérifiez-vous les titres des terrains ? <span>+</span></button><div class="faq-a">Oui, chaque terrain proposé est vérifié : titre foncier, bornage et situation administrative avant toute mise en vente.</div></div>
-      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Quels sont vos délais pour les plans ? <span>+</span></button><div class="faq-a">Esquisse sous 7 jours, plans définitifs et rendu 3D sous 3 semaines en moyenne selon la complexité.</div></div>
-    </div>
-  </div>
-</section>
-
-<!-- CONTACT -->
-<section class="section" id="contact" style="background:#fff">
-  <div class="wrap">
-    <div class="section-head reveal"><span class="tag">Contact</span><h2>Parlons de votre projet</h2><p>Réponse sous 24h ouvrées. Visite et devis d'étude gratuits.</p></div>
-    <div class="contact-grid">
-      <div class="contact-card reveal">
-        <h3>📩 Demande de devis / rendez-vous</h3>
-        <form onsubmit="return sendForm(event)">
-          <div class="field"><label>Nom complet *</label><input id="fNom" required placeholder="Votre nom"></div>
-          <div class="field"><label>Téléphone / WhatsApp *</label><input id="fTel" required placeholder="+242 06 000 00 00"></div>
-          <div class="field"><label>Ville</label><select id="fVille"><option>Brazzaville</option><option>Pointe-Noire</option><option>Kinshasa</option><option>Douala</option><option>Yaoundé</option><option>Libreville</option><option>Autre</option></select></div>
-          <div class="field"><label>Je suis intéressé par</label><select id="fType"><option>Acheter un bien</option><option>Louer un bien</option><option>Faire dessiner un plan</option><option>Construire (clé en main)</option><option>Rénover</option><option>Vendre mon bien</option></select></div>
-          <div class="field"><label>Votre projet en quelques mots</label><textarea id="fMsg" rows="4" placeholder="Ex : Je veux construire une villa de 150 m² à Brazzaville..."></textarea></div>
-          <button class="btn btn-gold" type="submit" style="width:100%;justify-content:center">Envoyer ma demande →</button>
-          <p style="font-size:12px;color:var(--muted);margin-top:10px;text-align:center">En envoyant, votre demande s'ouvre aussi dans WhatsApp pour une réponse immédiate.</p>
-        </form>
+  <div id="clientPortal" class="portal-shell" style="display:none">
+    <aside class="sidebar" id="clientSidebar">
+      <div class="logo" onclick="switchView('public')"><span class="logo-mark">A</span><span><span class="js-brand">All Service Immo</span><small>Portail Client</small></span></div>
+      <div class="sidebar-user">
+        <b id="cUserName">Client</b>
+        <small id="cUserMeta">Brazzaville</small>
       </div>
-      <div class="contact-info reveal">
-        <div class="info-box"><h4>📞 Téléphone</h4><p><a href="tel:+242060000000">+242 06 000 00 00</a><br><a href="tel:+242050000000">+242 05 000 00 00</a></p><p style="margin-top:8px;font-size:13px">Lun – Sam : 8h00 – 18h00</p></div>
-        <div class="info-box"><h4>💬 WhatsApp</h4><p>Réponse rapide, photos et visites virtuelles sur demande.</p><a class="btn btn-wa" style="margin-top:12px" href="https://wa.me/242060000000?text=Bonjour%20All%20Service%20Immo%2C%20je%20souhaite%20un%20renseignement." target="_blank" rel="noopener">Discuter sur WhatsApp</a></div>
-        <div class="info-box"><h4>📍 Zones d'intervention</h4><p>Brazzaville • Pointe-Noire • Kinshasa • Douala • Yaoundé • Libreville<br><span style="font-size:13px">Et toute l'Afrique centrale sur demande.</span></p></div>
-        <div class="info-box"><h4>✉️ Email</h4><p><a href="mailto:contact@allserviceimmo.com">contact@allserviceimmo.com</a></p></div>
+      <nav class="side-nav" id="clientNav">
+        <button class="side-btn active" data-tab="dash" onclick="setClientTab('dash')"><span>📊 Tableau de bord</span></button>
+        <button class="side-btn" data-tab="chantier" onclick="setClientTab('chantier')"><span>🏗️ Mon Chantier</span><span class="side-count" id="cBadgeChantier">0</span></button>
+        <button class="side-btn" data-tab="docs" onclick="setClientTab('docs')"><span>📐 Plans &amp; Documents</span><span class="side-count" id="cBadgeDocs">0</span></button>
+        <button class="side-btn" data-tab="factures" onclick="setClientTab('factures')"><span>💳 Factures &amp; Paiements</span><span class="side-count" id="cBadgeFact">0</span></button>
+        <button class="side-btn" data-tab="demandes" onclick="setClientTab('demandes')"><span>🏠 Demandes &amp; Favoris</span><span class="side-count" id="cBadgeDem">0</span></button>
+        <button class="side-btn" data-tab="messages" onclick="setClientTab('messages')"><span>💬 Messagerie</span><span class="side-count" id="cBadgeMsg">0</span></button>
+        <button class="side-btn" data-tab="profil" onclick="setClientTab('profil')"><span>⭐ Mon Avis &amp; Profil</span></button>
+      </nav>
+      <div class="side-foot">
+        <button class="btn btn-outline btn-sm" onclick="switchView('public')">← Retour au site public</button>
+        <button class="btn btn-red btn-sm" onclick="logoutClient()">Déconnexion</button>
+      </div>
+    </aside>
+    <main class="portal-main">
+      <div class="portal-top">
+        <div style="display:flex;align-items:center;gap:12px">
+          <button type="button" class="portal-burger" onclick="document.getElementById('clientSidebar').classList.toggle('open')">☰</button>
+          <h2 id="clientPageTitle">Tableau de bord</h2>
+        </div>
+        <div style="display:flex;gap:8px;align-items:center">
+          <button type="button" class="btn btn-gold btn-sm" onclick="openClientNewRequestModal()">+ Nouvelle demande</button>
+        </div>
+      </div>
+      <div class="portal-body" id="clientBody"></div>
+    </main>
+  </div>
+</div>
+
+<!-- =========================================================
+     VUE 3 : ESPACE ADMIN
+     ========================================================= -->
+<div id="view-admin" class="app-view">
+  <div id="adminAuthScreen" class="auth-screen">
+    <div class="auth-card">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <div class="logo" onclick="switchView('public')"><span class="logo-mark">A</span><span><span class="js-brand">All Service Immo</span><small>Administration</small></span></div>
+        <button type="button" class="btn btn-light btn-sm" onclick="switchView('public')">← Site</button>
+      </div>
+      <h3 style="margin:20px 0 6px;font-size:24px">Connexion Administrateur</h3>
+      <p style="color:var(--muted);font-size:14px;margin-bottom:16px">Gérez vos biens, réalisations, chantiers clients, plans, factures, demandes et messages.</p>
+      <form onsubmit="return doAdminLogin(event)">
+        <div class="field"><label>Email Admin *</label><input id="aLogEmail" type="email" required placeholder="admin@allserviceimmo.com"></div>
+        <div class="field"><label>Mot de passe *</label><input id="aLogPass" type="password" required placeholder="••••••••"></div>
+        <button class="btn btn-gold" type="submit" style="width:100%">Accéder au Back-Office →</button>
+      </form>
+      <div class="demo-box">
+        <b>🔐 Identifiants Démo Admin :</b>
+        <code>admin@allserviceimmo.com</code> / <code>Admin@2026</code>
+        <button type="button" class="btn btn-navy btn-sm" style="width:100%;margin-top:8px" onclick="quickAdminLogin()">⚡ Connexion Admin en 1 clic</button>
       </div>
     </div>
   </div>
-</section>
 
-<footer>
-  <div class="wrap">
-    <div class="footer-grid">
-      <div><div class="logo" style="margin-bottom:14px"><span class="logo-mark">A</span><span>All Service Immo<small>Immobilier • Archi • Construction</small></span></div><p style="font-size:14px;max-width:340px">Votre partenaire de confiance pour acheter, concevoir et construire en Afrique centrale. Qualité, transparence, délais respectés.</p></div>
-      <div><h4>Services</h4><a href="#services">Immobilier</a><a href="#services">Architecture</a><a href="#services">Construction</a><a href="#devis">Simulateur de devis</a></div>
-      <div><h4>Explorer</h4><a href="#biens">Biens disponibles</a><a href="#projets">Réalisations</a><a href="#processus">Notre processus</a><a href="#faq">FAQ</a></div>
-      <div><h4>Contact</h4><a href="tel:+242060000000">+242 06 000 00 00</a><a href="mailto:contact@allserviceimmo.com">contact@allserviceimmo.com</a><a href="#contact">Brazzaville — Congo</a></div>
-    </div>
-    <div class="copy">© <span id="year"></span> All Service Immo — Tous droits réservés. Site stocké sur Google Drive • Déployable sur Vercel.</div>
+  <div id="adminPortal" class="portal-shell" style="display:none">
+    <aside class="sidebar" id="adminSidebar">
+      <div class="logo" onclick="switchView('public')"><span class="logo-mark">A</span><span><span class="js-brand">All Service Immo</span><small>Back-Office Admin</small></span></div>
+      <div class="sidebar-user">
+        <b id="aUserName">Administrateur</b>
+        <small>Direction Générale</small>
+      </div>
+      <nav class="side-nav" id="adminNav">
+        <button class="side-btn active" data-tab="overview" onclick="setAdminTab('overview')"><span>📈 Vue d'ensemble</span></button>
+        <button class="side-btn" data-tab="demandes" onclick="setAdminTab('demandes')"><span>📩 Demandes &amp; CRM</span><span class="side-count" id="aBadgeDem">0</span></button>
+        <button class="side-btn" data-tab="biens" onclick="setAdminTab('biens')"><span>🏠 Biens Immobiliers</span><span class="side-count" id="aBadgeBiens">0</span></button>
+        <button class="side-btn" data-tab="projets" onclick="setAdminTab('projets')"><span>🏛️ Réalisations</span></button>
+        <button class="side-btn" data-tab="chantiers" onclick="setAdminTab('chantiers')"><span>🏗️ Chantiers Clients</span><span class="side-count" id="aBadgeChant">0</span></button>
+        <button class="side-btn" data-tab="docs" onclick="setAdminTab('docs')"><span>📐 Plans &amp; Documents</span></button>
+        <button class="side-btn" data-tab="factures" onclick="setAdminTab('factures')"><span>💰 Factures &amp; Paiements</span><span class="side-count" id="aBadgeFact">0</span></button>
+        <button class="side-btn" data-tab="clients" onclick="setAdminTab('clients')"><span>👥 Clients &amp; Messages</span><span class="side-count" id="aBadgeMsg">0</span></button>
+        <button class="side-btn" data-tab="settings" onclick="setAdminTab('settings')"><span>⚙️ Avis, Paramètres &amp; DB</span></button>
+      </nav>
+      <div class="side-foot">
+        <button class="btn btn-outline btn-sm" onclick="switchView('public')">← Voir le site public</button>
+        <button class="btn btn-red btn-sm" onclick="logoutAdmin()">Déconnexion</button>
+      </div>
+    </aside>
+    <main class="portal-main">
+      <div class="portal-top">
+        <div style="display:flex;align-items:center;gap:12px">
+          <button type="button" class="portal-burger" onclick="document.getElementById('adminSidebar').classList.toggle('open')">☰</button>
+          <h2 id="adminPageTitle">Vue d'ensemble</h2>
+        </div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <span id="supaStatusBadge" class="pill pill-amber">Stockage Local</span>
+          <button type="button" class="btn btn-navy btn-sm" onclick="setAdminTab('chantiers');openAdminNewChantier()">+ Chantier</button>
+          <button type="button" class="btn btn-gold btn-sm" onclick="setAdminTab('biens');openAdminBienModal()">+ Bien</button>
+        </div>
+      </div>
+      <div class="portal-body" id="adminBody"></div>
+    </main>
   </div>
-</footer>
+</div>
 
-<a class="wa-float" href="https://wa.me/242060000000?text=Bonjour%20All%20Service%20Immo%2C%20je%20souhaite%20un%20renseignement." target="_blank" rel="noopener" aria-label="WhatsApp">💬</a>
+<!-- MODAL GÉNÉRIQUE + ZONE D'IMPRESSION + TOAST -->
+<div id="appModal" class="modal-backdrop" onclick="if(event.target===this)closeModal()">
+  <div class="modal-box">
+    <div class="modal-head"><h3 id="modalTitle">Détails</h3><button type="button" class="modal-close" onclick="closeModal()">×</button></div>
+    <div id="modalContent"></div>
+  </div>
+</div>
+<div id="printArea"></div>
 <div class="toast" id="toast"></div>
 
 <script>
-const BIENS=[
- {t:"Villa moderne 4 chambres avec piscine",v:"Brazzaville",type:"Villa",mode:"vente",prix:"85 000 000 FCFA",prixNum:85000000,img:"https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=1200&auto=format&fit=crop",d:"320 m² • 4 ch • 3 sdb • Piscine"},
- {t:"Appartement F3 centre-ville",v:"Pointe-Noire",type:"Appartement",mode:"location",prix:"450 000 FCFA / mois",prixNum:450000,img:"https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?q=80&w=1200&auto=format&fit=crop",d:"85 m² • 3 ch • Balcon"},
- {t:"Terrain titré 600 m² — quartier résidentiel",v:"Brazzaville",type:"Terrain",mode:"vente",prix:"18 000 000 FCFA",prixNum:18000000,img:"https://images.unsplash.com/photo-1500382017468-9049fed747ef?q=80&w=1200&auto=format&fit=crop",d:"600 m² • Titre foncier vérifié"},
- {t:"Villa familiale 3 chambres",v:"Kinshasa",type:"Villa",mode:"vente",prix:"120 000 000 FCFA",prixNum:120000000,img:"https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1200&auto=format&fit=crop",d:"250 m² • 3 ch • Jardin"},
- {t:"Bureaux open-space 200 m²",v:"Douala",type:"Bureau",mode:"location",prix:"1 200 000 FCFA / mois",prixNum:1200000,img:"https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1200&auto=format&fit=crop",d:"200 m² • Parking • Fibre"},
- {t:"Appartement standing F4",v:"Libreville",type:"Appartement",mode:"vente",prix:"95 000 000 FCFA",prixNum:95000000,img:"https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=1200&auto=format&fit=crop",d:"140 m² • 4 ch • Vue mer"},
- {t:"Villa contemporaine avec studio",v:"Yaoundé",type:"Villa",mode:"vente",prix:"72 000 000 FCFA",prixNum:72000000,img:"https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?q=80&w=1200&auto=format&fit=crop",d:"280 m² • 4 ch • Studio indépendant"},
- {t:"Terrain 1000 m² bord de route",v:"Pointe-Noire",type:"Terrain",mode:"vente",prix:"25 000 000 FCFA",prixNum:25000000,img:"https://images.unsplash.com/photo-1628624747186-a941c476b7ef?q=80&w=1200&auto=format&fit=crop",d:"1000 m² • Idéal projet immobilier"},
- {t:"Immeuble de rapport R+3",v:"Brazzaville",type:"Immeuble",mode:"vente",prix:"350 000 000 FCFA",prixNum:350000000,img:"https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?q=80&w=1200&auto=format&fit=crop",d:"12 appartements • Rentabilité 8%/an"}
-];
-const PROJETS=[
- {t:"Villa Horizon — Brazzaville",c:"villa",img:"https://images.unsplash.com/photo-1600585154526-990dced4db0d?q=80&w=1200&auto=format&fit=crop",d:"180 m² • 7 mois • Clé en main"},
- {t:"Résidence Les Palmiers — Pointe-Noire",c:"immeuble",img:"https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?q=80&w=1200&auto=format&fit=crop",d:"R+4 • 16 logements • 14 mois"},
- {t:"Bureaux Nova — Douala",c:"bureau",img:"https://images.unsplash.com/photo-1497366811353-6870744d04b2?q=80&w=1200&auto=format&fit=crop",d:"450 m² • Plateau moderne"},
- {t:"Villa Savane — Kinshasa",c:"villa",img:"https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?q=80&w=1200&auto=format&fit=crop",d:"220 m² • Piscine • 8 mois"},
- {t:"Rénovation Maison Blanche — Libreville",c:"reno",img:"https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=1200&auto=format&fit=crop",d:"Rénovation complète • 4 mois"},
- {t:"Immeuble Kintélé — Brazzaville",c:"immeuble",img:"https://images.unsplash.com/photo-1600047509358-9dc75507daeb?q=80&w=1200&auto=format&fit=crop",d:"R+3 • Mixte bureaux/logements"},
- {t:"Villa Lumière — Yaoundé",c:"villa",img:"https://images.unsplash.com/photo-1600585152220-90363fe7e115?q=80&w=1200&auto=format&fit=crop",d:"200 m² • Design contemporain"},
- {t:"Centre d'affaires Plateau — Brazzaville",c:"bureau",img:"https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1200&auto=format&fit=crop",d:"800 m² • Façade vitrée"},
- {t:"Rénovation Hôtel Le Fleuve — Brazzaville",c:"reno",img:"https://images.unsplash.com/photo-1600121848594-d8644e57abab?q=80&w=1200&auto=format&fit=crop",d:"Hall & suites • 5 mois"}
-];
-function paintBiens(list){
-  const g=document.getElementById('biensGrid');
-  document.getElementById('biensEmpty').style.display=list.length?"none":"block";
-  g.innerHTML=list.map(b=>`<article class="prop"><img src="${b.img}" alt="${b.t}" loading="lazy"><div class="prop-body"><span class="badge ${b.mode==='vente'?'gold':''}">${b.mode==='vente'?'À vendre':'À louer'}</span><h3>${b.t}</h3><div class="meta"><span>📍 ${b.v}</span><span>${b.d}</span></div><div class="prop-price">${b.prix}</div><a class="btn btn-navy" style="width:100%;justify-content:center" href="https://wa.me/242060000000?text=${encodeURIComponent('Bonjour, je suis intéressé par : '+b.t+' à '+b.v+' ('+b.prix+'). Puis-je planifier une visite ?')}" target="_blank" rel="noopener">Réserver une visite</a></div></article>`).join('');
+// =========================================================
+// UTILITAIRES & SÉCURITÉ
+// =========================================================
+const STORAGE_KEY = 'asi_platform_v2';
+const SESSION_KEY = 'asi_session_v2';
+
+function esc(v){
+  return String(v ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
 }
-function renderBiens(f="all"){
-  const list=BIENS.filter(b=>f==="all"||b.mode===f||b.type===f);
-  paintBiens(list);
+function fmt(n){
+  return Math.round(Number(n)||0).toLocaleString('fr-FR').replace(/\u202F/g,' ');
 }
-function renderProjets(f="all"){
-  const g=document.getElementById('projGrid');
-  const list=PROJETS.filter(p=>f==="all"||p.c===f);
-  g.innerHTML=list.map(p=>`<article class="prop"><img src="${p.img}" alt="${p.t}" loading="lazy"><div class="prop-body"><span class="badge gold">${p.c.toUpperCase()}</span><h3>${p.t}</h3><div class="meta"><span>${p.d}</span></div><a class="btn btn-navy" style="width:100%;justify-content:center" href="#devis">Je veux un projet similaire</a></div></article>`).join('');
+function uid(prefix='id'){
+  return prefix + '_' + Date.now().toString(36) + '_' + Math.random().toString(36).slice(2,6);
 }
-function bindFilters(id,fn){
-  document.querySelectorAll('#'+id+' button').forEach(b=>b.onclick=()=>{document.querySelectorAll('#'+id+' button').forEach(x=>x.classList.remove('active'));b.classList.add('active');fn(b.dataset.f)});
+function todayISO(){ return new Date().toISOString().slice(0,10); }
+function showToast(msg){
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.style.display = 'block';
+  clearTimeout(t._tid);
+  t._tid = setTimeout(()=>{ t.style.display='none'; }, 3800);
 }
-bindFilters('biensFilters',renderBiens); bindFilters('projFilters',renderProjets);
-renderBiens(); renderProjets();
+function statusPill(st){
+  const s = (st||'').toLowerCase();
+  if(['payée','disponible','livré','terminé','approuvé','convertie'].some(k=>s.includes(k))) return 'pill-green';
+  if(['retard','vendu','rejeté'].some(k=>s.includes(k))) return 'pill-red';
+  if(['vérification','en cours','réservé','visite','devis','contactée'].some(k=>s.includes(k))) return 'pill-blue';
+  return 'pill-amber';
+}
+async function compressImageFile(file){
+  return new Promise((resolve, reject)=>{
+    const reader = new FileReader();
+    reader.onload = ev => {
+      const img = new Image();
+      img.onload = () => {
+        const maxW = 900;
+        const scale = img.width > maxW ? maxW / img.width : 1;
+        const c = document.createElement('canvas');
+        c.width = Math.round(img.width * scale);
+        c.height = Math.round(img.height * scale);
+        c.getContext('2d').drawImage(img, 0, 0, c.width, c.height);
+        resolve(c.toDataURL('image/jpeg', 0.78));
+      };
+      img.onerror = reject;
+      img.src = ev.target.result;
+    };
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
+  });
+}
+
+// =========================================================
+// DONNÉES PAR DÉFAUT (INITIALISATION COMPLÈTE)
+// =========================================================
+function getDefaultData(){
+  return {
+    settings: {
+      brand: 'All Service Immo',
+      tel1: '+242 06 000 00 00',
+      tel2: '+242 05 000 00 00',
+      whatsapp: '242060000000',
+      email: 'contact@allserviceimmo.com',
+      commission: 'à partir de 3%',
+      zones: 'Brazzaville • Pointe-Noire • Kinshasa • Douala • Yaoundé • Libreville',
+      supaUrl: '',
+      supaKey: '',
+      supaAuto: false
+    },
+    users: [
+      { id:'u_admin', role:'admin', nom:'Direction All Service Immo', email:'admin@allserviceimmo.com', tel:'+242 06 000 00 00', ville:'Brazzaville', pass:'Admin@2026', createdAt:'2026-01-10' },
+      { id:'u_cli1', role:'client', nom:'Famille Mbemba', email:'famille.m@client.com', tel:'+242 06 812 44 10', ville:'Brazzaville', pass:'Client@2026', createdAt:'2026-04-12' },
+      { id:'u_cli2', role:'client', nom:'Jean-Bosco K.', email:'jean.bosco@client.com', tel:'+242 05 701 33 22', ville:'Pointe-Noire', pass:'Client@2026', createdAt:'2026-08-03' }
+    ],
+    biens: [
+      { id:'b1', t:'Villa moderne 4 chambres avec piscine', v:'Brazzaville', type:'Villa', mode:'vente', statut:'Disponible', prix:'85 000 000 FCFA', prixNum:85000000, img:'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=1200&auto=format&fit=crop', d:'320 m² • 4 ch • 3 sdb • Piscine', desc:'Villa contemporaine sécurisée à Kintélé avec piscine, groupe électrogène et titre foncier vérifié.' },
+      { id:'b2', t:'Appartement F3 centre-ville', v:'Pointe-Noire', type:'Appartement', mode:'location', statut:'Disponible', prix:'450 000 FCFA / mois', prixNum:450000, img:'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?q=80&w=1200&auto=format&fit=crop', d:'85 m² • 3 ch • Balcon', desc:'Appartement lumineux proche bord de mer, gardiennage 24h/24, parking privé.' },
+      { id:'b3', t:'Terrain titré 600 m² — quartier résidentiel', v:'Brazzaville', type:'Terrain', mode:'vente', statut:'Disponible', prix:'18 000 000 FCFA', prixNum:18000000, img:'https://images.unsplash.com/photo-1500382017468-9049fed747ef?q=80&w=1200&auto=format&fit=crop', d:'600 m² • Titre foncier vérifié', desc:'Terrain plat, accès bitumé, eau et électricité à proximité immédiate.' },
+      { id:'b4', t:'Villa familiale 3 chambres', v:'Kinshasa', type:'Villa', mode:'vente', statut:'Réservé', prix:'120 000 000 FCFA', prixNum:120000000, img:'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1200&auto=format&fit=crop', d:'250 m² • 3 ch • Jardin', desc:'Quartier Ngaliema, finitions soignées, grand jardin arboré.' },
+      { id:'b5', t:'Bureaux open-space 200 m²', v:'Douala', type:'Bureau', mode:'location', statut:'Disponible', prix:'1 200 000 FCFA / mois', prixNum:1200000, img:'https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1200&auto=format&fit=crop', d:'200 m² • Parking • Fibre', desc:'Plateau de bureaux climatisé à Bonanjo avec salle de réunion.' },
+      { id:'b6', t:'Appartement standing F4', v:'Libreville', type:'Appartement', mode:'vente', statut:'Disponible', prix:'95 000 000 FCFA', prixNum:95000000, img:'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=1200&auto=format&fit=crop', d:'140 m² • 4 ch • Vue mer', desc:'Résidence calme, terrasse panoramique, cuisine équipée.' },
+      { id:'b7', t:'Villa contemporaine avec studio', v:'Yaoundé', type:'Villa', mode:'vente', statut:'Disponible', prix:'72 000 000 FCFA', prixNum:72000000, img:'https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?q=80&w=1200&auto=format&fit=crop', d:'280 m² • 4 ch • Studio indépendant', desc:'Quartier Bastos, dépendance incluse.' },
+      { id:'b8', t:'Terrain 1000 m² bord de route', v:'Pointe-Noire', type:'Terrain', mode:'vente', statut:'Disponible', prix:'25 000 000 FCFA', prixNum:25000000, img:'https://images.unsplash.com/photo-1628624747186-a941c476b7ef?q=80&w=1200&auto=format&fit=crop', d:'1000 m² • Idéal projet immobilier', desc:'Double façade idéale pour immeuble ou résidence.' },
+      { id:'b9', t:'Immeuble de rapport R+3', v:'Brazzaville', type:'Immeuble', mode:'vente', statut:'Disponible', prix:'350 000 000 FCFA', prixNum:350000000, img:'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?q=80&w=1200&auto=format&fit=crop', d:'12 appartements • Rentabilité 8%/an', desc:'Revenus locatifs immédiats, taux d’occupation 100%.' }
+    ],
+    projets: [
+      { id:'p1', t:'Villa Horizon — Brazzaville', c:'villa', img:'https://images.unsplash.com/photo-1600585154526-990dced4db0d?q=80&w=1200&auto=format&fit=crop', d:'180 m² • 7 mois • Clé en main' },
+      { id:'p2', t:'Résidence Les Palmiers — Pointe-Noire', c:'immeuble', img:'https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?q=80&w=1200&auto=format&fit=crop', d:'R+4 • 16 logements • 14 mois' },
+      { id:'p3', t:'Bureaux Nova — Douala', c:'bureau', img:'https://images.unsplash.com/photo-1497366811353-6870744d04b2?q=80&w=1200&auto=format&fit=crop', d:'450 m² • Plateau moderne' },
+      { id:'p4', t:'Villa Savane — Kinshasa', c:'villa', img:'https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?q=80&w=1200&auto=format&fit=crop', d:'220 m² • Piscine • 8 mois' },
+      { id:'p5', t:'Rénovation Maison Blanche — Libreville', c:'reno', img:'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=1200&auto=format&fit=crop', d:'Rénovation complète • 4 mois' },
+      { id:'p6', t:'Immeuble Kintélé — Brazzaville', c:'immeuble', img:'https://images.unsplash.com/photo-1600047509358-9dc75507daeb?q=80&w=1200&auto=format&fit=crop', d:'R+3 • Mixte bureaux/logements' }
+    ],
+    chantiers: [
+      {
+        id:'ch_1', clientEmail:'famille.m@client.com', titre:'Construction Villa Horizon (180 m²)',
+        type:'Construction Villa clé en main', ville:'Brazzaville', adresse:'Kintélé — Parcelle 42B',
+        responsable:'Ing. Patrick Nkouka', statut:'Second œuvre / Finitions', avancement:72,
+        budgetTotal:65000000, dateDebut:'2026-05-01', dateLivraison:'2026-12-15',
+        jalons:[
+          { nom:'Étude & Plans 3D', statut:'Terminé', date:'2026-05-15' },
+          { nom:'Permis de construire', statut:'Terminé', date:'2026-06-02' },
+          { nom:'Fondations & Dalle', statut:'Terminé', date:'2026-07-18' },
+          { nom:'Élévation & Toiture', statut:'Terminé', date:'2026-09-20' },
+          { nom:'Plomberie, Élec & Carrelage', statut:'En cours', date:'2026-11-12' },
+          { nom:'Peinture & Remise des clés', statut:'À venir', date:'2026-12-15' }
+        ],
+        rapports:[
+          { id:'r1', date:'2026-11-10', titre:'Pose du carrelage séjour & chambres', texte:'Carrelage grès cérame posé à 85%. Les réseaux plomberie et gaines électriques sont testés sous pression.', avancement:72, img:'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=1000&auto=format&fit=crop' },
+          { id:'r2', date:'2026-09-22', titre:'Charpente & couverture terminées', texte:'La toiture en tôle bac alu est entièrement fixée avec étanchéité complète avant les pluies.', avancement:55, img:'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=1000&auto=format&fit=crop' }
+        ]
+      },
+      {
+        id:'ch_2', clientEmail:'jean.bosco@client.com', titre:'Résidence K. — Pointe-Noire (140 m²)',
+        type:'Architecture + Construction', ville:'Pointe-Noire', adresse:'Loandjili — Lot 18',
+        responsable:'Arch. Mireille Samba', statut:'Fondations', avancement:35,
+        budgetTotal:48000000, dateDebut:'2026-08-15', dateLivraison:'2027-03-30',
+        jalons:[
+          { nom:'Étude & Plans 3D', statut:'Terminé', date:'2026-09-01' },
+          { nom:'Permis de construire', statut:'Terminé', date:'2026-09-28' },
+          { nom:'Fondations & Dalle', statut:'En cours', date:'2026-11-12' },
+          { nom:'Élévation & Toiture', statut:'À venir', date:'2027-01-10' },
+          { nom:'Second œuvre', statut:'À venir', date:'2027-02-25' },
+          { nom:'Remise des clés', statut:'À venir', date:'2027-03-30' }
+        ],
+        rapports:[
+          { id:'r3', date:'2026-11-08', titre:'Coulage du radier & semelles armées', texte:'Béton dosé à 350 kg/m³ coulé ce matin. Contrôle ferraillage validé par l’ingénieur.', avancement:35, img:'https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=1000&auto=format&fit=crop' }
+        ]
+      }
+    ],
+    documents: [
+      { id:'d1', clientEmail:'famille.m@client.com', chantierId:'ch_1', titre:'Plans Architecturaux 2D & Rendus 3D v2', categorie:'Plan 2D/3D', url:'https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=1200&auto=format&fit=crop', date:'2026-05-14', valideClient:true, valideLe:'2026-05-15' },
+      { id:'d2', clientEmail:'famille.m@client.com', chantierId:'ch_1', titre:'Devis estimatif & descriptif (DQE) — Villa Horizon', categorie:'Devis', url:'', date:'2026-05-18', valideClient:true, valideLe:'2026-05-19' },
+      { id:'d3', clientEmail:'famille.m@client.com', chantierId:'ch_1', titre:'Avenant Choix Carrelage & Sanitaires Premium', categorie:'Devis', url:'', date:'2026-11-09', valideClient:false, valideLe:null },
+      { id:'d4', clientEmail:'jean.bosco@client.com', chantierId:'ch_2', titre:'Titre foncier vérifié & plan de bornage Lot 18', categorie:'Titre foncier', url:'', date:'2026-08-20', valideClient:true, valideLe:'2026-08-21' },
+      { id:'d5', clientEmail:'jean.bosco@client.com', chantierId:'ch_2', titre:'Plan Façade Moderne R+1 — À approuver', categorie:'Plan 2D/3D', url:'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1200&auto=format&fit=crop', date:'2026-11-05', valideClient:false, valideLe:null }
+    ],
+    factures: [
+      { id:'f1', numero:'FAC-2026-001', clientEmail:'famille.m@client.com', chantierId:'ch_1', libelle:'Acompte 30% — Démarrage & Fondations', montant:19500000, echeance:'2026-05-25', statut:'Payée', mode:'Virement bancaire', ref:'VIR-BGFI-8821', datePaiement:'2026-05-24' },
+      { id:'f2', numero:'FAC-2026-014', clientEmail:'famille.m@client.com', chantierId:'ch_1', libelle:'Tranche 40% — Élévation murs & Toiture', montant:26000000, echeance:'2026-08-30', statut:'Payée', mode:'Virement bancaire', ref:'VIR-BGFI-9402', datePaiement:'2026-08-28' },
+      { id:'f3', numero:'FAC-2026-029', clientEmail:'famille.m@client.com', chantierId:'ch_1', libelle:'Tranche 20% — Second œuvre & Carrelage', montant:13000000, echeance:'2026-11-20', statut:'En attente', mode:'', ref:'', datePaiement:'' },
+      { id:'f4', numero:'FAC-2026-021', clientEmail:'jean.bosco@client.com', chantierId:'ch_2', libelle:'Acompte 35% — Plans + Fondations', montant:16800000, echeance:'2026-09-15', statut:'Payée', mode:'Mobile Money / Virement', ref:'MM-2026-774', datePaiement:'2026-09-12' },
+      { id:'f5', numero:'FAC-2026-031', clientEmail:'jean.bosco@client.com', chantierId:'ch_2', libelle:'Tranche 30% — Gros œuvre murs & dalle', montant:14400000, echeance:'2026-11-25', statut:'En vérification', mode:'Virement bancaire', ref:'ECO-551920', datePaiement:'2026-11-11' }
+    ],
+    demandes: [
+      { id:'dem1', nom:'Clarisse Ngoma', tel:'+242 06 554 12 88', email:'clarisse.n@gmail.com', ville:'Brazzaville', type:'Construire (clé en main)', bienId:'', msg:'Je possède un terrain de 500 m² à Djiri et souhaite un plan + construction villa R+1.', statut:'Devis envoyé', note:'Devis 58M envoyé le 09/11', date:'2026-11-08' },
+      { id:'dem2', nom:'Serge Mavoungou', tel:'+242 05 339 90 11', email:'', ville:'Pointe-Noire', type:'Acheter un bien', bienId:'b8', msg:'Intéressé par le terrain 1000 m² bord de route à Pointe-Noire pour un immeuble.', statut:'Visite planifiée', note:'Visite samedi 10h avec M. Patrick', date:'2026-11-10' },
+      { id:'dem3', nom:'Famille Mbemba', tel:'+242 06 812 44 10', email:'famille.m@client.com', ville:'Brazzaville', type:'Rénover', bienId:'', msg:'Ajout d’un forage solaire en fin de chantier Villa Horizon.', statut:'Nouvelle', note:'', date:'2026-11-11' }
+    ],
+    messages: [
+      { id:'m1', clientEmail:'famille.m@client.com', expediteur:'admin', auteur:'Ing. Patrick Nkouka', contenu:'Bonjour Famille Mbemba, nous avons publié les nouvelles photos de la pose du carrelage. Merci de valider l’avenant sanitaires dans vos Documents.', date:'2026-11-10 14:20', lu:false },
+      { id:'m2', clientEmail:'famille.m@client.com', expediteur:'client', auteur:'Famille Mbemba', contenu:'Merci beaucoup ! Les photos sont superbes. Nous allons consulter l’avenant ce soir.', date:'2026-11-10 18:05', lu:true },
+      { id:'m3', clientEmail:'jean.bosco@client.com', expediteur:'client', auteur:'Jean-Bosco K.', contenu:'Bonjour, j’ai effectué le virement pour la tranche gros œuvre (réf ECO-551920).', date:'2026-11-11 11:30', lu:false }
+    ],
+    temoignages: [
+      { id:'t1', nom:'Famille M.', ville:'Villa — Brazzaville', note:5, texte:'All Service Immo a construit notre villa à Brazzaville en 7 mois. Les photos chaque semaine dans l’espace client nous ont rassurés. Budget respecté.', publie:true },
+      { id:'t2', nom:'Jean-Bosco K.', ville:'Terrain + Construction — Pointe-Noire', note:5, texte:'J’ai acheté un terrain titré via leur service immobilier, puis ils ont dessiné et lancé ma maison. Un seul interlocuteur, zéro stress.', publie:true },
+      { id:'t3', nom:'SARL Horizon Invest', ville:'Immeuble — Douala', note:5, texte:'Plans 3D superbes, équipe pro, et notre immeuble de bureaux à Douala livré dans les délais.', publie:true }
+    ],
+    favorites: ['b1', 'b3']
+  };
+}
+
+function loadDB(){
+  try{
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if(!raw){ const d = getDefaultData(); saveDB(d); return d; }
+    const parsed = JSON.parse(raw);
+    const def = getDefaultData();
+    return { ...def, ...parsed, settings: { ...def.settings, ...(parsed.settings||{}) } };
+  }catch(e){
+    return getDefaultData();
+  }
+}
+function saveDB(data){
+  DB = data || DB;
+  try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(DB)); }catch(e){ showToast('⚠️ Mémoire locale pleine (utilisez des URLs d’images ou exportez une sauvegarde).'); }
+  if(DB.settings.supaAuto && DB.settings.supaUrl && DB.settings.supaKey){
+    pushToSupabase(true);
+  }
+}
+function loadSession(){
+  try{ return JSON.parse(localStorage.getItem(SESSION_KEY) || '{}'); }catch(e){ return {}; }
+}
+function saveSession(sess){
+  SESSION = sess;
+  try{ localStorage.setItem(SESSION_KEY, JSON.stringify(sess)); }catch(e){}
+}
+
+let DB = loadDB();
+let SESSION = loadSession();
+let clientTab = 'dash';
+let adminTab = 'overview';
+let selectedAdminChatEmail = 'famille.m@client.com';
+
+// =========================================================
+// NAVIGATION ENTRE VUES (PUBLIC / CLIENT / ADMIN)
+// =========================================================
+function switchView(view){
+  document.querySelectorAll('.app-view').forEach(v=>v.classList.remove('active'));
+  document.getElementById('view-' + view).classList.add('active');
+  window.scrollTo({top:0, behavior:'instant'});
+  if(view === 'public'){
+    history.replaceState(null, '', '#accueil');
+    renderPublicAll();
+  } else if(view === 'client'){
+    history.replaceState(null, '', '#espace-client');
+    renderClientShell();
+  } else if(view === 'admin'){
+    history.replaceState(null, '', '#espace-admin');
+    renderAdminShell();
+  }
+}
+function goSection(id){
+  switchView('public');
+  setTimeout(()=>{ const el = document.getElementById(id); if(el) el.scrollIntoView({behavior:'smooth'}); }, 40);
+}
+function closeMobNav(){ document.getElementById('navLinks').classList.remove('open'); }
+
+// =========================================================
+// SITE PUBLIC : RENDU & INTERACTIONS
+// =========================================================
+function syncBranding(){
+  const s = DB.settings;
+  document.querySelectorAll('.js-brand').forEach(el=>el.textContent = s.brand);
+  document.querySelectorAll('.js-tel1').forEach(el=>el.textContent = s.tel1);
+  document.querySelectorAll('.js-tel2').forEach(el=>el.textContent = s.tel2);
+  document.querySelectorAll('.js-tel1-link').forEach(el=>el.href = 'tel:' + s.tel1.replace(/\s+/g,''));
+  document.querySelectorAll('.js-tel2-link').forEach(el=>el.href = 'tel:' + s.tel2.replace(/\s+/g,''));
+  document.querySelectorAll('.js-email').forEach(el=>el.textContent = s.email);
+  document.querySelectorAll('.js-email-link').forEach(el=>el.href = 'mailto:' + s.email);
+  document.querySelectorAll('.js-commission').forEach(el=>el.textContent = s.commission);
+  document.querySelectorAll('.js-zones').forEach(el=>el.textContent = s.zones);
+  document.querySelectorAll('.js-year').forEach(el=>el.textContent = new Date().getFullYear());
+  const waHref = 'https://wa.me/' + s.whatsapp.replace(/\D/g,'') + '?text=' + encodeURIComponent('Bonjour ' + s.brand + ', je souhaite un renseignement.');
+  document.querySelectorAll('.js-wa-main').forEach(el=>el.href = waHref);
+}
+
+let currentPublicBienFilter = 'all';
+function paintPublicBiens(list){
+  const g = document.getElementById('biensGrid');
+  document.getElementById('biensEmpty').style.display = list.length ? 'none' : 'block';
+  g.innerHTML = list.map(b=>{
+    const liked = (DB.favorites||[]).includes(b.id);
+    return `
+    <article class="prop">
+      <div class="prop-media">
+        <img src="${esc(b.img)}" alt="${esc(b.t)}" loading="lazy">
+        <span class="pill ${statusPill(b.statut)} prop-status">${esc(b.statut || 'Disponible')}</span>
+        <button type="button" class="fav-btn ${liked?'liked':''}" onclick="toggleFav('${esc(b.id)}')" title="Ajouter aux favoris">${liked?'❤️':'🤍'}</button>
+      </div>
+      <div class="prop-body">
+        <div><span class="pill ${b.mode==='vente'?'pill-gold':'pill-navy'}">${b.mode==='vente'?'À vendre':'À louer'}</span> <span class="pill pill-blue">${esc(b.type)}</span></div>
+        <h3>${esc(b.t)}</h3>
+        <div class="meta"><span>📍 ${esc(b.v)}</span><span>${esc(b.d)}</span></div>
+        <div class="prop-price">${esc(b.prix)}</div>
+        <div class="prop-actions">
+          <button type="button" class="btn btn-light btn-sm" onclick="openBienDetailModal('${esc(b.id)}')">👁️ Détails</button>
+          <button type="button" class="btn btn-navy btn-sm" onclick="openVisitModal('${esc(b.id)}')">📅 Visiter</button>
+        </div>
+      </div>
+    </article>`;
+  }).join('');
+}
+
+function renderPublicBiens(f='all'){
+  currentPublicBienFilter = f;
+  document.querySelectorAll('#biensFilters button').forEach(x=>x.classList.toggle('active', x.dataset.f===f));
+  const list = DB.biens.filter(b => f==='all' || b.mode===f || b.type===f);
+  paintPublicBiens(list);
+}
+function renderPublicProjets(f='all'){
+  document.querySelectorAll('#projFilters button').forEach(x=>x.classList.toggle('active', x.dataset.f===f));
+  const list = DB.projets.filter(p => f==='all' || p.c===f);
+  document.getElementById('projGrid').innerHTML = list.map(p=>`
+    <article class="prop">
+      <div class="prop-media"><img src="${esc(p.img)}" alt="${esc(p.t)}" loading="lazy"><span class="pill pill-gold prop-status">${esc(p.c)}</span></div>
+      <div class="prop-body">
+        <h3>${esc(p.t)}</h3>
+        <div class="meta"><span>${esc(p.d)}</span></div>
+        <a class="btn btn-navy btn-sm" style="margin-top:auto" href="#devis" onclick="prefillProjectLead('${esc(p.t)}')">Je veux un projet similaire</a>
+      </div>
+    </article>`).join('');
+}
+function renderPublicTestis(){
+  const list = DB.temoignages.filter(t=>t.publie);
+  document.getElementById('publicTestis').innerHTML = list.map(t=>`
+    <div class="testi">
+      <div class="stars">${'★'.repeat(t.note||5)}</div>
+      <p>« ${esc(t.texte)} »</p>
+      <b>${esc(t.nom)}</b><small>${esc(t.ville)}</small>
+    </div>`).join('');
+}
+function renderPublicAll(){
+  syncBranding();
+  renderPublicBiens(currentPublicBienFilter);
+  renderPublicProjets('all');
+  renderPublicTestis();
+  calcDevis();
+}
+
+document.querySelectorAll('#biensFilters button').forEach(b=>b.onclick=()=>renderPublicBiens(b.dataset.f));
+document.querySelectorAll('#projFilters button').forEach(b=>b.onclick=()=>renderPublicProjets(b.dataset.f));
+
 function searchBiens(e){
   e.preventDefault();
-  const v=document.getElementById('sVille').value, t=document.getElementById('sType').value, max=+document.getElementById('sBudget').value;
-  document.querySelectorAll('#biensFilters button').forEach((x,i)=>x.classList.toggle('active',i===0));
-  const list=BIENS.filter(b=>(!v||b.v===v)&&(!t||b.type===t)&&(!max||b.prixNum<=max));
-  paintBiens(list);
+  const v = document.getElementById('sVille').value;
+  const t = document.getElementById('sType').value;
+  const max = +document.getElementById('sBudget').value;
+  document.querySelectorAll('#biensFilters button').forEach((x,i)=>x.classList.toggle('active', i===0));
+  const list = DB.biens.filter(b => (!v||b.v===v) && (!t||b.type===t) && (!max||b.prixNum<=max));
+  paintPublicBiens(list);
   document.getElementById('biens').scrollIntoView({behavior:'smooth'});
-  showToast('🔍 '+list.length+' bien'+(list.length>1?'s':'')+' trouvé'+(list.length>1?'s':'')+'.');
+  showToast('🔍 ' + list.length + ' bien(s) trouvé(s).');
   return false;
 }
-function fmt(n){return n.toLocaleString('fr-FR').replace(/\u202F/g,' ')}
+function toggleFav(id){
+  DB.favorites = DB.favorites || [];
+  const idx = DB.favorites.indexOf(id);
+  if(idx >= 0){ DB.favorites.splice(idx,1); showToast('💔 Retiré des favoris'); }
+  else { DB.favorites.push(id); showToast('❤️ Ajouté à vos favoris (retrouvez-le dans votre Espace Client)'); }
+  saveDB();
+  renderPublicBiens(currentPublicBienFilter);
+}
+function prefillProjectLead(title){
+  document.getElementById('fMsg').value = 'Bonjour, je souhaite un projet similaire à : ' + title;
+}
+function toggleFaq(btn){
+  const it = btn.parentElement;
+  it.classList.toggle('open');
+  btn.querySelector('span').textContent = it.classList.contains('open') ? '−' : '+';
+}
 function calcDevis(){
-  const surf=+document.getElementById('cSurf').value, prix=+document.getElementById('cType').value, ville=+document.getElementById('cVille').value, fin=+document.getElementById('cFin').value;
-  document.getElementById('cSurfVal').textContent=surf;
-  const total=Math.round(surf*prix*ville*fin/100000)*100000;
-  document.getElementById('cTotal').textContent=fmt(total)+' FCFA';
-  document.getElementById('cDetail').textContent=surf+' m² × '+fmt(prix)+' FCFA';
-  document.getElementById('cDuree').textContent=surf<100?'4–6 mois':surf<250?'6–8 mois':surf<500?'8–12 mois':'12–18 mois';
-  const typeTxt=document.getElementById('cType').selectedOptions[0].text.split('—')[0].trim();
-  document.getElementById('cWa').href='https://wa.me/242060000000?text='+encodeURIComponent(`Bonjour All Service Immo, j'ai estimé mon projet : ${typeTxt} de ${surf} m² ≈ ${fmt(total)} FCFA. Je souhaite un devis précis.`);
+  const surf = +document.getElementById('cSurf').value;
+  const prix = +document.getElementById('cType').value;
+  const ville = +document.getElementById('cVille').value;
+  const fin = +document.getElementById('cFin').value;
+  document.getElementById('cSurfVal').textContent = surf;
+  const total = Math.round(surf * prix * ville * fin / 100000) * 100000;
+  document.getElementById('cTotal').textContent = fmt(total) + ' FCFA';
+  document.getElementById('cDetail').textContent = surf + ' m² × ' + fmt(prix) + ' FCFA';
+  document.getElementById('cDuree').textContent = surf<100 ? '4–6 mois' : surf<250 ? '6–8 mois' : surf<500 ? '8–12 mois' : '12–18 mois';
+  const typeTxt = document.getElementById('cType').selectedOptions[0].text.split('—')[0].trim();
+  const waNum = DB.settings.whatsapp.replace(/\D/g,'');
+  document.getElementById('cWa').href = `https://wa.me/${waNum}?text=` + encodeURIComponent(`Bonjour ${DB.settings.brand}, estimation simulateur : ${typeTxt} de ${surf} m² ≈ ${fmt(total)} FCFA. Je souhaite un devis précis.`);
 }
-calcDevis();
-function toggleFaq(btn){const it=btn.parentElement;it.classList.toggle('open');btn.querySelector('span').textContent=it.classList.contains('open')?'−':'+'}
-function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.style.display='block';setTimeout(()=>t.style.display='none',4000)}
-function sendForm(e){
+function openModalDevisFromCalc(){
+  const surf = document.getElementById('cSurf').value;
+  const total = document.getElementById('cTotal').textContent;
+  const typeTxt = document.getElementById('cType').selectedOptions[0].text.split('—')[0].trim();
+  const villeTxt = document.getElementById('cVille').selectedOptions[0].text.split('(')[0].trim();
+  openModal('Enregistrer mon devis officiel', `
+    <p style="margin-bottom:14px;color:var(--muted)">Estimation : <b>${esc(typeTxt)}</b> (${esc(surf)} m²) ≈ <b style="color:var(--navy)">${esc(total)}</b></p>
+    <form onsubmit="return saveDevisLead(event)">
+      <input type="hidden" id="dlSummary" value="Estimation ${esc(typeTxt)} ${esc(surf)}m² (${esc(villeTxt)}) ≈ ${esc(total)}">
+      <div class="field"><label>Nom complet *</label><input id="dlNom" required placeholder="Votre nom"></div>
+      <div class="field"><label>Téléphone / WhatsApp *</label><input id="dlTel" required placeholder="+242 06 ..."></div>
+      <div class="field"><label>Email</label><input id="dlEmail" type="email" placeholder="vous@exemple.com"></div>
+      <button class="btn btn-gold" type="submit" style="width:100%">📩 Envoyer &amp; enregistrer ma demande</button>
+    </form>`);
+}
+function saveDevisLead(e){
   e.preventDefault();
-  const nom=document.getElementById('fNom').value, tel=document.getElementById('fTel').value, ville=document.getElementById('fVille').value, type=document.getElementById('fType').value, msg=document.getElementById('fMsg').value;
-  const txt=`Bonjour All Service Immo,%0A%0ANom : ${encodeURIComponent(nom)}%0ATél : ${encodeURIComponent(tel)}%0AVille : ${encodeURIComponent(ville)}%0AProjet : ${encodeURIComponent(type)}%0ADétails : ${encodeURIComponent(msg||'—')}`;
-  showToast('✅ Merci '+nom+' ! Ouverture de WhatsApp pour confirmer votre demande...');
-  window.open('https://wa.me/242060000000?text='+txt,'_blank');
+  const dem = {
+    id: uid('dem'),
+    nom: document.getElementById('dlNom').value.trim(),
+    tel: document.getElementById('dlTel').value.trim(),
+    email: document.getElementById('dlEmail').value.trim(),
+    ville: 'Brazzaville',
+    type: 'Devis Construction (Simulateur)',
+    bienId: '',
+    msg: document.getElementById('dlSummary').value,
+    statut: 'Nouvelle',
+    note: '',
+    date: todayISO()
+  };
+  DB.demandes.unshift(dem);
+  saveDB();
+  closeModal();
+  showToast('✅ Devis enregistré ! Notre équipe vous recontacte sous 24h.');
   return false;
 }
-// Compteurs & animations
-const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')}),{threshold:.15});
-document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
-document.querySelectorAll('[data-count]').forEach(el=>{const target=+el.dataset.count;let cur=0;const iv=setInterval(()=>{cur+=Math.ceil(target/40);if(cur>=target){cur=target;clearInterval(iv)}el.textContent=cur+'+'},40)});
-document.getElementById('year').textContent=new Date().getFullYear();
+function openBienDetailModal(id){
+  const b = DB.biens.find(x=>x.id===id); if(!b) return;
+  const waNum = DB.settings.whatsapp.replace(/\D/g,'');
+  openModal(b.t, `
+    <img src="${esc(b.img)}" alt="${esc(b.t)}" style="width:100%;height:220px;object-fit:cover;border-radius:14px;margin-bottom:14px">
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px">
+      <span class="pill ${statusPill(b.statut)}">${esc(b.statut||'Disponible')}</span>
+      <span class="pill pill-gold">${b.mode==='vente'?'À vendre':'À louer'}</span>
+      <span class="pill pill-navy">📍 ${esc(b.v)}</span>
+    </div>
+    <h3 style="font-size:24px;margin:8px 0">${esc(b.prix)}</h3>
+    <p style="font-weight:600;color:var(--muted);margin-bottom:8px">${esc(b.d)}</p>
+    <p style="margin-bottom:18px">${esc(b.desc || 'Bien vérifié par All Service Immo avec accompagnement administratif complet.')}</p>
+    <div style="display:flex;gap:10px;flex-wrap:wrap">
+      <button type="button" class="btn btn-navy" style="flex:1" onclick="closeModal();openVisitModal('${esc(b.id)}')">📅 Réserver une visite</button>
+      <a class="btn btn-wa" style="flex:1" href="https://wa.me/${waNum}?text=${encodeURIComponent('Bonjour, je suis intéressé par : '+b.t+' à '+b.v+' ('+b.prix+').')}" target="_blank" rel="noopener">💬 WhatsApp</a>
+    </div>`);
+}
+function openVisitModal(bienId){
+  const b = DB.biens.find(x=>x.id===bienId);
+  openModal('Planifier une visite', `
+    ${b ? `<p style="margin-bottom:14px;padding:10px 14px;background:#faf7f0;border-radius:12px">Bien sélectionné : <b>${esc(b.t)}</b> (${esc(b.v)})</p>` : ''}
+    <form onsubmit="return submitVisitLead(event)">
+      <input type="hidden" id="vBienId" value="${esc(bienId)}">
+      <div class="field"><label>Nom complet *</label><input id="vNom" required value="${esc(currentClientUser()?.nom||'')}"></div>
+      <div class="form-row">
+        <div class="field"><label>Téléphone / WhatsApp *</label><input id="vTel" required value="${esc(currentClientUser()?.tel||'')}" placeholder="+242 06 ..."></div>
+        <div class="field"><label>Email</label><input id="vEmail" type="email" value="${esc(currentClientUser()?.email||'')}"></div>
+      </div>
+      <div class="field"><label>Date souhaitée</label><input id="vDate" type="date" value="${todayISO()}"></div>
+      <div class="field"><label>Message</label><textarea id="vMsg" rows="3" placeholder="Disponibilités horaires, questions..."></textarea></div>
+      <button class="btn btn-gold" type="submit" style="width:100%">Confirmer ma demande de visite →</button>
+    </form>`);
+}
+function submitVisitLead(e){
+  e.preventDefault();
+  const bienId = document.getElementById('vBienId').value;
+  const b = DB.biens.find(x=>x.id===bienId);
+  DB.demandes.unshift({
+    id: uid('dem'),
+    nom: document.getElementById('vNom').value.trim(),
+    tel: document.getElementById('vTel').value.trim(),
+    email: document.getElementById('vEmail').value.trim(),
+    ville: b ? b.v : 'Brazzaville',
+    type: b && b.mode==='location' ? 'Louer un bien (Visite)' : 'Acheter un bien (Visite)',
+    bienId: bienId,
+    msg: (b ? '['+b.t+'] ' : '') + 'Visite souhaitée le ' + document.getElementById('vDate').value + '. ' + document.getElementById('vMsg').value.trim(),
+    statut: 'Nouvelle',
+    note: '',
+    date: todayISO()
+  });
+  saveDB();
+  closeModal();
+  showToast('✅ Demande de visite enregistrée dans notre agenda !');
+  return false;
+}
+function submitPublicContact(e){
+  e.preventDefault();
+  const nom = document.getElementById('fNom').value.trim();
+  const tel = document.getElementById('fTel').value.trim();
+  const email = document.getElementById('fEmail').value.trim();
+  const ville = document.getElementById('fVille').value;
+  const type = document.getElementById('fType').value;
+  const msg = document.getElementById('fMsg').value.trim();
+  DB.demandes.unshift({
+    id: uid('dem'), nom, tel, email, ville, type, bienId:'', msg: msg || 'Demande de rappel', statut:'Nouvelle', note:'', date: todayISO()
+  });
+  saveDB();
+  document.getElementById('publicContactForm').reset();
+  const waNum = DB.settings.whatsapp.replace(/\D/g,'');
+  const waLink = `https://wa.me/${waNum}?text=` + encodeURIComponent(`Bonjour ${DB.settings.brand}, je m'appelle ${nom} (${tel}, ${ville}). Projet : ${type}. ${msg}`);
+  openModal('Demande reçue !', `
+    <p style="margin-bottom:14px">Merci <b>${esc(nom)}</b> ! Votre demande a bien été transmise à notre équipe et apparaît dans notre espace de suivi.</p>
+    <div style="display:flex;gap:10px;flex-wrap:wrap">
+      <a class="btn btn-wa" style="flex:1" href="${waLink}" target="_blank" rel="noopener">💬 Continuer sur WhatsApp</a>
+      <button type="button" class="btn btn-navy" style="flex:1" onclick="closeModal();switchView('client')">👤 Créer / ouvrir Espace Client</button>
+    </div>`);
+  return false;
+}
+
+// =========================================================
+// AUTHENTIFICATION CLIENT & ADMIN
+// =========================================================
+function currentClientUser(){
+  return SESSION.clientEmail ? DB.users.find(u=>u.email.toLowerCase()===SESSION.clientEmail.toLowerCase() && u.role==='client') : null;
+}
+function currentAdminUser(){
+  return SESSION.adminEmail ? DB.users.find(u=>u.email.toLowerCase()===SESSION.adminEmail.toLowerCase() && u.role==='admin') : null;
+}
+function toggleClientAuthTab(tab){
+  document.getElementById('cTabLogin').classList.toggle('active', tab==='login');
+  document.getElementById('cTabReg').classList.toggle('active', tab==='reg');
+  document.getElementById('clientLoginForm').style.display = tab==='login' ? 'block' : 'none';
+  document.getElementById('clientRegForm').style.display = tab==='reg' ? 'block' : 'none';
+}
+function doClientLogin(e){
+  e.preventDefault();
+  const email = document.getElementById('cLogEmail').value.trim().toLowerCase();
+  const pass = document.getElementById('cLogPass').value;
+  const user = DB.users.find(u=>u.email.toLowerCase()===email && u.pass===pass && u.role==='client');
+  if(!user){ showToast('❌ Email ou mot de passe client incorrect.'); return false; }
+  saveSession({ ...SESSION, clientEmail: user.email });
+  showToast('👋 Bienvenue ' + user.nom + ' !');
+  renderClientShell();
+  return false;
+}
+function quickClientLogin(email){
+  const user = DB.users.find(u=>u.email===email && u.role==='client');
+  if(!user) return;
+  saveSession({ ...SESSION, clientEmail: user.email });
+  showToast('👋 Connecté en tant que ' + user.nom);
+  renderClientShell();
+}
+function doClientRegister(e){
+  e.preventDefault();
+  const nom = document.getElementById('cRegNom').value.trim();
+  const email = document.getElementById('cRegEmail').value.trim().toLowerCase();
+  const tel = document.getElementById('cRegTel').value.trim();
+  const ville = document.getElementById('cRegVille').value;
+  const pass = document.getElementById('cRegPass').value;
+  if(DB.users.some(u=>u.email.toLowerCase()===email)){ showToast('⚠️ Un compte existe déjà avec cet email.'); return false; }
+  DB.users.push({ id:uid('u'), role:'client', nom, email, tel, ville, pass, createdAt: todayISO() });
+  DB.messages.push({ id:uid('m'), clientEmail:email, expediteur:'admin', auteur:DB.settings.brand, contenu:'Bienvenue dans votre Espace Client '+nom+' ! Posez vos questions ici ou faites une nouvelle demande de projet.', date:todayISO()+' 09:00', lu:false });
+  saveDB();
+  saveSession({ ...SESSION, clientEmail: email });
+  showToast('🎉 Compte client créé ! Bienvenue ' + nom);
+  renderClientShell();
+  return false;
+}
+function logoutClient(){
+  saveSession({ ...SESSION, clientEmail: null });
+  renderClientShell();
+}
+
+function doAdminLogin(e){
+  e.preventDefault();
+  const email = document.getElementById('aLogEmail').value.trim().toLowerCase();
+  const pass = document.getElementById('aLogPass').value;
+  const user = DB.users.find(u=>u.email.toLowerCase()===email && u.pass===pass && u.role==='admin');
+  if(!user){ showToast('❌ Identifiants administrateur incorrects.'); return false; }
+  saveSession({ ...SESSION, adminEmail: user.email });
+  showToast('🔐 Connexion administrateur réussie.');
+  renderAdminShell();
+  return false;
+}
+function quickAdminLogin(){
+  const admin = DB.users.find(u=>u.role==='admin');
+  if(!admin) return;
+  saveSession({ ...SESSION, adminEmail: admin.email });
+  showToast('🔐 Connecté en tant que ' + admin.nom);
+  renderAdminShell();
+}
+function logoutAdmin(){
+  saveSession({ ...SESSION, adminEmail: null });
+  renderAdminShell();
+}
+
+// =========================================================
+// ESPACE CLIENT : VUES & FONCTIONNALITÉS COMPLÈTES
+// =========================================================
+function renderClientShell(){
+  syncBranding();
+  const u = currentClientUser();
+  document.getElementById('clientAuthScreen').style.display = u ? 'none' : 'grid';
+  document.getElementById('clientPortal').style.display = u ? 'flex' : 'none';
+  if(!u) return;
+
+  document.getElementById('cUserName').textContent = u.nom;
+  document.getElementById('cUserMeta').textContent = u.ville + ' • ' + u.tel;
+
+  const chs = DB.chantiers.filter(c=>c.clientEmail===u.email);
+  const docs = DB.documents.filter(d=>d.clientEmail===u.email);
+  const facts = DB.factures.filter(f=>f.clientEmail===u.email);
+  const dems = DB.demandes.filter(d=>d.email && d.email.toLowerCase()===u.email.toLowerCase());
+  const unread = DB.messages.filter(m=>m.clientEmail===u.email && m.expediteur==='admin' && !m.lu).length;
+
+  document.getElementById('cBadgeChantier').textContent = chs.length;
+  document.getElementById('cBadgeDocs').textContent = docs.filter(d=>!d.valideClient).length || docs.length;
+  document.getElementById('cBadgeFact').textContent = facts.filter(f=>f.statut!=='Payée').length;
+  document.getElementById('cBadgeDem').textContent = dems.length + (DB.favorites||[]).length;
+  document.getElementById('cBadgeMsg').textContent = unread;
+
+  setClientTab(clientTab);
+}
+
+function setClientTab(tab){
+  clientTab = tab;
+  document.getElementById('clientSidebar').classList.remove('open');
+  document.querySelectorAll('#clientNav .side-btn').forEach(b=>b.classList.toggle('active', b.dataset.tab===tab));
+  const titles = { dash:'Tableau de bord', chantier:'Mon Chantier & Suivi Photo', docs:'Plans, Titres & Documents', factures:'Factures & Paiements', demandes:'Mes Demandes & Favoris', messages:'Messagerie Équipe', profil:'Mon Avis & Profil' };
+  document.getElementById('clientPageTitle').textContent = titles[tab] || 'Espace Client';
+  const body = document.getElementById('clientBody');
+  const u = currentClientUser();
+  if(!u) return;
+
+  const chs = DB.chantiers.filter(c=>c.clientEmail===u.email);
+  const docs = DB.documents.filter(d=>d.clientEmail===u.email);
+  const facts = DB.factures.filter(f=>f.clientEmail===u.email);
+  const msgs = DB.messages.filter(m=>m.clientEmail===u.email);
+  const dems = DB.demandes.filter(d=>d.email && d.email.toLowerCase()===u.email.toLowerCase());
+
+  if(tab === 'dash'){
+    const mainCh = chs[0];
+    const totalBudget = chs.reduce((s,c)=>s+(+c.budgetTotal||0),0);
+    const totalPaye = facts.filter(f=>f.statut==='Payée').reduce((s,f)=>s+(+f.montant||0),0);
+    const enAttente = facts.filter(f=>f.statut!=='Payée').reduce((s,f)=>s+(+f.montant||0),0);
+    const docsAValider = docs.filter(d=>!d.valideClient).length;
+
+    body.innerHTML = `
+      <div class="kpi-grid">
+        <div class="kpi"><small>Avancement chantier</small><b>${mainCh ? mainCh.avancement+'%' : '—'}</b><span>${mainCh ? esc(mainCh.statut) : 'Aucun chantier actif'}</span></div>
+        <div class="kpi"><small>Budget payé</small><b>${fmt(totalPaye)} F</b><span>Sur ${fmt(totalBudget)} FCFA prévus</span></div>
+        <div class="kpi"><small>Reste / Échéances</small><b>${fmt(enAttente)} F</b><span>${facts.filter(f=>f.statut!=='Payée').length} facture(s) à suivre</span></div>
+        <div class="kpi"><small>Actions requises</small><b>${docsAValider}</b><span>Plan(s)/devis à approuver</span></div>
+      </div>
+      <div class="two-col">
+        <div class="panel">
+          <div class="panel-head"><h3>🏗️ Avancement en direct</h3>${mainCh?`<button class="btn btn-navy btn-sm" onclick="setClientTab('chantier')">Voir tout →</button>`:''}</div>
+          ${mainCh ? `
+            <b style="font-size:17px">${esc(mainCh.titre)}</b>
+            <p style="color:var(--muted);font-size:13px;margin:4px 0 10px">📍 ${esc(mainCh.ville)} — ${esc(mainCh.adresse)} • Responsable : ${esc(mainCh.responsable)}</p>
+            <div style="display:flex;justify-content:space-between;font-size:13px;font-weight:700"><span>Progression globale</span><span>${mainCh.avancement}%</span></div>
+            <div class="prog-track"><div class="prog-fill" style="width:${mainCh.avancement}%"></div></div>
+            ${mainCh.rapports[0] ? `
+              <div class="t-item" style="margin-top:14px">
+                <img src="${esc(mainCh.rapports[0].img)}" alt="Rapport">
+                <div>
+                  <span class="pill pill-gold">${esc(mainCh.rapports[0].date)}</span>
+                  <h4 style="margin:6px 0">${esc(mainCh.rapports[0].titre)}</h4>
+                  <p style="font-size:13.5px;color:var(--muted)">${esc(mainCh.rapports[0].texte)}</p>
+                </div>
+              </div>` : ''}
+          ` : `<p style="color:var(--muted)">Vous n'avez pas encore de chantier démarré. Cliquez sur <b>+ Nouvelle demande</b> pour démarrer un projet ou une visite.</p>`}
+        </div>
+        <div class="panel">
+          <div class="panel-head"><h3>⚡ À faire / Dernières alertes</h3></div>
+          <div style="display:flex;flex-direction:column;gap:10px">
+            ${docs.filter(d=>!d.valideClient).map(d=>`
+              <div style="padding:12px;border:1px solid var(--line);border-radius:12px;display:flex;justify-content:space-between;align-items:center;gap:8px">
+                <div><b style="font-size:13.5px">📐 ${esc(d.titre)}</b><div style="font-size:12px;color:var(--muted)">En attente de votre validation</div></div>
+                <button class="btn btn-gold btn-sm" onclick="setClientTab('docs')">Voir</button>
+              </div>`).join('')}
+            ${facts.filter(f=>f.statut!=='Payée').map(f=>`
+              <div style="padding:12px;border:1px solid var(--line);border-radius:12px;display:flex;justify-content:space-between;align-items:center;gap:8px">
+                <div><b style="font-size:13.5px">💳 ${esc(f.libelle)}</b><div style="font-size:12px;color:var(--muted)">${fmt(f.montant)} FCFA • ${esc(f.statut)}</div></div>
+                <button class="btn btn-navy btn-sm" onclick="setClientTab('factures')">Payer</button>
+              </div>`).join('')}
+            ${(!docs.some(d=>!d.valideClient) && !facts.some(f=>f.statut!=='Payée')) ? '<p style="color:var(--green);font-weight:700">✅ Tout est à jour sur votre dossier !</p>' : ''}
+          </div>
+        </div>
+      </div>`;
+  }
+  else if(tab === 'chantier'){
+    if(!chs.length){
+      body.innerHTML = `<div class="panel"><h3>Aucun chantier actif</h3><p style="color:var(--muted);margin:10px 0 16px">Vous n'avez pas encore de chantier associé à votre compte.</p><button class="btn btn-gold" onclick="openClientNewRequestModal()">+ Demander un devis / lancer un projet</button></div>`;
+      return;
+    }
+    body.innerHTML = chs.map(ch=>`
+      <div class="panel">
+        <div class="panel-head">
+          <div>
+            <span class="pill ${statusPill(ch.statut)}">${esc(ch.statut)}</span>
+            <h3 style="margin-top:6px">${esc(ch.titre)}</h3>
+            <p style="color:var(--muted);font-size:13.5px">${esc(ch.type)} • 📍 ${esc(ch.ville)} (${esc(ch.adresse)}) • Chef de projet : <b>${esc(ch.responsable)}</b></p>
+          </div>
+          <div style="text-align:right">
+            <b style="font-size:26px;color:var(--navy)">${ch.avancement}%</b>
+            <div style="font-size:12px;color:var(--muted)">Livraison prévue : ${esc(ch.dateLivraison||'—')}</div>
+          </div>
+        </div>
+        <div class="prog-track"><div class="prog-fill" style="width:${ch.avancement}%"></div></div>
+        <h4 style="margin:18px 0 8px">Étapes du projet</h4>
+        <div class="jalons-grid">
+          ${(ch.jalons||[]).map((j,idx)=>`
+            <div class="jalon ${j.statut==='Terminé'?'done':j.statut==='En cours'?'curr':''}">
+              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
+                <b style="font-size:12px;color:var(--muted)">ÉTAPE ${idx+1}</b>
+                <span class="pill ${statusPill(j.statut)}">${esc(j.statut)}</span>
+              </div>
+              <b style="font-size:14px">${esc(j.nom)}</b>
+              <div style="font-size:12px;color:var(--muted);margin-top:4px">📅 ${esc(j.date||'—')}</div>
+            </div>`).join('')}
+        </div>
+        <h4 style="margin:22px 0 10px">📸 Journal hebdomadaire du chantier</h4>
+        <div class="timeline">
+          ${(ch.rapports||[]).length ? ch.rapports.map(r=>`
+            <div class="t-item">
+              <img src="${esc(r.img || 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=900&auto=format&fit=crop')}" alt="${esc(r.titre)}">
+              <div>
+                <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+                  <span class="pill pill-navy">${esc(r.date)}</span>
+                  <span class="pill pill-gold">Avancement : ${r.avancement}%</span>
+                </div>
+                <h4 style="margin:8px 0 4px;font-size:17px">${esc(r.titre)}</h4>
+                <p style="font-size:14px;color:#334155">${esc(r.texte)}</p>
+              </div>
+            </div>`).join('') : '<p style="color:var(--muted)">Aucun rapport photo publié pour le moment.</p>'}
+        </div>
+      </div>`).join('');
+  }
+  else if(tab === 'docs'){
+    body.innerHTML = `
+      <div class="panel">
+        <div class="panel-head"><h3>📐 Plans 2D/3D, Devis, Titres &amp; Contrats</h3></div>
+        <div class="tbl-wrap">
+          <table class="tbl">
+            <thead><tr><th>Document</th><th>Catégorie</th><th>Date</th><th>Validation</th><th>Actions</th></tr></thead>
+            <tbody>
+              ${docs.length ? docs.map(d=>`
+                <tr>
+                  <td><b>${esc(d.titre)}</b></td>
+                  <td><span class="pill pill-navy">${esc(d.categorie)}</span></td>
+                  <td>${esc(d.date)}</td>
+                  <td>${d.valideClient ? `<span class="pill pill-green">✅ Validé (${esc(d.valideLe)})</span>` : `<span class="pill pill-amber">⏳ À valider</span>`}</td>
+                  <td style="display:flex;gap:6px;flex-wrap:wrap">
+                    ${d.url ? `<button class="btn btn-light btn-sm" onclick="previewDocModal('${esc(d.id)}')">👁️ Aperçu</button>` : ''}
+                    ${!d.valideClient ? `<button class="btn btn-green btn-sm" onclick="clientApproveDoc('${esc(d.id)}')">✅ Valider</button>` : ''}
+                    <button class="btn btn-navy btn-sm" onclick="printDocument('${esc(d.id)}')">🖨️ Imprimer</button>
+                  </td>
+                </tr>`).join('') : '<tr><td colspan="5" style="text-align:center;color:var(--muted)">Aucun document déposé pour le moment.</td></tr>'}
+            </tbody>
+          </table>
+        </div>
+      </div>`;
+  }
+  else if(tab === 'factures'){
+    const paye = facts.filter(f=>f.statut==='Payée').reduce((s,f)=>s+(+f.montant||0),0);
+    const total = facts.reduce((s,f)=>s+(+f.montant||0),0);
+    body.innerHTML = `
+      <div class="kpi-grid">
+        <div class="kpi"><small>Total facturé</small><b>${fmt(total)} F</b><span>FCFA</span></div>
+        <div class="kpi"><small>Déjà réglé</small><b style="color:var(--green)">${fmt(paye)} F</b><span>Confirmé par la comptabilité</span></div>
+        <div class="kpi"><small>Solde restant</small><b style="color:var(--amber)">${fmt(total-paye)} F</b><span>Échéances à venir</span></div>
+        <div class="kpi"><small>Nombre de factures</small><b>${facts.length}</b><span>Historique complet</span></div>
+      </div>
+      <div class="panel">
+        <div class="panel-head"><h3>💳 Échéancier &amp; Reçus</h3></div>
+        <div class="tbl-wrap">
+          <table class="tbl">
+            <thead><tr><th>N°</th><th>Libellé</th><th>Montant</th><th>Échéance</th><th>Statut</th><th>Actions</th></tr></thead>
+            <tbody>
+              ${facts.length ? facts.map(f=>`
+                <tr>
+                  <td><b>${esc(f.numero)}</b></td>
+                  <td>${esc(f.libelle)}${f.ref ? `<div style="font-size:11px;color:var(--muted)">Réf: ${esc(f.ref)} (${esc(f.mode)})</div>` : ''}</td>
+                  <td><b>${fmt(f.montant)} FCFA</b></td>
+                  <td>${esc(f.echeance)}</td>
+                  <td><span class="pill ${statusPill(f.statut)}">${esc(f.statut)}</span></td>
+                  <td style="display:flex;gap:6px;flex-wrap:wrap">
+                    ${(f.statut==='En attente' || f.statut==='En retard') ? `<button class="btn btn-gold btn-sm" onclick="openDeclarePaymentModal('${esc(f.id)}')">💳 Déclarer paiement</button>` : ''}
+                    <button class="btn btn-navy btn-sm" onclick="printInvoice('${esc(f.id)}')">🖨️ Reçu / Facture</button>
+                  </td>
+                </tr>`).join('') : '<tr><td colspan="6" style="text-align:center;color:var(--muted)">Aucune facture enregistrée.</td></tr>'}
+            </tbody>
+          </table>
+        </div>
+      </div>`;
+  }
+  else if(tab === 'demandes'){
+    const favBiens = DB.biens.filter(b=>(DB.favorites||[]).includes(b.id));
+    body.innerHTML = `
+      <div class="panel">
+        <div class="panel-head"><h3>❤️ Mes Biens Favoris (${favBiens.length})</h3><button class="btn btn-light btn-sm" onclick="goSection('biens')">Explorer le catalogue</button></div>
+        ${favBiens.length ? `<div class="grid">${favBiens.map(b=>`
+          <article class="prop">
+            <div class="prop-media"><img src="${esc(b.img)}" alt="${esc(b.t)}"><span class="pill ${statusPill(b.statut)} prop-status">${esc(b.statut)}</span></div>
+            <div class="prop-body">
+              <h3>${esc(b.t)}</h3><div class="meta"><span>📍 ${esc(b.v)}</span><span>${esc(b.d)}</span></div>
+              <div class="prop-price">${esc(b.prix)}</div>
+              <div class="prop-actions">
+                <button class="btn btn-navy btn-sm" onclick="openVisitModal('${esc(b.id)}')">📅 Demander visite</button>
+                <button class="btn btn-light btn-sm" onclick="toggleFav('${esc(b.id)}');setClientTab('demandes')">Retirer</button>
+              </div>
+            </div>
+          </article>`).join('')}</div>` : `<p style="color:var(--muted)">Aucun favori pour l'instant. Cliquez sur le cœur ❤️ sur les biens du site public.</p>`}
+      </div>
+      <div class="panel">
+        <div class="panel-head"><h3>📋 Mes Demandes &amp; Rendez-vous</h3><button class="btn btn-gold btn-sm" onclick="openClientNewRequestModal()">+ Nouvelle demande</button></div>
+        <div class="tbl-wrap">
+          <table class="tbl">
+            <thead><tr><th>Date</th><th>Type</th><th>Ville</th><th>Détails</th><th>Statut</th></tr></thead>
+            <tbody>
+              ${dems.length ? dems.map(d=>`
+                <tr>
+                  <td>${esc(d.date)}</td><td><b>${esc(d.type)}</b></td><td>${esc(d.ville)}</td><td>${esc(d.msg)}</td>
+                  <td><span class="pill ${statusPill(d.statut)}">${esc(d.statut)}</span></td>
+                </tr>`).join('') : '<tr><td colspan="5" style="text-align:center;color:var(--muted)">Aucune demande enregistrée sous votre email.</td></tr>'}
+            </tbody>
+          </table>
+        </div>
+      </div>`;
+  }
+  else if(tab === 'messages'){
+    let changed = false;
+    DB.messages.forEach(m=>{ if(m.clientEmail===u.email && m.expediteur==='admin' && !m.lu){ m.lu=true; changed=true; } });
+    if(changed){ saveDB(); document.getElementById('cBadgeMsg').textContent = '0'; }
+
+    body.innerHTML = `
+      <div class="panel">
+        <div class="panel-head">
+          <div><h3>💬 Discussion avec l'équipe All Service Immo</h3><p style="font-size:13px;color:var(--muted)">Posez vos questions sur les plans, le chantier ou les paiements.</p></div>
+          <a class="btn btn-wa btn-sm js-wa-main" href="https://wa.me/${DB.settings.whatsapp.replace(/\D/g,'')}" target="_blank" rel="noopener">WhatsApp Direct</a>
+        </div>
+        <div class="chat-box">
+          <div class="chat-msgs" id="clientChatMsgs">
+            ${msgs.length ? msgs.map(m=>`
+              <div class="msg ${m.expediteur==='client'?'me':'them'}">
+                <div>${esc(m.contenu)}</div>
+                <small>${esc(m.auteur)} • ${esc(m.date)}</small>
+              </div>`).join('') : '<p style="color:var(--muted);text-align:center;margin:auto">Démarrez la conversation avec votre conseiller.</p>'}
+          </div>
+          <form class="chat-form" onsubmit="return sendClientMessage(event)">
+            <input id="cChatInput" required placeholder="Écrivez votre message ici...">
+            <button class="btn btn-gold btn-sm" type="submit">Envoyer →</button>
+          </form>
+        </div>
+      </div>`;
+    const box = document.getElementById('clientChatMsgs');
+    if(box) box.scrollTop = box.scrollHeight;
+  }
+  else if(tab === 'profil'){
+    body.innerHTML = `
+      <div class="two-col">
+        <div class="panel">
+          <div class="panel-head"><h3>👤 Mes Coordonnées</h3></div>
+          <form onsubmit="return updateClientProfile(event)">
+            <div class="field"><label>Nom complet</label><input id="cpNom" required value="${esc(u.nom)}"></div>
+            <div class="field"><label>Email</label><input disabled value="${esc(u.email)}"></div>
+            <div class="form-row">
+              <div class="field"><label>Téléphone / WhatsApp</label><input id="cpTel" required value="${esc(u.tel)}"></div>
+              <div class="field"><label>Ville</label><input id="cpVille" required value="${esc(u.ville)}"></div>
+            </div>
+            <div class="field"><label>Nouveau mot de passe (laisser vide pour garder l'actuel)</label><input id="cpPass" type="password" placeholder="••••••"></div>
+            <button class="btn btn-navy" type="submit">Enregistrer mes modifications</button>
+          </form>
+        </div>
+        <div class="panel">
+          <div class="panel-head"><h3>⭐ Laisser un avis client</h3></div>
+          <form onsubmit="return submitClientReview(event)">
+            <div class="field"><label>Note</label><select id="crNote"><option value="5">★★★★★ (5/5 — Excellent)</option><option value="4">★★★★☆ (4/5 — Très bien)</option><option value="3">★★★☆☆ (3/5 — Bien)</option></select></div>
+            <div class="field"><label>Votre témoignage *</label><textarea id="crTexte" required rows="4" placeholder="Partagez votre expérience avec All Service Immo..."></textarea></div>
+            <button class="btn btn-gold" type="submit">Publier mon avis</button>
+          </form>
+        </div>
+      </div>`;
+  }
+}
+
+function clientApproveDoc(docId){
+  const d = DB.documents.find(x=>x.id===docId);
+  if(!d) return;
+  d.valideClient = true;
+  d.valideLe = todayISO();
+  DB.messages.push({ id:uid('m'), clientEmail:d.clientEmail, expediteur:'client', auteur:currentClientUser().nom, contenu:'✅ Document approuvé : ' + d.titre, date:todayISO()+' '+new Date().toTimeString().slice(0,5), lu:false });
+  saveDB();
+  showToast('✅ Document validé ! Notre équipe en est informée.');
+  renderClientShell();
+}
+function previewDocModal(docId){
+  const d = DB.documents.find(x=>x.id===docId); if(!d) return;
+  openModal(d.titre, `
+    <p style="margin-bottom:12px"><span class="pill pill-navy">${esc(d.categorie)}</span> • Ajouté le ${esc(d.date)}</p>
+    ${d.url && (d.url.startsWith('data:image') || d.url.includes('unsplash') || /\.(png|jpe?g|webp)$/i.test(d.url)) ? `<img src="${esc(d.url)}" style="width:100%;border-radius:14px;margin-bottom:14px">` : `<p style="margin-bottom:14px"><a class="btn btn-navy" href="${esc(d.url)}" target="_blank" rel="noopener">Ouvrir le fichier externe ↗</a></p>`}
+    <button type="button" class="btn btn-gold" onclick="printDocument('${esc(d.id)}')">🖨️ Imprimer la fiche</button>`);
+}
+function openDeclarePaymentModal(factId){
+  const f = DB.factures.find(x=>x.id===factId); if(!f) return;
+  openModal('Déclarer un paiement — ' + f.numero, `
+    <p style="margin-bottom:14px;background:#faf7f0;padding:12px;border-radius:12px">${esc(f.libelle)}<br>Montant : <b>${fmt(f.montant)} FCFA</b></p>
+    <form onsubmit="return submitClientPayment(event)">
+      <input type="hidden" id="dpFactId" value="${esc(factId)}">
+      <div class="field"><label>Moyen de paiement</label><select id="dpMode"><option>Mobile Money (MTN / Airtel)</option><option>Virement bancaire</option><option>Espèces en agence</option><option>Chèque</option></select></div>
+      <div class="field"><label>Référence de transaction *</label><input id="dpRef" required placeholder="Ex : TXN-994821 / Bordereau virement"></div>
+      <button class="btn btn-gold" type="submit" style="width:100%">Envoyer pour confirmation →</button>
+    </form>`);
+}
+function submitClientPayment(e){
+  e.preventDefault();
+  const f = DB.factures.find(x=>x.id===document.getElementById('dpFactId').value); if(!f) return false;
+  f.statut = 'En vérification';
+  f.mode = document.getElementById('dpMode').value;
+  f.ref = document.getElementById('dpRef').value.trim();
+  f.datePaiement = todayISO();
+  DB.messages.push({ id:uid('m'), clientEmail:f.clientEmail, expediteur:'client', auteur:currentClientUser().nom, contenu:`💳 Paiement déclaré sur ${f.numero} (${fmt(f.montant)} FCFA) via ${f.mode} — Réf : ${f.ref}`, date:todayISO()+' '+new Date().toTimeString().slice(0,5), lu:false });
+  saveDB();
+  closeModal();
+  showToast('✅ Paiement déclaré ! En attente de confirmation par la comptabilité.');
+  renderClientShell();
+  return false;
+}
+function openClientNewRequestModal(){
+  const u = currentClientUser();
+  openModal('Nouvelle demande / Rendez-vous', `
+    <form onsubmit="return saveClientNewRequest(event)">
+      <div class="field"><label>Objet de la demande</label><select id="cnrType"><option>Construire (clé en main)</option><option>Plan Architecture / 3D</option><option>Acheter un terrain / bien</option><option>Rénovation / Extension</option><option>Rendez-vous chantier</option></select></div>
+      <div class="field"><label>Ville</label><select id="cnrVille"><option>${esc(u.ville||'Brazzaville')}</option><option>Brazzaville</option><option>Pointe-Noire</option><option>Kinshasa</option><option>Douala</option><option>Libreville</option></select></div>
+      <div class="field"><label>Description détaillée *</label><textarea id="cnrMsg" required rows="4" placeholder="Décrivez votre besoin..."></textarea></div>
+      <button class="btn btn-gold" type="submit" style="width:100%">Envoyer la demande</button>
+    </form>`);
+}
+function saveClientNewRequest(e){
+  e.preventDefault();
+  const u = currentClientUser();
+  DB.demandes.unshift({
+    id: uid('dem'), nom:u.nom, tel:u.tel, email:u.email, ville:document.getElementById('cnrVille').value,
+    type:document.getElementById('cnrType').value, bienId:'', msg:document.getElementById('cnrMsg').value.trim(),
+    statut:'Nouvelle', note:'', date:todayISO()
+  });
+  saveDB(); closeModal(); showToast('✅ Demande envoyée à notre équipe !'); renderClientShell();
+  return false;
+}
+function sendClientMessage(e){
+  e.preventDefault();
+  const u = currentClientUser();
+  const input = document.getElementById('cChatInput');
+  const txt = input.value.trim(); if(!txt) return false;
+  DB.messages.push({ id:uid('m'), clientEmail:u.email, expediteur:'client', auteur:u.nom, contenu:txt, date:todayISO()+' '+new Date().toTimeString().slice(0,5), lu:false });
+  saveDB();
+  setClientTab('messages');
+  return false;
+}
+function updateClientProfile(e){
+  e.preventDefault();
+  const u = currentClientUser();
+  u.nom = document.getElementById('cpNom').value.trim();
+  u.tel = document.getElementById('cpTel').value.trim();
+  u.ville = document.getElementById('cpVille').value.trim();
+  const np = document.getElementById('cpPass').value;
+  if(np) u.pass = np;
+  saveDB(); showToast('✅ Profil mis à jour !'); renderClientShell();
+  return false;
+}
+function submitClientReview(e){
+  e.preventDefault();
+  const u = currentClientUser();
+  DB.temoignages.unshift({
+    id: uid('t'), nom:u.nom, ville:'Client — '+u.ville, note:+document.getElementById('crNote').value,
+    texte:document.getElementById('crTexte').value.trim(), publie:false
+  });
+  saveDB(); showToast('⭐ Merci ! Votre avis est envoyé pour publication.'); setClientTab('profil');
+  return false;
+}
+
+// =========================================================
+// ESPACE ADMIN : BACK-OFFICE COMPLET
+// =========================================================
+function renderAdminShell(){
+  syncBranding();
+  const a = currentAdminUser();
+  document.getElementById('adminAuthScreen').style.display = a ? 'none' : 'grid';
+  document.getElementById('adminPortal').style.display = a ? 'flex' : 'none';
+  if(!a) return;
+
+  document.getElementById('aUserName').textContent = a.nom;
+  const supaBadge = document.getElementById('supaStatusBadge');
+  if(DB.settings.supaUrl && DB.settings.supaKey){
+    supaBadge.className = 'pill pill-green'; supaBadge.textContent = 'Supabase configuré';
+  } else {
+    supaBadge.className = 'pill pill-amber'; supaBadge.textContent = 'Stockage Local';
+  }
+
+  document.getElementById('aBadgeDem').textContent = DB.demandes.filter(d=>d.statut==='Nouvelle').length;
+  document.getElementById('aBadgeBiens').textContent = DB.biens.length;
+  document.getElementById('aBadgeChant').textContent = DB.chantiers.length;
+  document.getElementById('aBadgeFact').textContent = DB.factures.filter(f=>f.statut!=='Payée').length;
+  document.getElementById('aBadgeMsg').textContent = DB.messages.filter(m=>m.expediteur==='client' && !m.lu).length;
+
+  setAdminTab(adminTab);
+}
+
+function setAdminTab(tab){
+  adminTab = tab;
+  document.getElementById('adminSidebar').classList.remove('open');
+  document.querySelectorAll('#adminNav .side-btn').forEach(b=>b.classList.toggle('active', b.dataset.tab===tab));
+  const titles = {
+    overview:"Vue d'ensemble — Direction", demandes:'CRM Demandes & Visites', biens:'Catalogue Immobilier',
+    projets:'Réalisations (Portfolio)', chantiers:'Chantiers & Suivi Photo', docs:'Plans & Documents Clients',
+    factures:'Facturation & Trésorerie', clients:'Clients & Messagerie', settings:'Avis, Paramètres & Supabase'
+  };
+  document.getElementById('adminPageTitle').textContent = titles[tab] || 'Admin';
+  const body = document.getElementById('adminBody');
+
+  if(tab === 'overview'){
+    const encaisse = DB.factures.filter(f=>f.statut==='Payée').reduce((s,f)=>s+(+f.montant||0),0);
+    const aEncaisser = DB.factures.filter(f=>f.statut!=='Payée').reduce((s,f)=>s+(+f.montant||0),0);
+    const clientsCount = DB.users.filter(u=>u.role==='client').length;
+    const nouvelles = DB.demandes.filter(d=>d.statut==='Nouvelle').length;
+    const verifFact = DB.factures.filter(f=>f.statut==='En vérification');
+
+    body.innerHTML = `
+      <div class="kpi-grid">
+        <div class="kpi"><small>Encaissé (Factures payées)</small><b style="color:var(--green)">${fmt(encaisse)} F</b><span>FCFA confirmés</span></div>
+        <div class="kpi"><small>À encaisser / Vérif</small><b style="color:var(--amber)">${fmt(aEncaisser)} F</b><span>${DB.factures.filter(f=>f.statut!=='Payée').length} facture(s) en cours</span></div>
+        <div class="kpi"><small>Chantiers actifs</small><b>${DB.chantiers.length}</b><span>${clientsCount} client(s) inscrits</span></div>
+        <div class="kpi"><small>Nouvelles demandes</small><b style="color:var(--blue)">${nouvelles}</b><span>Sur ${DB.demandes.length} leads au total</span></div>
+      </div>
+      <div class="two-col">
+        <div class="panel">
+          <div class="panel-head"><h3>📊 Avancement des chantiers</h3><button class="btn btn-light btn-sm" onclick="setAdminTab('chantiers')">Gérer</button></div>
+          ${DB.chantiers.map(c=>`
+            <div class="bar-row">
+              <div class="bar-label">${esc(c.titre.slice(0,22))}…</div>
+              <div class="bar-bg"><div class="bar-val" style="width:${c.avancement}%;background:${c.avancement>=70?'var(--green)':'var(--gold)'}"></div></div>
+              <b style="width:40px;text-align:right">${c.avancement}%</b>
+            </div>`).join('')}
+          <h4 style="margin:22px 0 8px">Répartition du catalogue</h4>
+          <div class="bar-row"><div class="bar-label">Biens à vendre</div><div class="bar-bg"><div class="bar-val" style="width:${Math.min(100,DB.biens.filter(b=>b.mode==='vente').length*12)}%"></div></div><b>${DB.biens.filter(b=>b.mode==='vente').length}</b></div>
+          <div class="bar-row"><div class="bar-label">Biens à louer</div><div class="bar-bg"><div class="bar-val" style="width:${Math.min(100,DB.biens.filter(b=>b.mode==='location').length*12)}%;background:var(--gold)"></div></div><b>${DB.biens.filter(b=>b.mode==='location').length}</b></div>
+        </div>
+        <div class="panel">
+          <div class="panel-head"><h3>🔔 Actions prioritaires</h3></div>
+          <div style="display:flex;flex-direction:column;gap:10px">
+            ${verifFact.map(f=>`
+              <div style="padding:12px;border:1px solid #bfdbfe;background:#eff6ff;border-radius:12px;display:flex;justify-content:space-between;align-items:center;gap:8px">
+                <div><b style="font-size:13px">💳 Paiement déclaré : ${esc(f.numero)}</b><div style="font-size:12px">${fmt(f.montant)} F • Réf ${esc(f.ref)}</div></div>
+                <button class="btn btn-green btn-sm" onclick="adminMarkFactPaid('${esc(f.id)}')">Confirmer</button>
+              </div>`).join('')}
+            ${DB.demandes.filter(d=>d.statut==='Nouvelle').slice(0,4).map(d=>`
+              <div style="padding:12px;border:1px solid var(--line);border-radius:12px;display:flex;justify-content:space-between;align-items:center;gap:8px">
+                <div><b style="font-size:13px">📩 ${esc(d.nom)} (${esc(d.ville)})</b><div style="font-size:12px;color:var(--muted)">${esc(d.type)}</div></div>
+                <button class="btn btn-navy btn-sm" onclick="setAdminTab('demandes')">Traiter</button>
+              </div>`).join('')}
+            ${(!verifFact.length && !nouvelles) ? '<p style="color:var(--green);font-weight:700">✅ Aucune urgence en attente.</p>' : ''}
+          </div>
+        </div>
+      </div>`;
+  }
+  else if(tab === 'demandes'){
+    body.innerHTML = `
+      <div class="panel">
+        <div class="panel-head">
+          <h3>📩 Leads, Visites &amp; Demandes de devis (${DB.demandes.length})</h3>
+          <select id="admDemFilter" onchange="renderAdminDemandesRows()" style="padding:8px 12px;border-radius:10px;border:1.5px solid var(--line)">
+            <option value="all">Tous les statuts</option><option>Nouvelle</option><option>Contactée</option><option>Visite planifiée</option><option>Devis envoyé</option><option>Convertie</option>
+          </select>
+        </div>
+        <div class="tbl-wrap"><table class="tbl"><thead><tr><th>Date</th><th>Prospect</th><th>Projet &amp; Message</th><th>Statut</th><th>Actions</th></tr></thead><tbody id="admDemRows"></tbody></table></div>
+      </div>`;
+    renderAdminDemandesRows();
+  }
+  else if(tab === 'biens'){
+    body.innerHTML = `
+      <div class="panel">
+        <div class="panel-head">
+          <h3>🏠 Catalogue Immobilier (${DB.biens.length})</h3>
+          <button class="btn btn-gold btn-sm" onclick="openAdminBienModal()">+ Ajouter un bien</button>
+        </div>
+        <div class="tbl-wrap">
+          <table class="tbl">
+            <thead><tr><th>Bien</th><th>Ville / Type</th><th>Mode</th><th>Prix</th><th>Statut</th><th>Actions</th></tr></thead>
+            <tbody>
+              ${DB.biens.map(b=>`
+                <tr>
+                  <td style="display:flex;align-items:center;gap:10px"><img src="${esc(b.img)}" style="width:56px;height:42px;object-fit:cover;border-radius:8px"><div><b>${esc(b.t)}</b><div style="font-size:11px;color:var(--muted)">${esc(b.d)}</div></div></td>
+                  <td>${esc(b.v)}<div style="font-size:11px;color:var(--muted)">${esc(b.type)}</div></td>
+                  <td><span class="pill ${b.mode==='vente'?'pill-gold':'pill-navy'}">${esc(b.mode)}</span></td>
+                  <td><b>${esc(b.prix)}</b></td>
+                  <td>
+                    <select onchange="adminChangeBienStatus('${esc(b.id)}', this.value)" style="padding:6px;border-radius:8px;border:1px solid var(--line)">
+                      ${['Disponible','Réservé','Vendu','Loué'].map(st=>`<option ${b.statut===st?'selected':''}>${st}</option>`).join('')}
+                    </select>
+                  </td>
+                  <td style="display:flex;gap:6px">
+                    <button class="btn btn-light btn-sm" onclick="openAdminBienModal('${esc(b.id)}')">✏️</button>
+                    <button class="btn btn-red btn-sm" onclick="adminDeleteBien('${esc(b.id)}')">🗑️</button>
+                  </td>
+                </tr>`).join('')}
+            </tbody>
+          </table>
+        </div>
+      </div>`;
+  }
+  else if(tab === 'projets'){
+    body.innerHTML = `
+      <div class="panel">
+        <div class="panel-head"><h3>🏛️ Réalisations affichées sur le site (${DB.projets.length})</h3><button class="btn btn-gold btn-sm" onclick="openAdminProjetModal()">+ Ajouter une réalisation</button></div>
+        <div class="grid">${DB.projets.map(p=>`
+          <article class="prop">
+            <div class="prop-media"><img src="${esc(p.img)}"><span class="pill pill-gold prop-status">${esc(p.c)}</span></div>
+            <div class="prop-body">
+              <h3>${esc(p.t)}</h3><div class="meta"><span>${esc(p.d)}</span></div>
+              <div class="prop-actions">
+                <button class="btn btn-light btn-sm" onclick="openAdminProjetModal('${esc(p.id)}')">✏️ Modifier</button>
+                <button class="btn btn-red btn-sm" onclick="adminDeleteProjet('${esc(p.id)}')">🗑️ Supprimer</button>
+              </div>
+            </div>
+          </article>`).join('')}</div>
+      </div>`;
+  }
+  else if(tab === 'chantiers'){
+    body.innerHTML = `
+      <div class="panel">
+        <div class="panel-head"><h3>🏗️ Chantiers Clients (${DB.chantiers.length})</h3><button class="btn btn-gold btn-sm" onclick="openAdminNewChantier()">+ Nouveau chantier</button></div>
+        ${DB.chantiers.map(c=>{
+          const cl = DB.users.find(u=>u.email===c.clientEmail);
+          return `
+          <div style="border:1px solid var(--line);border-radius:16px;padding:18px;margin-bottom:14px">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:12px">
+              <div>
+                <span class="pill ${statusPill(c.statut)}">${esc(c.statut)}</span>
+                <h4 style="font-size:18px;margin:6px 0">${esc(c.titre)}</h4>
+                <p style="font-size:13px;color:var(--muted)">Client : <b>${esc(cl?cl.nom:c.clientEmail)}</b> • 📍 ${esc(c.ville)} (${esc(c.adresse)}) • Budget : <b>${fmt(c.budgetTotal)} FCFA</b></p>
+              </div>
+              <div style="display:flex;gap:8px;flex-wrap:wrap">
+                <button class="btn btn-gold btn-sm" onclick="openAdminReportModal('${esc(c.id)}')">📸 Publier rapport photo</button>
+                <button class="btn btn-navy btn-sm" onclick="openAdminEditChantierModal('${esc(c.id)}')">⚙️ Jalons &amp; %</button>
+              </div>
+            </div>
+            <div style="display:flex;align-items:center;gap:12px;margin-top:12px">
+              <div class="prog-track" style="flex:1"><div class="prog-fill" style="width:${c.avancement}%"></div></div>
+              <b>${c.avancement}%</b>
+            </div>
+          </div>`;
+        }).join('')}
+      </div>`;
+  }
+  else if(tab === 'docs'){
+    body.innerHTML = `
+      <div class="panel">
+        <div class="panel-head"><h3>📐 Plans &amp; Documents envoyés aux clients</h3><button class="btn btn-gold btn-sm" onclick="openAdminDocModal()">+ Envoyer un plan / document</button></div>
+        <div class="tbl-wrap">
+          <table class="tbl">
+            <thead><tr><th>Document</th><th>Client</th><th>Catégorie</th><th>Date</th><th>Statut Client</th><th>Actions</th></tr></thead>
+            <tbody>
+              ${DB.documents.map(d=>{
+                const cl = DB.users.find(u=>u.email===d.clientEmail);
+                return `<tr>
+                  <td><b>${esc(d.titre)}</b></td>
+                  <td>${esc(cl?cl.nom:d.clientEmail)}</td>
+                  <td><span class="pill pill-navy">${esc(d.categorie)}</span></td>
+                  <td>${esc(d.date)}</td>
+                  <td>${d.valideClient ? `<span class="pill pill-green">✅ Validé (${esc(d.valideLe)})</span>` : `<span class="pill pill-amber">⏳ En attente</span>`}</td>
+                  <td style="display:flex;gap:6px"><button class="btn btn-light btn-sm" onclick="printDocument('${esc(d.id)}')">🖨️</button><button class="btn btn-red btn-sm" onclick="adminDeleteDoc('${esc(d.id)}')">🗑️</button></td>
+                </tr>`;
+              }).join('')}
+            </tbody>
+          </table>
+        </div>
+      </div>`;
+  }
+  else if(tab === 'factures'){
+    body.innerHTML = `
+      <div class="panel">
+        <div class="panel-head"><h3>💰 Factures &amp; Paiements</h3><button class="btn btn-gold btn-sm" onclick="openAdminFactureModal()">+ Créer une facture</button></div>
+        <div class="tbl-wrap">
+          <table class="tbl">
+            <thead><tr><th>N°</th><th>Client</th><th>Libellé</th><th>Montant</th><th>Statut</th><th>Actions</th></tr></thead>
+            <tbody>
+              ${DB.factures.map(f=>{
+                const cl = DB.users.find(u=>u.email===f.clientEmail);
+                return `<tr>
+                  <td><b>${esc(f.numero)}</b></td>
+                  <td>${esc(cl?cl.nom:f.clientEmail)}</td>
+                  <td>${esc(f.libelle)}${f.ref?`<div style="font-size:11px;color:var(--muted)">Réf: ${esc(f.ref)} (${esc(f.mode)})</div>`:''}</td>
+                  <td><b>${fmt(f.montant)} FCFA</b></td>
+                  <td><span class="pill ${statusPill(f.statut)}">${esc(f.statut)}</span></td>
+                  <td style="display:flex;gap:6px;flex-wrap:wrap">
+                    ${f.statut!=='Payée' ? `<button class="btn btn-green btn-sm" onclick="adminMarkFactPaid('${esc(f.id)}')">✅ Confirmer payée</button>` : ''}
+                    <button class="btn btn-navy btn-sm" onclick="printInvoice('${esc(f.id)}')">🖨️ Reçu</button>
+                    <button class="btn btn-red btn-sm" onclick="adminDeleteFact('${esc(f.id)}')">🗑️</button>
+                  </td>
+                </tr>`;
+              }).join('')}
+            </tbody>
+          </table>
+        </div>
+      </div>`;
+  }
+  else if(tab === 'clients'){
+    const clients = DB.users.filter(u=>u.role==='client');
+    if(!clients.some(c=>c.email===selectedAdminChatEmail) && clients[0]) selectedAdminChatEmail = clients[0].email;
+    const chatMsgs = DB.messages.filter(m=>m.clientEmail===selectedAdminChatEmail);
+
+    body.innerHTML = `
+      <div class="two-col">
+        <div class="panel">
+          <div class="panel-head"><h3>👥 Clients (${clients.length})</h3><button class="btn btn-gold btn-sm" onclick="openAdminNewClientModal()">+ Nouveau client</button></div>
+          <div style="display:flex;flex-direction:column;gap:8px">
+            ${clients.map(c=>{
+              const un = DB.messages.filter(m=>m.clientEmail===c.email && m.expediteur==='client' && !m.lu).length;
+              return `
+              <div style="padding:12px;border:1.5px solid ${selectedAdminChatEmail===c.email?'var(--gold)':'var(--line)'};border-radius:14px;display:flex;justify-content:space-between;align-items:center;gap:8px;cursor:pointer;background:${selectedAdminChatEmail===c.email?'#fffbeb':'#fff'}" onclick="selectAdminChat('${esc(c.email)}')">
+                <div><b>${esc(c.nom)}</b><div style="font-size:12px;color:var(--muted)">${esc(c.email)} • ${esc(c.tel)} • ${esc(c.ville)}</div></div>
+                ${un ? `<span class="pill pill-red">${un} nouveau(x)</span>` : `<span class="pill pill-navy">💬 Ouvrir</span>`}
+              </div>`;
+            }).join('')}
+          </div>
+        </div>
+        <div class="panel">
+          <div class="panel-head"><h3>💬 Messagerie : ${esc((clients.find(c=>c.email===selectedAdminChatEmail)||{}).nom || selectedAdminChatEmail)}</h3></div>
+          <div class="chat-box">
+            <div class="chat-msgs" id="adminChatMsgs">
+              ${chatMsgs.length ? chatMsgs.map(m=>`
+                <div class="msg ${m.expediteur==='admin'?'me':'them'}">
+                  <div>${esc(m.contenu)}</div>
+                  <small>${esc(m.auteur)} • ${esc(m.date)}</small>
+                </div>`).join('') : '<p style="color:var(--muted);margin:auto">Aucun message avec ce client.</p>'}
+            </div>
+            <form class="chat-form" onsubmit="return sendAdminMessage(event)">
+              <input id="aChatInput" required placeholder="Répondre au client...">
+              <button class="btn btn-gold btn-sm" type="submit">Envoyer →</button>
+            </form>
+          </div>
+        </div>
+      </div>`;
+    const box = document.getElementById('adminChatMsgs');
+    if(box) box.scrollTop = box.scrollHeight;
+  }
+  else if(tab === 'settings'){
+    const s = DB.settings;
+    body.innerHTML = `
+      <div class="two-col">
+        <div class="panel">
+          <div class="panel-head"><h3>🏢 Coordonnées &amp; Identité du site</h3></div>
+          <form onsubmit="return saveAdminSettings(event)">
+            <div class="field"><label>Nom de la marque</label><input id="stBrand" required value="${esc(s.brand)}"></div>
+            <div class="form-row">
+              <div class="field"><label>Téléphone 1</label><input id="stTel1" required value="${esc(s.tel1)}"></div>
+              <div class="field"><label>Téléphone 2</label><input id="stTel2" value="${esc(s.tel2)}"></div>
+            </div>
+            <div class="form-row">
+              <div class="field"><label>Numéro WhatsApp (sans +)</label><input id="stWa" required value="${esc(s.whatsapp)}"></div>
+              <div class="field"><label>Email officiel</label><input id="stEmail" type="email" required value="${esc(s.email)}"></div>
+            </div>
+            <div class="form-row">
+              <div class="field"><label>Texte commission</label><input id="stComm" value="${esc(s.commission)}"></div>
+              <div class="field"><label>Villes desservies</label><input id="stZones" value="${esc(s.zones)}"></div>
+            </div>
+            <button class="btn btn-navy" type="submit">Enregistrer et mettre à jour le site</button>
+          </form>
+          <hr style="border:0;border-top:1px solid var(--line);margin:22px 0">
+          <h4 style="margin-bottom:10px">⭐ Modération des Témoignages</h4>
+          ${DB.temoignages.map(t=>`
+            <div style="padding:10px;border:1px solid var(--line);border-radius:12px;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center;gap:10px">
+              <div><b>${esc(t.nom)}</b> (${'★'.repeat(t.note)})<div style="font-size:12.5px;color:var(--muted)">${esc(t.texte)}</div></div>
+              <div style="display:flex;gap:6px">
+                <button class="btn ${t.publie?'btn-green':'btn-light'} btn-sm" onclick="toggleReviewPublish('${esc(t.id)}')">${t.publie?'Publié':'Publier'}</button>
+                <button class="btn btn-red btn-sm" onclick="deleteReview('${esc(t.id)}')">🗑️</button>
+              </div>
+            </div>`).join('')}
+        </div>
+        <div class="panel">
+          <div class="panel-head"><h3>☁️ Synchronisation Supabase &amp; Sauvegarde</h3></div>
+          <p style="font-size:13px;color:var(--muted);margin-bottom:12px">Connectez votre base Supabase (exécutez <code>supabase-schema.sql</code> puis collez vos clés ici) pour synchroniser clients, chantiers, factures et biens dans le cloud.</p>
+          <form onsubmit="return saveSupabaseConfig(event)">
+            <div class="field"><label>Supabase Project URL</label><input id="spUrl" placeholder="https://xxxx.supabase.co" value="${esc(s.supaUrl||'')}"></div>
+            <div class="field"><label>Supabase Publishable / Anon Key</label><input id="spKey" placeholder="eyJ... ou sb_publishable_..." value="${esc(s.supaKey||'')}"></div>
+            <label style="display:flex;align-items:center;gap:8px;font-size:13px;margin-bottom:14px"><input id="spAuto" type="checkbox" ${s.supaAuto?'checked':''}> Synchronisation automatique à chaque modification</label>
+            <div style="display:flex;gap:8px;flex-wrap:wrap">
+              <button class="btn btn-navy btn-sm" type="submit">Enregistrer clés</button>
+              <button class="btn btn-gold btn-sm" type="button" onclick="pushToSupabase(false)">⬆️ Envoyer vers Supabase</button>
+              <button class="btn btn-light btn-sm" type="button" onclick="pullFromSupabase()">⬇️ Charger depuis Supabase</button>
+            </div>
+          </form>
+          <hr style="border:0;border-top:1px solid var(--line);margin:22px 0">
+          <h4 style="margin-bottom:10px">💾 Sauvegarde JSON</h4>
+          <div style="display:flex;gap:8px;flex-wrap:wrap">
+            <button class="btn btn-light btn-sm" onclick="exportBackupJSON()">⬇️ Exporter JSON</button>
+            <label class="btn btn-light btn-sm" style="cursor:pointer">⬆️ Importer JSON<input type="file" accept=".json" style="display:none" onchange="importBackupJSON(event)"></label>
+            <button class="btn btn-red btn-sm" onclick="resetDemoData()">🔄 Réinitialiser démo</button>
+          </div>
+        </div>
+      </div>`;
+  }
+}
+
+// =========================================================
+// ACTIONS ADMIN (CRUD BIENS, PROJETS, CHANTIERS, DOCS, FACTURES, CRM)
+// =========================================================
+function renderAdminDemandesRows(){
+  const filter = document.getElementById('admDemFilter').value;
+  const list = DB.demandes.filter(d=>filter==='all' || d.statut===filter);
+  const waNum = DB.settings.whatsapp.replace(/\D/g,'');
+  document.getElementById('admDemRows').innerHTML = list.map(d=>`
+    <tr>
+      <td>${esc(d.date)}</td>
+      <td><b>${esc(d.nom)}</b><div style="font-size:12px;color:var(--muted)">${esc(d.tel)} ${d.email?'• '+esc(d.email):''}<br>📍 ${esc(d.ville)}</div></td>
+      <td><b>${esc(d.type)}</b><div style="font-size:12px;color:var(--muted)">${esc(d.msg)}</div></td>
+      <td>
+        <select onchange="adminUpdateDemStatus('${esc(d.id)}', this.value)" style="padding:6px;border-radius:8px;border:1px solid var(--line)">
+          ${['Nouvelle','Contactée','Visite planifiée','Devis envoyé','Convertie','Archivée'].map(st=>`<option ${d.statut===st?'selected':''}>${st}</option>`).join('')}
+        </select>
+      </td>
+      <td style="display:flex;gap:6px;flex-wrap:wrap">
+        <button class="btn btn-gold btn-sm" onclick="convertLeadToChantier('${esc(d.id)}')" title="Convertir en client + chantier">🏗️ Convertir</button>
+        <a class="btn btn-wa btn-sm" href="https://wa.me/${(d.tel||waNum).replace(/\D/g,'')}?text=${encodeURIComponent('Bonjour '+d.nom+', suite à votre demande sur '+DB.settings.brand+' ('+d.type+')...')}" target="_blank" rel="noopener">💬</a>
+        <button class="btn btn-red btn-sm" onclick="adminDeleteDem('${esc(d.id)}')">🗑️</button>
+      </td>
+    </tr>`).join('');
+}
+function adminUpdateDemStatus(id, st){
+  const d = DB.demandes.find(x=>x.id===id); if(!d) return;
+  d.statut = st; saveDB(); showToast('✅ Statut mis à jour : ' + st);
+  document.getElementById('aBadgeDem').textContent = DB.demandes.filter(x=>x.statut==='Nouvelle').length;
+}
+function adminDeleteDem(id){
+  DB.demandes = DB.demandes.filter(x=>x.id!==id); saveDB(); setAdminTab('demandes'); showToast('🗑️ Demande supprimée');
+}
+function convertLeadToChantier(demId){
+  const d = DB.demandes.find(x=>x.id===demId); if(!d) return;
+  const email = (d.email || (d.nom.toLowerCase().replace(/[^a-z0-9]/g,'') + '@client.com')).toLowerCase();
+  if(!DB.users.some(u=>u.email.toLowerCase()===email)){
+    DB.users.push({ id:uid('u'), role:'client', nom:d.nom, email, tel:d.tel, ville:d.ville||'Brazzaville', pass:'Client@2026', createdAt:todayISO() });
+  }
+  DB.chantiers.unshift({
+    id:uid('ch'), clientEmail:email, titre:d.type + ' — ' + d.nom, type:d.type, ville:d.ville||'Brazzaville',
+    adresse:'À définir', responsable:'Équipe All Service Immo', statut:'Étude / Plans', avancement:10,
+    budgetTotal:35000000, dateDebut:todayISO(), dateLivraison:'',
+    jalons:[
+      {nom:'Étude & Plans 3D',statut:'En cours',date:todayISO()},{nom:'Permis de construire',statut:'À venir',date:''},
+      {nom:'Fondations & Dalle',statut:'À venir',date:''},{nom:'Élévation & Toiture',statut:'À venir',date:''},
+      {nom:'Second œuvre',statut:'À venir',date:''},{nom:'Remise des clés',statut:'À venir',date:''}
+    ],
+    rapports:[]
+  });
+  d.statut = 'Convertie';
+  saveDB();
+  showToast('🎉 Converti en Client ('+email+' / Client@2026) + Chantier créé !');
+  renderAdminShell();
+}
+
+function openAdminBienModal(id=null){
+  const b = id ? DB.biens.find(x=>x.id===id) : null;
+  openModal(b ? 'Modifier le bien' : 'Ajouter un bien immobilier', `
+    <form onsubmit="return saveAdminBien(event)">
+      <input type="hidden" id="abId" value="${esc(b?b.id:'')}">
+      <div class="field"><label>Titre du bien *</label><input id="abTitre" required value="${esc(b?b.t:'')}" placeholder="Ex : Villa 4 chambres avec piscine"></div>
+      <div class="form-row">
+        <div class="field"><label>Ville *</label><select id="abVille">${['Brazzaville','Pointe-Noire','Kinshasa','Douala','Yaoundé','Libreville'].map(v=>`<option ${b&&b.v===v?'selected':''}>${v}</option>`).join('')}</select></div>
+        <div class="field"><label>Type *</label><select id="abType">${['Villa','Appartement','Terrain','Bureau','Immeuble'].map(t=>`<option ${b&&b.type===t?'selected':''}>${t}</option>`).join('')}</select></div>
+      </div>
+      <div class="form-row">
+        <div class="field"><label>Mode</label><select id="abMode"><option value="vente" ${b&&b.mode==='vente'?'selected':''}>Vente</option><option value="location" ${b&&b.mode==='location'?'selected':''}>Location</option></select></div>
+        <div class="field"><label>Statut</label><select id="abStatut">${['Disponible','Réservé','Vendu','Loué'].map(s=>`<option ${b&&b.statut===s?'selected':''}>${s}</option>`).join('')}</select></div>
+      </div>
+      <div class="form-row">
+        <div class="field"><label>Prix affiché *</label><input id="abPrix" required value="${esc(b?b.prix:'')}" placeholder="85 000 000 FCFA"></div>
+        <div class="field"><label>Montant numérique (FCFA) *</label><input id="abPrixNum" type="number" required value="${b?b.prixNum:50000000}"></div>
+      </div>
+      <div class="field"><label>Résumé court *</label><input id="abDetails" required value="${esc(b?b.d:'')}" placeholder="300 m² • 4 ch • Titre foncier"></div>
+      <div class="field"><label>URL photo (ou importez ci-dessous)</label><input id="abImg" value="${esc(b?b.img:'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1200&auto=format&fit=crop')}"></div>
+      <div class="field"><label>Ou importer une photo locale</label><input type="file" accept="image/*" onchange="handleFileToInput(this, 'abImg')"></div>
+      <div class="field"><label>Description complète</label><textarea id="abDesc" rows="3">${esc(b?b.desc:'')}</textarea></div>
+      <button class="btn btn-gold" type="submit" style="width:100%">Enregistrer le bien →</button>
+    </form>`);
+}
+async function handleFileToInput(fileEl, targetId){
+  const f = fileEl.files[0]; if(!f) return;
+  try{
+    const dataUrl = await compressImageFile(f);
+    document.getElementById(targetId).value = dataUrl;
+    showToast('📸 Image importée et optimisée !');
+  }catch(e){ showToast('❌ Impossible de lire cette image.'); }
+}
+function saveAdminBien(e){
+  e.preventDefault();
+  const id = document.getElementById('abId').value;
+  const obj = {
+    id: id || uid('b'),
+    t: document.getElementById('abTitre').value.trim(),
+    v: document.getElementById('abVille').value,
+    type: document.getElementById('abType').value,
+    mode: document.getElementById('abMode').value,
+    statut: document.getElementById('abStatut').value,
+    prix: document.getElementById('abPrix').value.trim(),
+    prixNum: +document.getElementById('abPrixNum').value || 0,
+    d: document.getElementById('abDetails').value.trim(),
+    img: document.getElementById('abImg').value.trim(),
+    desc: document.getElementById('abDesc').value.trim()
+  };
+  if(id){ const i = DB.biens.findIndex(x=>x.id===id); if(i>=0) DB.biens[i]=obj; }
+  else DB.biens.unshift(obj);
+  saveDB(); closeModal(); showToast('✅ Catalogue immobilier mis à jour !'); renderAdminShell();
+  return false;
+}
+function adminChangeBienStatus(id, st){
+  const b = DB.biens.find(x=>x.id===id); if(!b) return;
+  b.statut = st; saveDB(); showToast('✅ Statut mis à jour : ' + st);
+}
+function adminDeleteBien(id){
+  DB.biens = DB.biens.filter(x=>x.id!==id); saveDB(); showToast('🗑️ Bien supprimé'); renderAdminShell();
+}
+
+function openAdminProjetModal(id=null){
+  const p = id ? DB.projets.find(x=>x.id===id) : null;
+  openModal(p ? 'Modifier réalisation' : 'Ajouter une réalisation', `
+    <form onsubmit="return saveAdminProjet(event)">
+      <input type="hidden" id="apId" value="${esc(p?p.id:'')}">
+      <div class="field"><label>Nom du projet *</label><input id="apTitre" required value="${esc(p?p.t:'')}" placeholder="Ex : Villa Émeraude — Brazzaville"></div>
+      <div class="form-row">
+        <div class="field"><label>Catégorie</label><select id="apCat">${[['villa','Villa'],['immeuble','Immeuble'],['bureau','Bureaux'],['reno','Rénovation']].map(([k,l])=>`<option value="${k}" ${p&&p.c===k?'selected':''}>${l}</option>`).join('')}</select></div>
+        <div class="field"><label>Détails (surface, durée) *</label><input id="apDet" required value="${esc(p?p.d:'')}" placeholder="210 m² • 8 mois • Clé en main"></div>
+      </div>
+      <div class="field"><label>URL Photo</label><input id="apImg" value="${esc(p?p.img:'https://images.unsplash.com/photo-1600585154526-990dced4db0d?q=80&w=1200&auto=format&fit=crop')}"></div>
+      <div class="field"><label>Ou importer une photo</label><input type="file" accept="image/*" onchange="handleFileToInput(this, 'apImg')"></div>
+      <button class="btn btn-gold" type="submit" style="width:100%">Enregistrer</button>
+    </form>`);
+}
+function saveAdminProjet(e){
+  e.preventDefault();
+  const id = document.getElementById('apId').value;
+  const obj = { id: id||uid('p'), t:document.getElementById('apTitre').value.trim(), c:document.getElementById('apCat').value, d:document.getElementById('apDet').value.trim(), img:document.getElementById('apImg').value.trim() };
+  if(id){ const i=DB.projets.findIndex(x=>x.id===id); if(i>=0) DB.projets[i]=obj; }
+  else DB.projets.unshift(obj);
+  saveDB(); closeModal(); showToast('✅ Réalisation enregistrée !'); setAdminTab('projets');
+  return false;
+}
+function adminDeleteProjet(id){
+  DB.projets = DB.projets.filter(x=>x.id!==id); saveDB(); setAdminTab('projets'); showToast('🗑️ Réalisation supprimée');
+}
+
+function openAdminNewChantier(){
+  const clients = DB.users.filter(u=>u.role==='client');
+  openModal('Créer un nouveau chantier client', `
+    <form onsubmit="return saveAdminNewChantier(event)">
+      <div class="field"><label>Client *</label><select id="acClient">${clients.map(c=>`<option value="${esc(c.email)}">${esc(c.nom)} (${esc(c.email)})</option>`).join('')}</select></div>
+      <div class="field"><label>Titre du chantier *</label><input id="acTitre" required placeholder="Ex : Construction Villa R+1 — Mpila"></div>
+      <div class="form-row">
+        <div class="field"><label>Type</label><select id="acType"><option>Construction Villa clé en main</option><option>Architecture + Construction</option><option>Immeuble</option><option>Rénovation</option></select></div>
+        <div class="field"><label>Ville</label><select id="acVille"><option>Brazzaville</option><option>Pointe-Noire</option><option>Kinshasa</option><option>Douala</option><option>Libreville</option></select></div>
+      </div>
+      <div class="form-row">
+        <div class="field"><label>Adresse / Parcelle</label><input id="acAdr" placeholder="Quartier / Lot"></div>
+        <div class="field"><label>Responsable chantier</label><input id="acResp" value="Ing. Patrick Nkouka"></div>
+      </div>
+      <div class="form-row">
+        <div class="field"><label>Budget total (FCFA) *</label><input id="acBud" type="number" required value="50000000"></div>
+        <div class="field"><label>Livraison prévue</label><input id="acLiv" type="date" value="${todayISO()}"></div>
+      </div>
+      <button class="btn btn-gold" type="submit" style="width:100%">Créer le chantier →</button>
+    </form>`);
+}
+function saveAdminNewChantier(e){
+  e.preventDefault();
+  DB.chantiers.unshift({
+    id:uid('ch'), clientEmail:document.getElementById('acClient').value, titre:document.getElementById('acTitre').value.trim(),
+    type:document.getElementById('acType').value, ville:document.getElementById('acVille').value,
+    adresse:document.getElementById('acAdr').value.trim()||'À préciser', responsable:document.getElementById('acResp').value.trim(),
+    statut:'Étude / Plans', avancement:5, budgetTotal:+document.getElementById('acBud').value||0,
+    dateDebut:todayISO(), dateLivraison:document.getElementById('acLiv').value,
+    jalons:[
+      {nom:'Étude & Plans 3D',statut:'En cours',date:todayISO()},{nom:'Permis de construire',statut:'À venir',date:''},
+      {nom:'Fondations & Dalle',statut:'À venir',date:''},{nom:'Élévation & Toiture',statut:'À venir',date:''},
+      {nom:'Plomberie, Élec & Finitions',statut:'À venir',date:''},{nom:'Remise des clés',statut:'À venir',date:''}
+    ],
+    rapports:[]
+  });
+  saveDB(); closeModal(); showToast('🏗️ Chantier créé et visible chez le client !'); renderAdminShell();
+  return false;
+}
+function openAdminEditChantierModal(chId){
+  const c = DB.chantiers.find(x=>x.id===chId); if(!c) return;
+  openModal('Mettre à jour — ' + c.titre, `
+    <form onsubmit="return saveAdminEditChantier(event)">
+      <input type="hidden" id="aecId" value="${esc(c.id)}">
+      <div class="form-row">
+        <div class="field"><label>Statut global</label><select id="aecStatut">${['Étude / Plans','Permis','Fondations','Élévation / Gros œuvre','Second œuvre / Finitions','Livré'].map(s=>`<option ${c.statut===s?'selected':''}>${s}</option>`).join('')}</select></div>
+        <div class="field"><label>Avancement (%) : <b id="aecPctVal">${c.avancement}%</b></label><input id="aecPct" type="range" min="0" max="100" value="${c.avancement}" oninput="document.getElementById('aecPctVal').textContent=this.value+'%'"></div>
+      </div>
+      <h4 style="margin:12px 0 8px">Étapes (Jalons)</h4>
+      ${(c.jalons||[]).map((j,i)=>`
+        <div style="display:grid;grid-template-columns:1fr 130px;gap:8px;margin-bottom:8px;align-items:center">
+          <span style="font-size:13px;font-weight:600">${i+1}. ${esc(j.nom)}</span>
+          <select class="js-jalon-st" data-idx="${i}" style="padding:7px;border-radius:8px;border:1px solid var(--line)">
+            ${['À venir','En cours','Terminé'].map(st=>`<option ${j.statut===st?'selected':''}>${st}</option>`).join('')}
+          </select>
+        </div>`).join('')}
+      <button class="btn btn-gold" type="submit" style="width:100%;margin-top:12px">Enregistrer l'avancement</button>
+    </form>`);
+}
+function saveAdminEditChantier(e){
+  e.preventDefault();
+  const c = DB.chantiers.find(x=>x.id===document.getElementById('aecId').value); if(!c) return false;
+  c.statut = document.getElementById('aecStatut').value;
+  c.avancement = +document.getElementById('aecPct').value;
+  document.querySelectorAll('.js-jalon-st').forEach(sel=>{
+    const idx = +sel.dataset.idx;
+    if(c.jalons[idx]){ c.jalons[idx].statut = sel.value; if(sel.value==='Terminé' && !c.jalons[idx].date) c.jalons[idx].date = todayISO(); }
+  });
+  saveDB(); closeModal(); showToast('✅ Avancement chantier mis à jour !'); setAdminTab('chantiers');
+  return false;
+}
+function openAdminReportModal(chId){
+  const c = DB.chantiers.find(x=>x.id===chId); if(!c) return;
+  openModal('📸 Publier un rapport photo — ' + c.titre, `
+    <form onsubmit="return saveAdminReport(event)">
+      <input type="hidden" id="arChId" value="${esc(chId)}">
+      <div class="field"><label>Titre du rapport *</label><input id="arTitre" required placeholder="Ex : Élévation des murs R+1 achevée"></div>
+      <div class="field"><label>Nouvel avancement (%) *</label><input id="arPct" type="number" min="0" max="100" required value="${c.avancement}"></div>
+      <div class="field"><label>Commentaire de chantier *</label><textarea id="arTxt" required rows="3" placeholder="Détaillez les travaux réalisés cette semaine..."></textarea></div>
+      <div class="field"><label>Photo URL</label><input id="arImg" value="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=1000&auto=format&fit=crop"></div>
+      <div class="field"><label>Ou importer une photo depuis votre appareil</label><input type="file" accept="image/*" onchange="handleFileToInput(this, 'arImg')"></div>
+      <button class="btn btn-gold" type="submit" style="width:100%">Publier chez le client →</button>
+    </form>`);
+}
+function saveAdminReport(e){
+  e.preventDefault();
+  const c = DB.chantiers.find(x=>x.id===document.getElementById('arChId').value); if(!c) return false;
+  const pct = +document.getElementById('arPct').value;
+  c.avancement = pct;
+  c.rapports.unshift({
+    id:uid('r'), date:todayISO(), titre:document.getElementById('arTitre').value.trim(),
+    texte:document.getElementById('arTxt').value.trim(), avancement:pct, img:document.getElementById('arImg').value.trim()
+  });
+  DB.messages.push({ id:uid('m'), clientEmail:c.clientEmail, expediteur:'admin', auteur:c.responsable||'Équipe Chantier', contenu:`📸 Nouveau rapport photo publié sur "${c.titre}" (${pct}%) : ${document.getElementById('arTitre').value.trim()}`, date:todayISO()+' '+new Date().toTimeString().slice(0,5), lu:false });
+  saveDB(); closeModal(); showToast('📸 Rapport photo publié et client notifié !'); setAdminTab('chantiers');
+  return false;
+}
+
+function openAdminDocModal(){
+  const clients = DB.users.filter(u=>u.role==='client');
+  openModal('Envoyer un plan ou document à un client', `
+    <form onsubmit="return saveAdminDoc(event)">
+      <div class="field"><label>Client destinataire *</label><select id="adClient">${clients.map(c=>`<option value="${esc(c.email)}">${esc(c.nom)} (${esc(c.email)})</option>`).join('')}</select></div>
+      <div class="field"><label>Titre du document *</label><input id="adTitre" required placeholder="Ex : Plan 3D Façade Villa v2"></div>
+      <div class="field"><label>Catégorie</label><select id="adCat"><option>Plan 2D/3D</option><option>Devis</option><option>Contrat</option><option>Titre foncier</option><option>Permis</option></select></div>
+      <div class="field"><label>Lien URL du plan / PDF (optionnel)</label><input id="adUrl" placeholder="https://..."></div>
+      <div class="field"><label>Ou joindre un aperçu image</label><input type="file" accept="image/*" onchange="handleFileToInput(this, 'adUrl')"></div>
+      <button class="btn btn-gold" type="submit" style="width:100%">Déposer dans l'Espace Client →</button>
+    </form>`);
+}
+function saveAdminDoc(e){
+  e.preventDefault();
+  const clientEmail = document.getElementById('adClient').value;
+  const ch = DB.chantiers.find(x=>x.clientEmail===clientEmail);
+  DB.documents.unshift({
+    id:uid('d'), clientEmail, chantierId:ch?ch.id:'', titre:document.getElementById('adTitre').value.trim(),
+    categorie:document.getElementById('adCat').value, url:document.getElementById('adUrl').value.trim(),
+    date:todayISO(), valideClient:false, valideLe:null
+  });
+  saveDB(); closeModal(); showToast('📐 Document déposé dans l’Espace Client !'); setAdminTab('docs');
+  return false;
+}
+function adminDeleteDoc(id){ DB.documents=DB.documents.filter(x=>x.id!==id); saveDB(); setAdminTab('docs'); showToast('🗑️ Document supprimé'); }
+
+function openAdminFactureModal(){
+  const clients = DB.users.filter(u=>u.role==='client');
+  openModal('Créer une facture / échéance client', `
+    <form onsubmit="return saveAdminFacture(event)">
+      <div class="field"><label>Client *</label><select id="afClient">${clients.map(c=>`<option value="${esc(c.email)}">${esc(c.nom)}</option>`).join('')}</select></div>
+      <div class="field"><label>Libellé *</label><input id="afLib" required placeholder="Ex : Tranche 30% — Gros œuvre"></div>
+      <div class="form-row">
+        <div class="field"><label>Montant (FCFA) *</label><input id="afMontant" type="number" required value="10000000"></div>
+        <div class="field"><label>Échéance *</label><input id="afEch" type="date" required value="${todayISO()}"></div>
+      </div>
+      <button class="btn btn-gold" type="submit" style="width:100%">Émettre la facture →</button>
+    </form>`);
+}
+function saveAdminFacture(e){
+  e.preventDefault();
+  const num = 'FAC-2026-' + String(DB.factures.length + 101).padStart(3,'0');
+  const clientEmail = document.getElementById('afClient').value;
+  const ch = DB.chantiers.find(x=>x.clientEmail===clientEmail);
+  DB.factures.unshift({
+    id:uid('f'), numero:num, clientEmail, chantierId:ch?ch.id:'', libelle:document.getElementById('afLib').value.trim(),
+    montant:+document.getElementById('afMontant').value||0, echeance:document.getElementById('afEch').value,
+    statut:'En attente', mode:'', ref:'', datePaiement:''
+  });
+  saveDB(); closeModal(); showToast('💰 Facture ' + num + ' émise !'); renderAdminShell();
+  return false;
+}
+function adminMarkFactPaid(id){
+  const f = DB.factures.find(x=>x.id===id); if(!f) return;
+  f.statut = 'Payée';
+  if(!f.datePaiement) f.datePaiement = todayISO();
+  if(!f.mode) f.mode = 'Confirmé par administration';
+  saveDB(); showToast('✅ Paiement confirmé pour ' + f.numero); renderAdminShell();
+}
+function adminDeleteFact(id){ DB.factures=DB.factures.filter(x=>x.id!==id); saveDB(); renderAdminShell(); showToast('🗑️ Facture supprimée'); }
+
+function openAdminNewClientModal(){
+  openModal('Créer un compte Client', `
+    <form onsubmit="return saveAdminNewClient(event)">
+      <div class="field"><label>Nom complet *</label><input id="ancNom" required></div>
+      <div class="form-row">
+        <div class="field"><label>Email *</label><input id="ancEmail" type="email" required></div>
+        <div class="field"><label>Téléphone *</label><input id="ancTel" required placeholder="+242 06 ..."></div>
+      </div>
+      <div class="form-row">
+        <div class="field"><label>Ville</label><input id="ancVille" value="Brazzaville"></div>
+        <div class="field"><label>Mot de passe *</label><input id="ancPass" required value="Client@2026"></div>
+      </div>
+      <button class="btn btn-gold" type="submit" style="width:100%">Créer le compte client</button>
+    </form>`);
+}
+function saveAdminNewClient(e){
+  e.preventDefault();
+  const email = document.getElementById('ancEmail').value.trim().toLowerCase();
+  if(DB.users.some(u=>u.email.toLowerCase()===email)){ showToast('⚠️ Email déjà utilisé.'); return false; }
+  DB.users.push({
+    id:uid('u'), role:'client', nom:document.getElementById('ancNom').value.trim(), email,
+    tel:document.getElementById('ancTel').value.trim(), ville:document.getElementById('ancVille').value.trim(),
+    pass:document.getElementById('ancPass').value, createdAt:todayISO()
+  });
+  saveDB(); closeModal(); showToast('👤 Client créé !'); setAdminTab('clients');
+  return false;
+}
+function selectAdminChat(email){
+  selectedAdminChatEmail = email;
+  let changed = false;
+  DB.messages.forEach(m=>{ if(m.clientEmail===email && m.expediteur==='client' && !m.lu){ m.lu=true; changed=true; } });
+  if(changed) saveDB();
+  renderAdminShell();
+}
+function sendAdminMessage(e){
+  e.preventDefault();
+  const txt = document.getElementById('aChatInput').value.trim(); if(!txt) return false;
+  DB.messages.push({
+    id:uid('m'), clientEmail:selectedAdminChatEmail, expediteur:'admin', auteur:currentAdminUser().nom,
+    contenu:txt, date:todayISO()+' '+new Date().toTimeString().slice(0,5), lu:false
+  });
+  saveDB(); setAdminTab('clients');
+  return false;
+}
+
+function saveAdminSettings(e){
+  e.preventDefault();
+  DB.settings.brand = document.getElementById('stBrand').value.trim();
+  DB.settings.tel1 = document.getElementById('stTel1').value.trim();
+  DB.settings.tel2 = document.getElementById('stTel2').value.trim();
+  DB.settings.whatsapp = document.getElementById('stWa').value.trim();
+  DB.settings.email = document.getElementById('stEmail').value.trim();
+  DB.settings.commission = document.getElementById('stComm').value.trim();
+  DB.settings.zones = document.getElementById('stZones').value.trim();
+  saveDB(); syncBranding(); showToast('✅ Coordonnées enregistrées et appliquées sur tout le site !');
+  return false;
+}
+function toggleReviewPublish(id){
+  const t = DB.temoignages.find(x=>x.id===id); if(!t) return;
+  t.publie = !t.publie; saveDB(); setAdminTab('settings'); showToast(t.publie?'✅ Avis publié sur le site':'⏸️ Avis masqué');
+}
+function deleteReview(id){ DB.temoignages=DB.temoignages.filter(x=>x.id!==id); saveDB(); setAdminTab('settings'); }
+
+// =========================================================
+// IMPRESSION OFFICIELLE (FACTURES / DOCUMENTS)
+// =========================================================
+function printInvoice(factId){
+  const f = DB.factures.find(x=>x.id===factId); if(!f) return;
+  const cl = DB.users.find(u=>u.email===f.clientEmail) || { nom:f.clientEmail, tel:'', ville:'' };
+  document.getElementById('printArea').innerHTML = `
+    <div style="border:2px solid #0b1d33;padding:30px;border-radius:12px">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;border-bottom:2px solid #c9a24b;padding-bottom:16px">
+        <div><h1 style="font-size:26px">${esc(DB.settings.brand)}</h1><p>Immobilier • Architecture • Construction</p><p>${esc(DB.settings.tel1)} • ${esc(DB.settings.email)}</p></div>
+        <div style="text-align:right"><h2>${f.statut==='Payée'?'REÇU DE PAIEMENT':'FACTURE'}</h2><p><b>${esc(f.numero)}</b></p><p>Date : ${esc(f.datePaiement || todayISO())}</p></div>
+      </div>
+      <div style="margin:24px 0"><b>Client :</b> ${esc(cl.nom)} (${esc(f.clientEmail)})<br><b>Téléphone :</b> ${esc(cl.tel)} • <b>Ville :</b> ${esc(cl.ville)}</div>
+      <table style="width:100%;border-collapse:collapse;margin:20px 0">
+        <tr style="background:#0b1d33;color:#fff"><th style="padding:10px;text-align:left">Désignation</th><th style="padding:10px;text-align:right">Montant</th></tr>
+        <tr><td style="padding:12px;border-bottom:1px solid #ddd">${esc(f.libelle)}<br><small>Échéance : ${esc(f.echeance)} ${f.ref?'• Réf : '+esc(f.ref):''}</small></td><td style="padding:12px;text-align:right;border-bottom:1px solid #ddd"><b>${fmt(f.montant)} FCFA</b></td></tr>
+      </table>
+      <p style="font-size:18px;text-align:right"><b>Statut : ${esc(f.statut.toUpperCase())}</b></p>
+      <p style="margin-top:40px;font-size:12px;color:#64748b">Document généré depuis le portail ${esc(DB.settings.brand)}.</p>
+    </div>`;
+  window.print();
+}
+function printDocument(docId){
+  const d = DB.documents.find(x=>x.id===docId); if(!d) return;
+  const cl = DB.users.find(u=>u.email===d.clientEmail) || { nom:d.clientEmail };
+  document.getElementById('printArea').innerHTML = `
+    <div style="border:2px solid #0b1d33;padding:30px">
+      <h1>${esc(DB.settings.brand)} — Fiche Document</h1><hr style="margin:14px 0">
+      <p><b>Document :</b> ${esc(d.titre)}</p><p><b>Catégorie :</b> ${esc(d.categorie)}</p>
+      <p><b>Client :</b> ${esc(cl.nom)}</p><p><b>Date :</b> ${esc(d.date)}</p>
+      <p><b>Validation client :</b> ${d.valideClient ? '✅ Approuvé le '+esc(d.valideLe) : '⏳ En attente'}</p>
+      ${d.url && (d.url.startsWith('data:image') || d.url.includes('unsplash')) ? `<img src="${esc(d.url)}" style="max-width:100%;margin-top:18px">` : ''}
+    </div>`;
+  window.print();
+}
+
+// =========================================================
+// SUPABASE REST SYNC + EXPORT/IMPORT JSON
+// =========================================================
+function saveSupabaseConfig(e){
+  e.preventDefault();
+  DB.settings.supaUrl = document.getElementById('spUrl').value.trim().replace(/\/+$/,'');
+  DB.settings.supaKey = document.getElementById('spKey').value.trim();
+  DB.settings.supaAuto = document.getElementById('spAuto').checked;
+  saveDB(); renderAdminShell(); showToast('☁️ Configuration Supabase enregistrée.');
+  return false;
+}
+async function pushToSupabase(silent=false){
+  const { supaUrl, supaKey } = DB.settings;
+  if(!supaUrl || !supaKey){ if(!silent) showToast('⚠️ Renseignez URL et clé Supabase.'); return; }
+  try{
+    const res = await fetch(`${supaUrl}/rest/v1/asi_state?on_conflict=id`, {
+      method:'POST',
+      headers:{ 'apikey':supaKey, 'Authorization':'Bearer '+supaKey, 'Content-Type':'application/json', 'Prefer':'resolution=merge-duplicates' },
+      body: JSON.stringify({ id:'main', data:DB, updated_at:new Date().toISOString() })
+    });
+    if(!res.ok) throw new Error(await res.text());
+    if(!silent) showToast('☁️ Base synchronisée avec succès sur Supabase !');
+  }catch(err){
+    if(!silent) showToast('❌ Erreur Supabase (vérifiez supabase-schema.sql) : ' + err.message.slice(0,80));
+  }
+}
+async function pullFromSupabase(){
+  const { supaUrl, supaKey } = DB.settings;
+  if(!supaUrl || !supaKey){ showToast('⚠️ Renseignez URL et clé Supabase.'); return; }
+  try{
+    const res = await fetch(`${supaUrl}/rest/v1/asi_state?id=eq.main&select=data`, {
+      headers:{ 'apikey':supaKey, 'Authorization':'Bearer '+supaKey }
+    });
+    const rows = await res.json();
+    if(rows && rows[0] && rows[0].data){
+      const keepCfg = { supaUrl, supaKey, supaAuto: DB.settings.supaAuto };
+      DB = rows[0].data;
+      DB.settings = { ...DB.settings, ...keepCfg };
+      saveDB(); renderAdminShell(); showToast('⬇️ Données chargées depuis Supabase !');
+    } else showToast('ℹ️ Aucune sauvegarde trouvée dans asi_state.');
+  }catch(err){ showToast('❌ Erreur lecture Supabase : ' + err.message.slice(0,80)); }
+}
+function exportBackupJSON(){
+  const blob = new Blob([JSON.stringify(DB, null, 2)], {type:'application/json'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'all-service-immo-backup-' + todayISO() + '.json';
+  a.click();
+  showToast('⬇️ Sauvegarde téléchargée.');
+}
+function importBackupJSON(ev){
+  const f = ev.target.files[0]; if(!f) return;
+  const r = new FileReader();
+  r.onload = () => {
+    try{ DB = JSON.parse(r.result); saveDB(); renderAdminShell(); showToast('✅ Données restaurées !'); }
+    catch(e){ showToast('❌ Fichier JSON invalide.'); }
+  };
+  r.readAsText(f);
+}
+function resetDemoData(){
+  DB = getDefaultData(); saveDB(); renderAdminShell(); showToast('🔄 Données démo réinitialisées.');
+}
+
+// =========================================================
+// MODAL & DÉMARRAGE
+// =========================================================
+function openModal(title, html){
+  document.getElementById('modalTitle').textContent = title;
+  document.getElementById('modalContent').innerHTML = html;
+  document.getElementById('appModal').classList.add('open');
+}
+function closeModal(){ document.getElementById('appModal').classList.remove('open'); }
+
+function initApp(){
+  const h = window.location.hash.toLowerCase();
+  const q = new URLSearchParams(window.location.search).get('view');
+  if(q === 'client' || h === '#espace-client') switchView('client');
+  else if(q === 'admin' || h === '#espace-admin') switchView('admin');
+  else renderPublicAll();
+}
+window.addEventListener('hashchange', initApp);
+initApp();
 </script>
 </body>
 </html>
