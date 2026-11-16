@@ -177,6 +177,22 @@ const HEADERS = {
 };
 
 
+// Préserve les textes (codes, téléphones) et empêche leur interprétation comme formule.
+function appendSafeRow_(sheet, values) {
+  // Une apostrophe de préfixe demande à Sheets de conserver le contenu comme texte,
+  // sans transformer les codes numériques, téléphones ou formules saisis.
+  sheet.appendRow(values.map(function(value) {
+    return typeof value === 'string' && value !== '' ? "'" + value : value;
+  }));
+}
+
+// Sérialise les opérations qui vérifient puis modifient le stock.
+function withStockLock_(fn) {
+  const lock = LockService.getScriptLock();
+  lock.waitLock(30000);
+  try { return fn(); } finally { lock.releaseLock(); }
+}
+
 /* =====================================================
    doGet
 ===================================================== */
@@ -184,11 +200,8 @@ const HEADERS = {
 function doGet(e) {
 
   return HtmlService
-    .createHtmlOutputFromFile('Index')
+    .createHtmlOutputFromFile('index')
     .setTitle('MUANA BITINDA - Gestion Logistique')
-    .setXFrameOptionsMode(
-      HtmlService.XFrameOptionsMode.ALLOWALL
-    )
     .addMetaTag(
       'viewport',
       'width=device-width, initial-scale=1'
@@ -415,7 +428,7 @@ function createDefaultSettings_() {
 
     if (!existing[item[0]]) {
 
-      sheet.appendRow(item);
+      appendSafeRow_(sheet, item);
     }
 
   });
@@ -456,7 +469,7 @@ function createDefaultAdmin_() {
     }
   }
 
-  sheet.appendRow([
+  appendSafeRow_(sheet, [
 
     generateId_('USR'),
 
@@ -635,7 +648,16 @@ function getSession_(token) {
     );
   }
 
-  return JSON.parse(value);
+  const session = JSON.parse(value);
+  const rows = getRows_(MB.SHEETS.USERS);
+  const user = rows.find(function(row) { return String(row[0]) === String(session.id); });
+  if (!user || String(user[7]).trim().toUpperCase() !== 'ACTIF' ||
+      String(user[5]).trim().toUpperCase() !== session.role ||
+      String(user[6] || '') !== String(session.partnerCode || '')) {
+    cache.remove('SESSION_' + token);
+    throw new Error('Compte désactivé ou modifié. Veuillez vous reconnecter.');
+  }
+  return session;
 }
 
 
@@ -836,7 +858,7 @@ function registerPartner(data) {
     new Date();
 
 
-  partners.appendRow([
+  appendSafeRow_(partners, [
 
     partnerId,
     name,
@@ -852,7 +874,7 @@ function registerPartner(data) {
   ]);
 
 
-  users.appendRow([
+  appendSafeRow_(users, [
 
     userId,
     name,
@@ -2109,7 +2131,11 @@ function getPartnerData(token) {
    AJOUT PRODUIT
 ===================================================== */
 
-function addProduct(
+function addProduct(token, product) {
+  return withStockLock_(function() { return addProductUnlocked_(token, product); });
+}
+
+function addProductUnlocked_(
   token,
   product
 ) {
@@ -2194,7 +2220,7 @@ function addProduct(
     new Date();
 
 
-  sheet.appendRow([
+  appendSafeRow_(sheet, [
 
     code,
 
@@ -2211,7 +2237,7 @@ function addProduct(
     ),
 
     Number(
-      product.threshold || 10
+      (product.threshold === '' || product.threshold == null) ? 10 : product.threshold
     ),
 
     Number(
@@ -2242,7 +2268,11 @@ function addProduct(
    AJOUT RECEPTION
 ===================================================== */
 
-function addReception(
+function addReception(token, data) {
+  return withStockLock_(function() { return addReceptionUnlocked_(token, data); });
+}
+
+function addReceptionUnlocked_(
   token,
   data
 ) {
@@ -2281,7 +2311,7 @@ function addReception(
 
   if (
     !productCode ||
-    quantity <= 0
+    !Number.isFinite(quantity) || quantity <= 0
   ) {
 
     throw new Error(
@@ -2341,7 +2371,7 @@ function addReception(
     );
 
 
-  receipts.appendRow([
+  appendSafeRow_(receipts, [
 
     generateId_('REC'),
 
@@ -2434,7 +2464,7 @@ function addMovement_(data) {
   const sheet =
     getSheet_(MB.SHEETS.MOVEMENTS);
 
-  sheet.appendRow([
+  appendSafeRow_(sheet, [
 
     generateId_('MOV'),
 
@@ -2470,7 +2500,11 @@ function addMovement_(data) {
    AJOUT EVACUATION
 ===================================================== */
 
-function addEvacuation(
+function addEvacuation(token, data) {
+  return withStockLock_(function() { return addEvacuationUnlocked_(token, data); });
+}
+
+function addEvacuationUnlocked_(
   token,
   data
 ) {
@@ -2501,7 +2535,7 @@ function addEvacuation(
 
   if (
     !productCode ||
-    quantity <= 0
+    !Number.isFinite(quantity) || quantity <= 0
   ) {
 
     throw new Error(
@@ -2546,7 +2580,7 @@ function addEvacuation(
     );
 
 
-  evacuations.appendRow([
+  appendSafeRow_(evacuations, [
 
     generateId_('EVA'),
 
@@ -2807,7 +2841,11 @@ function adminGetProducts(
    ADMIN : AJOUT LIVRAISON
 ===================================================== */
 
-function addDelivery(
+function addDelivery(token, data) {
+  return withStockLock_(function() { return addDeliveryUnlocked_(token, data); });
+}
+
+function addDeliveryUnlocked_(
   token,
   data
 ) {
@@ -2839,7 +2877,7 @@ function addDelivery(
   if (
     !partnerCode ||
     !productCode ||
-    quantity <= 0
+    !Number.isFinite(quantity) || quantity <= 0
   ) {
 
     throw new Error(
@@ -2848,6 +2886,7 @@ function addDelivery(
   }
 
 
+  const cancelled = String(data.status || '').trim().toUpperCase() === 'ANNULÉE';
   const stock =
     calculateStock_(
       partnerCode,
@@ -2856,7 +2895,7 @@ function addDelivery(
 
 
   if (
-    quantity > stock
+    !cancelled && quantity > stock
   ) {
 
     throw new Error(
@@ -2890,7 +2929,7 @@ function addDelivery(
     );
 
 
-  deliveries.appendRow([
+  appendSafeRow_(deliveries, [
 
     generateId_('LIV'),
 
@@ -2940,7 +2979,7 @@ function addDelivery(
   ]);
 
 
-  addMovement_({
+  if (!cancelled) addMovement_({
 
     partnerCode:
       partnerCode,
