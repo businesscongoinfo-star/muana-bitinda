@@ -2808,6 +2808,12 @@ function openPage(page){
     );
 
 
+  const activeNav = document.querySelectorAll('.navItem');
+  activeNav.forEach(function(item) {
+    if (item.getAttribute('onclick') === "openPage('" + page + "')") item.classList.add('active');
+  });
+
+
   if (
     window.innerWidth <= 750
   ){
@@ -2998,6 +3004,16 @@ function renderDashboard(data){
 
     `;
 
+
+    document.getElementById('adminStatsContainer').innerHTML = [
+      statCard('👥', data.stats.partners, 'Partenaires'),
+      statCard('🟢', data.stats.activePartners, 'Partenaires actifs'),
+      statCard('⏳', data.stats.pendingPartners, 'En attente'),
+      statCard('📦', data.stats.products, 'Produits'),
+      statCard('🔄', data.stats.movements, 'Mouvements'),
+      statCard('🚚', data.stats.deliveries, 'Livraisons'),
+      statCard('📊', data.stats.totalStock, 'Stock total')
+    ].join('');
 
     renderAdminDashboard(
       data
@@ -3527,6 +3543,8 @@ function loadPartnerData(){
       function(data){
 
         hideLoading();
+
+        stockData = data.products || [];
 
         renderReceptions(
           data.receptions
